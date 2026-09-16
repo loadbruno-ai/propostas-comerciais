@@ -1,0 +1,591 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Viva Sinaf — Visão de Investimento</title>
+<style>
+  :root{
+    --brand:#1F4E79; --brand-deep:#173B5C; --brand-mid:#5B7FA3; --brand-tint:#EEF3F8;
+    --ink:#1B2430; --muted:#6A7686; --line:#DCE3EA; --attn:#8A7340; --attn-tint:#FBF8F1;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:#F2F4F7;color:var(--ink);
+       font-family:Carlito,Calibri,"Liberation Sans",Arial,sans-serif;font-size:13.5px;line-height:1.58;}
+  .page{max-width:860px;margin:0 auto;background:#fff;padding:40px 48px 48px;}
+  .kicker{font-family:"DejaVu Sans Mono",ui-monospace,Menlo,Consolas,monospace;
+          font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--brand-mid);}
+  h1{font-size:31px;line-height:1.12;margin:8px 0 12px;color:var(--brand);font-weight:700;letter-spacing:-.005em;}
+  .lede{font-size:14.5px;color:#3A4756;margin:0 0 20px;max-width:64ch;}
+  .ficha{width:100%;border-collapse:collapse;margin:0 0 6px;
+         border-top:2px solid var(--brand);border-bottom:1px solid var(--line);}
+  .ficha td{padding:6px 0;vertical-align:top;font-size:12.5px;}
+  .ficha td.k{font-family:"DejaVu Sans Mono",ui-monospace,Menlo,Consolas,monospace;font-size:9.5px;
+              letter-spacing:.1em;text-transform:uppercase;color:var(--brand-mid);
+              width:150px;padding-right:14px;padding-top:8px;}
+
+  .phase{background:var(--brand);color:#fff;padding:18px 22px 19px;border-radius:2px;margin:34px 0 16px;}
+  .phase .kicker{display:inline-block;background:rgba(255,255,255,.18);color:#fff;font-size:11.5px;
+                 font-weight:700;letter-spacing:.18em;padding:3px 11px 4px;border-radius:2px;margin-bottom:10px;}
+  .phase h2{color:#fff;font-size:21px;font-weight:700;margin:0 0 9px;border:0;padding:0;}
+  .phase p{margin:0;font-size:12.8px;color:#DCE8F2;line-height:1.55;}
+
+  h2{font-size:17px;margin:30px 0 10px;padding-top:12px;border-top:1px solid var(--line);
+     color:var(--brand);font-weight:700;}
+  h3{font-family:"DejaVu Sans Mono",ui-monospace,Menlo,Consolas,monospace;font-size:9.5px;
+     letter-spacing:.12em;text-transform:uppercase;color:var(--brand-mid);font-weight:400;margin:20px 0 3px;}
+  h3.val{font-size:12.5px;letter-spacing:.16em;color:var(--brand);font-weight:700;
+         margin:30px 0 6px;padding-top:15px;border-top:1px solid var(--line);}
+  h4{font-size:14.5px;color:var(--brand);font-weight:700;margin:20px 0 6px;}
+  p{margin:0 0 10px;}
+
+  table.d{width:100%;border-collapse:collapse;font-size:12.5px;margin:8px 0 6px;}
+  table.d th{font-family:"DejaVu Sans Mono",ui-monospace,Menlo,Consolas,monospace;font-size:9px;
+             letter-spacing:.1em;text-transform:uppercase;color:var(--brand-mid);font-weight:400;
+             text-align:left;padding:0 10px 6px 0;border-bottom:1.5px solid var(--brand);vertical-align:bottom;}
+  table.d th.num{text-align:right;min-width:74px;}
+  table.d td{padding:7px 10px 7px 0;border-bottom:1px solid var(--line);vertical-align:top;}
+  table.d td:last-child,table.d th:last-child{padding-right:0;}
+  .num{text-align:right;white-space:nowrap;
+       font-family:"DejaVu Sans Mono",ui-monospace,Menlo,Consolas,monospace;font-size:11px;}
+  tr.sum td{border-top:1.5px solid var(--brand);border-bottom:none;font-weight:700;padding-top:8px;color:var(--brand);}
+  table.v td{background:var(--brand-tint);}
+  table.v td.num{font-weight:700;color:var(--brand);}
+  table.d .sub{font-size:11px;color:var(--muted);margin-top:1px;line-height:1.4;}
+
+  ul.cap{list-style:none;margin:6px 0 4px;padding:0;border-left:3px solid var(--brand);}
+  ul.cap li{position:relative;padding:8px 0 8px 30px;border-bottom:1px solid var(--line);
+            font-size:12.8px;line-height:1.5;margin-left:14px;}
+  ul.cap li:last-child{border-bottom:none;}
+  ul.cap li::before{content:"›";position:absolute;left:8px;top:7px;color:var(--brand);font-weight:700;font-size:15px;}
+
+  ul.out{list-style:none;margin:4px 0 4px;padding:0;border-left:3px solid var(--line);}
+  ul.out li{padding:7px 0 7px 18px;border-bottom:1px solid var(--line);font-size:12.3px;
+            color:#41505F;line-height:1.5;margin-left:14px;position:relative;}
+  ul.out li:last-child{border-bottom:none;}
+  ul.out li::before{content:"·";position:absolute;left:4px;top:5px;color:var(--brand-mid);font-size:15px;}
+
+  ol.dest{margin:6px 0 8px;padding-left:20px;font-size:12.8px;}
+  ol.dest li{margin-bottom:7px;line-height:1.5;}
+  ul.prem{margin:6px 0 8px;padding-left:18px;font-size:12.8px;}
+  ul.prem li{margin-bottom:5px;line-height:1.5;}
+
+  .box{border:1px solid var(--line);border-left:3px solid var(--brand);padding:13px 17px;
+       margin:12px 0;font-size:12.5px;background:#FAFBFC;}
+  .box.sec{border-left-color:var(--brand-mid);}
+  .box.attn{border-left-color:var(--attn);background:var(--attn-tint);border-color:#EDE4D2;}
+  .box h4{margin:2px 0 7px;font-size:14px;}
+  .box.attn h4{color:#6F5B2E;}
+  .box p{margin:0 0 7px;}
+  .box p:last-child{margin:0;}
+  .tag{display:inline-block;font-family:"DejaVu Sans Mono",ui-monospace,Menlo,Consolas,monospace;
+       font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;background:var(--brand-tint);
+       color:var(--brand);padding:2px 8px;border-radius:2px;margin-bottom:6px;}
+  .box.attn .tag{background:#F0E7D4;color:#6F5B2E;}
+
+  .caminhos{display:flex;gap:14px;margin:12px 0 4px;flex-wrap:wrap;}
+  .caminhos .c{flex:1 1 300px;border:1px solid var(--line);border-top:3px solid var(--brand);
+               padding:14px 16px;background:#FAFBFC;}
+  .caminhos .c .kicker{color:var(--brand-mid);}
+  .caminhos .c .v{font-size:22px;font-weight:700;color:var(--brand);margin:6px 0 2px;letter-spacing:-.01em;}
+  .caminhos .c .h{font-family:"DejaVu Sans Mono",ui-monospace,Menlo,Consolas,monospace;
+                  font-size:10.5px;color:var(--muted);margin-bottom:6px;}
+  .caminhos .c p{font-size:12.3px;margin:0;color:#41505F;line-height:1.5;}
+
+  .foot{margin-top:30px;padding-top:13px;border-top:1px solid var(--line);
+        font-size:11px;color:var(--muted);line-height:1.55;}
+  @media print{
+    body{background:#fff;line-height:1.52;}
+    .page{max-width:none;padding:0;}
+    h2{margin:20px 0 8px;padding-top:10px;}
+    h3{margin:14px 0 3px;} h3.val{margin:22px 0 5px;padding-top:12px;} h4{margin:14px 0 5px;}
+    .phase{margin:18px 0 11px;padding:13px 17px 14px;}
+    .box{margin:9px 0;padding:10px 14px;}
+    table.d{margin:6px 0 4px;} table.d td{padding:5.5px 10px 5.5px 0;}
+    table.d,.box,.phase,.caminhos,ul.cap,ul.out,.keep{break-inside:avoid;page-break-inside:avoid;}
+    tr{break-inside:avoid;page-break-inside:avoid;}
+    h2,h3,h4{break-after:avoid;page-break-after:avoid;}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="kicker">Fattoria Digital · Viva Sinaf</div>
+  <h1>Visão de investimento</h1>
+  <p class="lede">O investimento para colocar o CRM do Viva Sinaf em operação, fase a fase: a base de usuários e os primeiros canais, depois o uso de benefício, o comportamento dentro do aplicativo e, por fim, o aceite que abre a base de segurados da Sinaf.</p>
+
+  <table class="ficha">
+    <tr><td class="k">Cliente</td><td>Viva Sinaf · grupo Sinaf</td></tr>
+    <tr><td class="k">Interlocução</td><td>Equipe de CRM do Viva Sinaf</td></tr>
+    <tr><td class="k">Plataforma</td><td>HubSpot Marketing Hub Enterprise, conta nova em multi-account</td></tr>
+    <tr><td class="k">Natureza</td><td>Visão preliminar para validação · não constitui proposta comercial</td></tr>
+    <tr><td class="k">Data</td><td>16/09/2026</td></tr>
+  </table>
+
+  <div class="box">
+    <h4>Como ler este documento</h4>
+    <p>Cada fase é apresentada primeiro pelo que a operação passa a conseguir fazer, e só depois pelo esforço e pelo investimento correspondentes. A leitura de cima para baixo responde, nesta ordem: o que muda na prática, como o dado entra, o que a TI precisa fazer, quanto custa e quando entra no ar.</p>
+    <p>Quando uma fase admite mais de um cenário de execução, o que muda entre eles é apenas <em>como o dado entra e se mantém atualizado</em>. A operação que a equipe faz depois é a mesma.</p>
+    <p>Por se tratar de uma visão macro, anterior à validação técnica do ambiente, os valores são apresentados em faixa. A proposta comercial fecha o número após a descoberta.</p>
+  </div>
+
+  <!-- ==================== FASE 1 ==================== -->
+  <div class="phase">
+    <div class="kicker">Fase 1</div>
+    <h2>A base atual de usuários dentro do CRM</h2>
+    <p>Resolve o que a equipe de CRM do Viva Sinaf descreveu como metade do problema: enxergar os clientes ativos dentro do CRM e conseguir falar com eles.</p>
+  </div>
+
+  <h2>O que a equipe de CRM vai conseguir fazer</h2>
+  <p>Ao final da fase 1, sem depender da Fattoria no dia a dia, a operação consegue:</p>
+  <ul class="cap">
+    <li>Ver os cerca de 90 mil clientes ativos dentro do CRM, com plano, status da apólice, data de adesão e praça, sem pedir relatório para ninguém.</li>
+    <li>Montar segmento por qualquer combinação desses atributos, direto na tela.</li>
+    <li>Rodar três réguas automáticas de relacionamento, boas-vindas de quem acabou de aderir, reativação por status de apólice e comunicação por plano, publicadas e funcionando sozinhas.</li>
+    <li>Disparar por WhatsApp e por e-mail, com descadastro funcionando em todos os canais.</li>
+    <li>Acompanhar num painel quem recebeu, quem abriu, quem respondeu e quem voltou a usar o benefício depois da comunicação.</li>
+    <li>Operar tudo isso sem a Fattoria depois do treinamento: criar lista, ajustar régua, disparar campanha.</li>
+  </ul>
+
+  <h3>O que não entra na fase 1</h3>
+  <ul class="out">
+    <li>Réguas disparadas por comportamento dentro do aplicativo, em tempo real. É a <strong>fase 3</strong>, adiante neste documento.</li>
+    <li>Integração com os dados de uso de benefício dos parceiros. É a <strong>fase 2</strong>.</li>
+    <li>Captação e opt-in de clientes Sinaf que ainda não ativaram o Viva. É a <strong>fase 4</strong>.</li>
+    <li>Redação e produção do conteúdo das mensagens, que fica com o time de marketing do Viva.</li>
+  </ul>
+
+  <h2>Os dois caminhos</h2>
+  <div class="caminhos">
+    <div class="c">
+      <div class="kicker">Caminho B · por arquivo</div>
+      <div class="v">R$ 40 a 48 mil</div>
+      <div class="h">200 a 240 horas · 5 a 6 semanas</div>
+      <p>A base entra por um arquivo exportado, preparado por uma ferramenta que entregamos junto.</p>
+    </div>
+    <div class="c">
+      <div class="kicker">Caminho A · sincronização automática</div>
+      <div class="v">R$ 45 a 53 mil</div>
+      <div class="h">225 a 265 horas · 6 a 7 semanas</div>
+      <p>A base se atualiza sozinha, todo dia, sem ninguém tocar.</p>
+    </div>
+  </div>
+
+  <div class="box">
+    <h4>Como o dado entra em cada um</h4>
+    <p><strong>No caminho B</strong>, alguém exporta a base e sobe no CRM. Para que isso não vire trabalho manual frágil, entregamos junto uma <em>ferramenta de preparo</em>: a pessoa arrasta o arquivo exportado, a ferramenta arruma os formatos, CPF, telefone, datas e nome, e devolve um arquivo pronto para subir. É uma operação rápida e não exige conhecimento técnico.</p>
+    <p><strong>No caminho A</strong>, um serviço que a Fattoria hospeda e opera lê a base na origem e mantém o CRM atualizado sozinho, com verificação automática de que rodou e alerta quando algo sai do esperado.</p>
+  </div>
+
+  <div class="box sec">
+    <span class="tag">Sobre a escolha entre os dois</span>
+    <h4>Não é uma escolha definitiva: dá para começar por arquivo e evoluir para a sincronização</h4>
+    <p>Os blocos 1 a 8 são idênticos nos dois caminhos, só o último muda. Começar pelo B e acrescentar a sincronização depois, pelo bloco 9A, <strong>não refaz nada do que já foi entregue</strong>. É a terceira via, e a mais confortável enquanto o acesso à base for incógnita.</p>
+  </div>
+
+  <h2>Quem gera a atualização, e o que a TI precisa fazer</h2>
+  <p>Esta é a decisão que mais afeta o dia a dia da operação, e, dentro do caminho B, ela não muda o investimento: muda apenas quem carrega o trabalho recorrente.</p>
+  <table class="d">
+    <tr><th>Caminho</th><th>Quem gera a atualização</th><th>TI no ciclo recorrente</th><th>Campos disponíveis</th></tr>
+    <tr><td><strong>B</strong> · por arquivo</td><td>A própria equipe de CRM, se o painel exportar. A TI, se não exportar.</td><td><strong>Só se a exportação depender da TI</strong></td><td>Os que o painel entregar, ou os que pedirmos, quando é a TI que gera</td></tr>
+    <tr><td><strong>A</strong> · sincronização</td><td>Ninguém, é automático</td><td><strong>Não</strong></td><td>Todos os que existem na origem</td></tr>
+  </table>
+
+  <div class="box attn">
+    <span class="tag">Recomendação de curto prazo</span>
+    <h4>Quem exporta a base define se a TI sai do circuito, e isso se responde rápido</h4>
+    <p>Se a equipe de CRM já consegue exportar a base pelo painel administrativo, o caminho B sai de vez do circuito da TI: a exportação vira rotina da própria equipe, e a TI é acionada apenas uma vez, no início. Se não conseguir, o mesmo caminho B funciona com a TI gerando o extrato, o investimento é idêntico, mas passa a existir uma dependência a cada atualização.</p>
+    <p>A ressalva é honesta: <strong>o painel exporta o que o painel foi feito para exportar.</strong> Se ele entregar nome, e-mail, telefone e status, mas não CPF, plano ou praça, parte da segmentação descrita acima não acontece sem apoio da TI.</p>
+    <p>Por isso o primeiro pedido é o mais barato de todos: <strong>uma exportação do painel, mesmo com poucas linhas e mesmo anonimizada.</strong> Um arquivo responde quais campos existem, quantos estão preenchidos e se dá para usar como base, e converte boa parte desta estimativa em número fechado.</p>
+  </div>
+
+  <div class="box">
+    <h4>O mínimo irredutível da TI</h4>
+    <p>Não existe fase 1 com zero envolvimento técnico, mas o que se pede à TI é pontual e, dependendo de quem exporta a base, pode se limitar a uma única conversa.</p>
+    <p>A confirmação do campo identificador é a única que não tem como contornar em nenhum cenário. Se essa chave for definida errada, a base duplica na segunda carga e não há como desfazer sem refazer. São duas horas de conversa que protegem o projeto inteiro.</p>
+  </div>
+
+  <h3>Escopo e esforço</h3>
+  <table class="d">
+    <tr><th>Bloco</th><th class="num">Mín.</th><th class="num">Máx.</th></tr>
+    <tr><td>1 · Descoberta e desenho da operação da fase 1</td><td class="num">22</td><td class="num">26</td></tr>
+    <tr><td>2 · Preparo e modelagem do ambiente HubSpot</td><td class="num">22</td><td class="num">26</td></tr>
+    <tr><td>3 · Carga da base, padronização e qualidade</td><td class="num">36</td><td class="num">46</td></tr>
+    <tr><td>4 · Três réguas de relacionamento</td><td class="num">34</td><td class="num">40</td></tr>
+    <tr><td>5 · Canais: WhatsApp, e-mail e descadastro</td><td class="num">22</td><td class="num">26</td></tr>
+    <tr><td>6 · Painel de acompanhamento</td><td class="num">14</td><td class="num">18</td></tr>
+    <tr><td>7 · Treinamento e handoff</td><td class="num">18</td><td class="num">20</td></tr>
+    <tr><td>8 · Gestão do projeto</td><td class="num">18</td><td class="num">20</td></tr>
+    <tr class="sum"><td>Núcleo comum aos dois caminhos</td><td class="num">186</td><td class="num">222</td></tr>
+    <tr><td>9B · Ferramenta de preparo do arquivo, com relatório de qualidade</td><td class="num">14</td><td class="num">18</td></tr>
+    <tr><td>9A · Sincronização automática, com verificação e alerta</td><td class="num">39</td><td class="num">43</td></tr>
+  </table>
+  <p style="font-size:12.3px;color:#41505F;">Cada bloco aparece em duas colunas: o <strong>mínimo</strong> supõe ambiente e base sem surpresas, enquanto o <strong>máximo</strong> é o pior caso razoável dentro do escopo descrito. A variação se concentra nos blocos 3 e 4, que dependem da qualidade real da base e do desenho final das réguas. O bloco 9A varia pouco porque construir a sincronização é trabalho conhecido: o que é incógnita aqui é a base, não o conector.</p>
+
+  <h3 class="val">Valores fase 1</h3>
+  <table class="d v">
+    <tr><th>Caminho</th><th class="num">Horas</th><th class="num">Investimento</th></tr>
+    <tr><td><strong>B · por arquivo</strong></td><td class="num">200–240</td><td class="num">R$ 40–48 mil</td></tr>
+    <tr><td><strong>A · sincronização</strong></td><td class="num">225–265</td><td class="num">R$ 45–53 mil</td></tr>
+  </table>
+  <p style="font-size:12.3px;color:var(--muted);margin-top:3px;">O número fechado sai depois da descoberta e da amostra da base.</p>
+
+  <div class="box">
+    <h4>Duas condições que protegem os dois lados</h4>
+    <p><strong>Qualidade da base.</strong> O bloco 3 pressupõe uma base com até 15% de registros inconsistentes: telefone fora de padrão, campo obrigatório vazio, duplicidade. Acima disso, o dimensionamento é revisto em conjunto antes de seguir, com o número medido e apresentado. Essa incerteza é a principal razão da faixa, e é por isso que a amostra da base é o primeiro pedido a fazer.</p>
+    <p><strong>O que conta como uma régua.</strong> Uma régua é um fluxo automático com um gatilho de entrada, até três mensagens, uma condição de saída e um teste de aceite. Variações de texto da mesma mensagem não contam como régua nova.</p>
+  </div>
+
+  <h2>Quando entra no ar</h2>
+  <p>O prazo conta a partir de dois marcos que não dependem da Fattoria: <strong>a decisão de seguir com a fase 1</strong> e <strong>a licença da HubSpot ativa</strong>.</p>
+  <table class="d">
+    <tr><th>Cenário de partida</th><th>Caminho B</th><th>Caminho A</th></tr>
+    <tr><td>Decisão até 30/09, licença ativa na 1ª semana de outubro</td><td>Primeira quinzena de novembro</td><td>Segunda quinzena de novembro</td></tr>
+    <tr><td>Decisão em meados de outubro</td><td>Fim de novembro</td><td>Início de dezembro</td></tr>
+  </table>
+
+  <h3 class="val">Composição do investimento do primeiro ano</h3>
+  <p style="font-size:12.5px;">O valor da seção anterior é só a implantação, que se paga uma vez. O primeiro ano tem também linhas recorrentes, e elas mudam a conta:</p>
+  <table class="d">
+    <tr><th>Linha</th><th>Natureza</th><th>Valor</th></tr>
+    <tr><td>Implantação Fattoria, fase 1</td><td>Valor único</td><td><strong>R$ 40 a 48 mil</strong> no caminho B<br><strong>R$ 45 a 53 mil</strong> no caminho A</td></tr>
+    <tr><td>Licença HubSpot</td><td>Assinatura mensal, contratada direto com a HubSpot</td><td><strong>A confirmar com a HubSpot</strong>, em reais e por faixa de contatos</td></tr>
+    <tr><td>Sustentação Fattoria</td><td>Mensalidade, a partir do fim dos 90 dias de garantia</td><td>R$ 1.600/mês no caminho B ou R$ 2.400/mês no caminho A<br>Nove mensalidades no primeiro ano: R$ 14.400 ou R$ 21.600</td></tr>
+    <tr><td>Infraestrutura do conector<div class="sub">só no caminho A</div></td><td>Hospedada e operada pela Fattoria, já embutida na mensalidade</td><td>Sem linha própria. No caminho B não existe: a ferramenta roda no navegador, sem servidor</td></tr>
+    <tr><td>Mensageria</td><td>Por mensagem enviada</td><td>Depende do broker definido e da categoria aprovada pela Meta</td></tr>
+  </table>
+  <p style="font-size:12.3px;color:#41505F;">Em qualquer dos dois caminhos, <strong>a Fattoria não retém dado pessoal em repouso</strong>.</p>
+
+  <div class="box">
+    <h4>Mensageria</h4>
+    <p>A Meta cobra por mensagem, e o preço muda muito conforme a categoria em que cada template for aprovado: <em>utilidade</em> custa uma fração do que custa <em>marketing</em>. A redação das mensagens tem, portanto, efeito financeiro direto, e o valor em reais só pode ser estimado depois de definido o broker.</p>
+  </div>
+
+  <h2>Depois do go-live</h2>
+  <table class="d">
+    <tr><th>Caminho</th><th>Garantia de 90 dias</th><th class="num">Depois</th></tr>
+    <tr><td>B · por arquivo</td><td>Correção do que foi entregue</td><td class="num">8 h/mês<br>R$ 1.600</td></tr>
+    <tr><td>A · sincronização</td><td>Correção <strong>e monitoramento da sincronização</strong></td><td class="num">12 h/mês<br>R$ 2.400</td></tr>
+  </table>
+  <p style="font-size:12.3px;color:#41505F;">A diferença é proposital. A ferramenta de preparo dá menos trabalho porque falha na frente da pessoa, enquanto a sincronização automática precisa de alguém olhando, porque falha em silêncio. O valor acompanha o esforço real de cada modelo. O acompanhamento mensal integra a entrega: começa ao fim da garantia e segue enquanto a operação estiver no ar, com prazo e condições de encerramento definidos em contrato.</p>
+
+  <h2>Premissas e o que destrava a fase 1</h2>
+  <h3>Premissas</h3>
+  <ul class="prem">
+    <li>Licença HubSpot contratada e ativa antes do início do bloco 2.</li>
+    <li>A escolha do broker de comunicação está em aberto, o do Viva, o da Sinaf ou os dois em redundância. A fase 1 integra o canal com o que for definido; um arranjo com mais de um fornecedor é dimensionado à parte.</li>
+    <li>Conteúdo e redação das mensagens são do time de marketing do Viva Sinaf. A Fattoria desenha a estrutura e os gatilhos.</li>
+    <li>Validações do Viva Sinaf em até três dias úteis por ponto, para não deslocar o cronograma.</li>
+    <li>Os valores consideram o escopo descrito. Mudanças são repactuadas por aditivo.</li>
+  </ul>
+
+  <div class="box attn">
+    <span class="tag">Para fechar</span>
+    <h4>O que precisamos do Viva Sinaf</h4>
+    <ol class="dest">
+      <li><strong>Uma exportação do painel administrativo</strong>, mesmo curta e anonimizada. É o que confirma se a equipe consegue gerar a base sem a TI, e fecha a estimativa do bloco 3.</li>
+      <li><strong>Para o caminho A: qual é a tecnologia da base de dados e como se obtém acesso de leitura a ela.</strong> É o que define se a sincronização automática é viável e o que precisa ser provisionado.</li>
+      <li><strong>Escolher o caminho</strong>, B ou A, à luz das duas respostas acima.</li>
+      <li><strong>Confirmar com a HubSpot o valor da licença em reais</strong>, por faixa de contatos, para fechar a composição do primeiro ano.</li>
+      <li><strong>Definir as três réguas</strong> da primeira onda, com a equipe de CRM.</li>
+    </ol>
+    <p>Com essas respostas, a proposta comercial é emitida em até três dias úteis, com valor fechado, cronograma detalhado e matriz de responsabilidades.</p>
+  </div>
+
+  <!-- ==================== FASE 2 ==================== -->
+  <div class="phase">
+    <div class="kicker">Fase 2</div>
+    <h2>O uso de benefício dentro do CRM</h2>
+    <p>Saber quem usou o quê, quando e com qual parceiro, e comunicar a partir disso. É a outra metade do problema: a fase 1 mostra quem é o cliente, a fase 2 mostra o que ele faz.</p>
+  </div>
+
+  <h2>O que a equipe de CRM passa a conseguir fazer</h2>
+  <p>Sobre tudo o que a fase 1 entregou, somam-se:</p>
+  <ul class="cap">
+    <li>Ver, no registro de cada cliente, quais benefícios ele usou, quando e com qual parceiro.</li>
+    <li>Segmentar por comportamento real de uso: quem nunca usou nada, quem usou uma vez e parou, quem usa com frequência, quem usa uma categoria e ignora outra.</li>
+    <li>Rodar réguas disparadas por uso: reativar quem parou, apresentar o benefício a quem nunca experimentou, cruzar categorias para quem já é usuário ativo.</li>
+    <li>Fechar o ciclo de medição: o painel da fase 1 passa a mostrar não só quem abriu a mensagem, mas <strong>quem voltou a usar o benefício depois dela</strong>.</li>
+  </ul>
+
+  <h3>O que não entra na fase 2</h3>
+  <ul class="out">
+    <li>Eventos do aplicativo em tempo real, abertura de tela, busca, clique. São a <strong>fase 3</strong>, na sequência.</li>
+    <li>Reconstrução de histórico anterior ao início da integração, quando o parceiro não conseguir fornecê-lo.</li>
+    <li>Captação e opt-in de clientes Sinaf que ainda não ativaram o Viva. É a <strong>fase 4</strong>.</li>
+  </ul>
+
+  <div class="box">
+    <h4>Por que esta fase custa menos que a primeira</h4>
+    <p>O caro foi construir a fundação, não evoluir sobre ela. A fase 2 não paga nada do que a fase 1 já pagou: ambiente modelado, chave de identificação validada, canais ligados, descadastro e painel funcionando, equipe treinada. O que ela paga é o específico dela, entender de onde vem o dado de cada parceiro, ligá-lo ao contato certo e transformar isso em segmento e régua.</p>
+    <p>É mais barata, mas não trivial: a parte difícil já foi feita uma vez, e o esforço aqui <strong>se multiplica pelo número de parceiros</strong>. Cinco parceiros não custam o mesmo que um.</p>
+  </div>
+
+  <h2>O inventário: o que precisa ser descoberto antes</h2>
+  <p>Hoje não se sabe como são as bases dos parceiros, e por isso esta fase não pode ser fechada num número único. O inventário é a etapa que converte incerteza em escopo. Para cada parceiro, quatro perguntas:</p>
+  <table class="d">
+    <tr><th>Pergunta</th><th>Por que decide o esforço</th></tr>
+    <tr><td>Em que formato o dado chega?</td><td>Arquivo estruturado, planilha montada à mão, portal do parceiro ou API. Define se há automação possível ou trabalho manual a cada ciclo.</td></tr>
+    <tr><td>Com que frequência?</td><td>Diário, semanal, mensal ou sob demanda. Define quão atual pode ser a régua: não adianta reativar quem parou se o dado chega trimestralmente.</td></tr>
+    <tr><td>Qual identificador da pessoa vem junto?</td><td><strong>A pergunta mais importante.</strong> CPF resolve na hora. E-mail ou telefone resolvem com ressalva. Código interno do parceiro exige uma tabela de correspondência, e alguém precisa mantê-la.</td></tr>
+    <tr><td>O que o registro informa?</td><td>Só que houve uso, ou também qual serviço, valor, unidade e local. Define o que dá para segmentar depois.</td></tr>
+  </table>
+  <p style="font-size:12.3px;color:#41505F;"><strong>Condição de entrada:</strong> o dado precisa chegar como dado, arquivo tabular ou API. Relatório em PDF ou tela de portal sem exportação não serve, e mudar isso é conversa comercial com o parceiro, não trabalho técnico. Vale aqui a lição da fase 1, multiplicada por fornecedor: se a chave que liga o uso à pessoa estiver errada, o dado entra no contato errado.</p>
+
+  <div class="box attn">
+    <span class="tag">Ponto de atenção jurídico</span>
+    <h4>Nem todo uso de benefício é dado comum</h4>
+    <p>Se um parceiro é clínica, laboratório, telemedicina ou saúde mental, <strong>o simples uso do benefício revela informação de saúde</strong>, dado sensível sob a LGPD, com regras próprias. Segmentar por isso não é o mesmo que segmentar por plano ou praça.</p>
+    <p>Não impede a fase 2, mas muda o desenho: para esses parceiros, registrar o uso de forma agregada, no formato "usou algum benefício da rede no mês", preserva a régua de reativação sem trazer o dado sensível para a base de marketing. O inventário classifica cada parceiro também por esse critério, e a decisão passa pelo jurídico da Sinaf.</p>
+  </div>
+
+  <h2>Três tipos de parceiro, três esforços</h2>
+  <p>O inventário classifica cada parceiro em um destes tipos. É isso que permite estimar a fase 2 sem saber ainda quantos e quais parceiros existem.</p>
+  <table class="d">
+    <tr><th>Tipo</th><th>Como é</th><th class="num">Horas por parceiro</th></tr>
+    <tr><td><strong>Tipo 1</strong><div class="sub">arquivo previsível</div></td><td>Arquivo ou planilha com layout estável, periodicidade definida e CPF no registro. Reaproveita a ferramenta de preparo da fase 1, estendida para o formato do parceiro.</td><td class="num">8 a 14</td></tr>
+    <tr><td><strong>Tipo 2</strong><div class="sub">arquivo irregular</div></td><td>Layout muda entre entregas, planilha montada à mão, ou identificador fraco que exige tabela de correspondência. Cada ciclo precisa de normalização, verificação e conferência.</td><td class="num">16 a 28</td></tr>
+    <tr><td><strong>Tipo 3</strong><div class="sub">API do parceiro</div></td><td>Integração automática: autenticação, paginação, sincronização periódica, verificação de que rodou e alerta quando falha. Mesma lógica do caminho A da fase 1.</td><td class="num">28 a 44</td></tr>
+  </table>
+  <p style="font-size:12.3px;color:#41505F;">O tipo 3 custa mais para construir e é o único que não gera trabalho recorrente. O tipo 2 é o mais caro no longo prazo, porque o custo se repete a cada entrega. Quando o parceiro cair nesse tipo, vale pedir a ele um arquivo padronizado antes de integrar.</p>
+
+  <div class="box sec">
+    <span class="tag">Onde o tipo 3 roda</span>
+    <h4>O CRM não busca dado em API de terceiro, ele recebe</h4>
+    <p>Quem vai buscar é o mesmo serviço do caminho A da fase 1, operado pela Fattoria: cada parceiro do tipo 3 entra nele como uma fonte a mais, sem infraestrutura nova, e é isso que explica as 28 a 44 horas por parceiro.</p>
+    <p>Se a fase 1 seguir pelo caminho B, esse serviço ainda não existirá, e o primeiro parceiro do tipo 3 carrega a construção dele, de <strong>16 a 24 horas adicionais</strong>, uma única vez.</p>
+  </div>
+
+  <h3>Escopo e esforço</h3>
+  <p style="font-size:12.5px;">A fase 2 tem uma parte que acontece uma vez e uma parte que se repete por parceiro.</p>
+  <table class="d">
+    <tr><th>Bloco · acontece uma vez</th><th class="num">Mín.</th><th class="num">Máx.</th></tr>
+    <tr><td>2.1 · Inventário dos parceiros e desenho do modelo de uso</td><td class="num">20</td><td class="num">28</td></tr>
+    <tr><td>2.2 · Modelagem do uso de benefício no HubSpot</td><td class="num">18</td><td class="num">24</td></tr>
+    <tr><td>2.3 · Segmentos e três réguas por uso de benefício</td><td class="num">30</td><td class="num">38</td></tr>
+    <tr><td>2.4 · Painel de uso e efeito das réguas</td><td class="num">12</td><td class="num">16</td></tr>
+    <tr><td>2.5 · Gestão do projeto</td><td class="num">12</td><td class="num">16</td></tr>
+    <tr class="sum"><td>Núcleo da fase 2</td><td class="num">92</td><td class="num">122</td></tr>
+  </table>
+
+  <h3 class="val">Valores fase 2</h3>
+  <table class="d v">
+    <tr><th>Item</th><th class="num">Horas</th><th class="num">Investimento</th></tr>
+    <tr><td><strong>Núcleo da fase 2</strong>, independe do número de parceiros</td><td class="num">92–122</td><td class="num">R$ 18–24 mil</td></tr>
+  </table>
+
+  <h3>Complementar · acréscimo por parceiro integrado</h3>
+  <table class="d">
+    <tr><th>Tipo de parceiro</th><th class="num">Horas</th><th class="num">Investimento</th></tr>
+    <tr><td>Tipo 1 · arquivo previsível</td><td class="num">8–14</td><td class="num">R$ 1,6–2,8 mil</td></tr>
+    <tr><td>Tipo 2 · arquivo irregular</td><td class="num">16–28</td><td class="num">R$ 3,2–5,6 mil</td></tr>
+    <tr><td>Tipo 3 · API do parceiro</td><td class="num">28–44</td><td class="num">R$ 5,6–8,8 mil</td></tr>
+  </table>
+  <p style="font-size:12.3px;color:#41505F;">O total da fase 2 é o núcleo mais a soma dos parceiros que entrarem, e quais entram é uma decisão do Viva Sinaf, que pode começar por dois ou três e crescer depois, sem refazer o núcleo.</p>
+
+  <div class="box">
+    <h4>Sustentação</h4>
+    <p>Cada integração ativa acrescenta superfície para acompanhar, e a mensalidade da fase 1 sobe proporcionalmente ao que entrou. A lógica é a mesma de lá: integração por arquivo pesa menos, porque falha na frente da pessoa; integração automática pesa mais, porque falha em silêncio. O incremento é fechado junto com o resultado do inventário, quando se sabe quantos parceiros de cada tipo existem.</p>
+  </div>
+
+  <h2>O que destrava a fase 2</h2>
+  <ol class="dest">
+    <li><strong>A fase 1 concluída e no ar.</strong> A fase 2 se apoia inteiramente no que ela entrega: ambiente modelado, chave de identificação validada, canais ligados e painel funcionando. Sem essa base, não há onde o uso de benefício entrar.</li>
+    <li><strong>Um arquivo de exemplo de cada parceiro cujo dado o Viva Sinaf já recebe hoje</strong>, mesmo curto e anonimizado, e a indicação de quais têm API disponível. É o que define quais parceiros entram, classifica cada um nos tipos 1, 2 ou 3 e fecha o número da fase.</li>
+    <li><strong>Saber quais parceiros prestam serviço de saúde</strong>, para separar desde o início o que precisa de tratamento diferente.</li>
+  </ol>
+  <p style="font-size:12.3px;color:#41505F;">Nada disso bloqueia a fase 1, e nada disso precisa estar pronto para ela começar. Quanto antes o inventário andar, porém, mais cedo a fase 2 deixa de ser uma faixa e passa a ser um número.</p>
+
+  <!-- ==================== FASE 3 ==================== -->
+  <div class="phase">
+    <div class="kicker">Fase 3</div>
+    <h2>Os eventos do aplicativo</h2>
+    <p>Reagir ao que a pessoa faz dentro do app, e não só a quem ela é ou ao que ela já usou. É a fase com mais incógnitas, e a única em que parte da resposta não está no CRM nem na base: está no próprio aplicativo.</p>
+  </div>
+
+  <h2>O que a equipe de CRM passa a conseguir fazer</h2>
+  <ul class="cap">
+    <li>Disparar comunicação a partir de comportamento no app.</li>
+    <li>Falar no tempo certo, horas depois da ação, não no ciclo seguinte de carga.</li>
+    <li>Entender o caminho que leva ao uso do benefício, e não só o resultado final.</li>
+    <li>Parar de mandar mensagem para quem já fez aquilo: o evento encerra a régua sozinho.</li>
+  </ul>
+
+  <h3>O que não entra na fase 3</h3>
+  <ul class="out">
+    <li>Push notification dentro do aplicativo. É outro canal, com outra infraestrutura, e entra em escopo próprio.</li>
+    <li>Devolver segmentos do CRM para dentro do app, personalizar o que a pessoa vê. É o caminho inverso do dado e precisa de desenho próprio.</li>
+    <li>Instrumentar eventos que o app ainda não emite. O que a fase 3 faz é especificar o que falta, e quem implementa é o time do aplicativo.</li>
+  </ul>
+
+  <h2>Três incógnitas que precisam ser respondidas antes</h2>
+  <p>Ao contrário das fases anteriores, aqui não dá para estimar por tipo: as três respostas abaixo mudam a natureza do trabalho, não só o tamanho.</p>
+
+  <div class="box">
+    <h4>1 · O evento sabe de quem ele é?</h4>
+    <p>Um evento de app identifica o <em>aparelho</em>, não a pessoa. Para virar comunicação no CRM, precisa carregar um identificador que também exista na base, e isso só acontece se o app tiver sido programado para enviá-lo. Se não estiver, <strong>a correção é no app</strong>: nova versão publicada, e só quem atualizar passa a gerar evento identificado.</p>
+    <p>Esse identificador <strong>não pode ser o CPF</strong>, porque as plataformas de analytics proíbem receber dado pessoal, sob risco para a conta. É um código interno sem significado, que precisa existir também no CRM. Vale defini-lo já na fase 1.</p>
+  </div>
+
+  <div class="box attn">
+    <span class="tag">Decisão que tem prazo</span>
+    <h4>2 · A exportação dos eventos já está ligada?</h4>
+    <p>O evento linha a linha, que é o que uma régua precisa, só existe se a exportação para uma base analítica estiver ligada. E <strong>ela não é retroativa</strong>: grava a partir do dia em que é ligada, e o que passou não se recupera.</p>
+  </div>
+
+  <div class="box">
+    <h4>3 · Para onde o evento vai hoje, e de onde vamos lê-lo?</h4>
+    <p>A exportação normalmente vai para uma base analítica na nuvem. Pode ser que o Viva Sinaf já tenha uma, pode ser que ela alimente a plataforma de BI que foi mencionada nas conversas, ou pode ser que ainda não exista nada. A resposta define de onde o pipeline lê e como ele se conecta.</p>
+  </div>
+
+  <h2>Como o evento chega ao CRM</h2>
+  <p>Há dois caminhos para levar o evento da base analítica até o CRM.</p>
+  <table class="d">
+    <tr><th>Caminho</th><th>Como funciona</th></tr>
+    <tr><td>Conector nativo</td><td>A HubSpot lê a base analítica diretamente, sem intermediário. Configuração em tela, menos trabalho de construção. Disponibilidade conforme o plano contratado, <strong>a verificar com a HubSpot</strong>.</td></tr>
+    <tr><td>Ingestão por API</td><td>Um serviço da Fattoria lê a base analítica e envia os eventos ao CRM pela API, com verificação e alerta. Mesmo resultado dentro do CRM. O trabalho de construção está no bloco 3.3 desta fase.</td></tr>
+  </table>
+  <p style="font-size:12.3px;color:#41505F;">Este documento adota a <strong>ingestão por API</strong> como caminho padrão por um motivo de reaproveitamento: é o mesmo serviço já construído no caminho A da fase 1 e usado pelos parceiros do tipo 3 na fase 2. Os eventos entram nele como mais uma fonte, com a mesma verificação e o mesmo alerta, e a operação passa a ter um único lugar para olhar quando algo falha. Vale a ressalva honesta: o conector nativo é menos trabalho para construir e não depende da Fattoria para funcionar. A escolha entre os dois se faz na descoberta, à luz do plano HubSpot que o Viva Sinaf tiver contratado, e o desenho desta fase acomoda qualquer das duas respostas.</p>
+
+  <h3>Escopo e esforço</h3>
+  <p style="font-size:12.5px;">O bloco 3.2 só acontece se a resposta à primeira incógnita for "o app ainda não envia o identificador". Os demais acontecem em qualquer cenário.</p>
+  <table class="d">
+    <tr><th>Bloco</th><th class="num">Mín.</th><th class="num">Máx.</th></tr>
+    <tr><td>3.1 · Descoberta técnica: eventos existentes, payload, identificador e destino</td><td class="num">24</td><td class="num">32</td></tr>
+    <tr><td>3.2 · Especificação do que o app precisa enviar e acompanhamento do time do aplicativo<div class="sub">só se o app precisar de ajuste</div></td><td class="num">16</td><td class="num">24</td></tr>
+    <tr><td>3.3 · Pipeline de eventos até o CRM, com verificação e alerta</td><td class="num">44</td><td class="num">60</td></tr>
+    <tr><td>3.4 · Modelagem dos eventos no CRM e três réguas comportamentais</td><td class="num">34</td><td class="num">44</td></tr>
+    <tr><td>3.5 · Painel de comportamento</td><td class="num">12</td><td class="num">16</td></tr>
+    <tr><td>3.6 · Gestão do projeto</td><td class="num">14</td><td class="num">18</td></tr>
+  </table>
+
+  <h3 class="val">Valores fase 3</h3>
+  <table class="d v">
+    <tr><th>Cenário</th><th class="num">Horas</th><th class="num">Investimento</th></tr>
+    <tr><td><strong>App já envia o identificador</strong></td><td class="num">128–170</td><td class="num">R$ 26–34 mil</td></tr>
+    <tr><td><strong>App precisa de ajuste</strong>, incluindo o bloco 3.2</td><td class="num">144–194</td><td class="num">R$ 29–39 mil</td></tr>
+  </table>
+  <p style="font-size:12.3px;color:var(--muted);margin-top:3px;">Estes valores não incluem licenças da HubSpot nem o trabalho do time que mantém o aplicativo.</p>
+
+  <div class="box attn">
+    <span class="tag">Risco de prazo, não de preço</span>
+    <h4>Se o app precisar mudar, o calendário manda mais que o orçamento</h4>
+    <p>Acrescentar o identificador é trabalho pequeno; publicar a versão e esperar a base atualizar o app, não. Até lá, as réguas comportamentais alcançam só parte dos usuários.</p>
+    <p>Daí a ordem natural da fase: descobrir e especificar cedo, deixar o app subir a correção, e só então construir o pipeline. O inverso é construir e esperar.</p>
+  </div>
+
+  <div class="box">
+    <h4>Sustentação</h4>
+    <p>De todas as integrações do projeto, o pipeline de eventos é o que mais pesa: volume alto, funcionamento contínuo e falha silenciosa. O incremento sobre a mensalidade é fechado junto com o desenho, quando se souber o volume real de eventos e de onde eles vêm.</p>
+  </div>
+
+  <h2>O que destrava a fase 3</h2>
+  <ol class="dest">
+    <li><strong>A fase 1 concluída e no ar.</strong> A fase 3 se apoia no ambiente, na chave de identificação e nos canais que ela entrega. A fase 2 não é pré-requisito: as fases 2 e 3 são independentes entre si e podem acontecer em qualquer ordem, ou em paralelo.</li>
+    <li><strong>Saber se a exportação de eventos já está ligada e para onde ela envia hoje</strong>, qual base analítica, quem administra, e se ela já alimenta a plataforma de BI mencionada nas conversas.</li>
+    <li><strong>Saber se o aplicativo envia algum identificador de usuário</strong> para analytics e, se envia, qual é.</li>
+    <li><strong>A lista dos eventos que o app já emite hoje</strong>, mesmo incompleta. É o que mostra se as réguas desejadas são possíveis com o que existe ou dependem de instrumentação nova.</li>
+  </ol>
+  <p style="font-size:12.3px;color:#41505F;">Os itens 2, 3 e 4 vêm de uma conversa com o time do aplicativo.</p>
+
+  <!-- ==================== FASE 4 ==================== -->
+  <div class="phase">
+    <div class="kicker">Fase 4</div>
+    <h2>O aceite pelo portal do cliente</h2>
+    <p>Abrir caminho para falar com a base de segurados da Sinaf que ainda não é usuária do Viva, com consentimento registrado, revogável e comprovável. É a fase de crescimento, e a única que a Fattoria constrói dos dois lados.</p>
+  </div>
+
+  <h2>O que a equipe de CRM passa a conseguir fazer</h2>
+  <ul class="cap">
+    <li>Comunicar-se com segurados da Sinaf que nunca ativaram o Viva, com base em consentimento dado por eles, e não em suposição.</li>
+    <li>Ver, no CRM, quem aceitou, quando, por qual canal e sob qual texto, sem precisar pedir para ninguém procurar.</li>
+    <li>Rodar uma régua de ativação que entra em ação no momento seguinte ao aceite, enquanto o interesse ainda é recente.</li>
+    <li>Honrar a revogação em todos os canais de uma vez: quem retira o aceite no portal para de receber em qualquer lugar.</li>
+  </ul>
+
+  <h3>O que não entra na fase 4</h3>
+  <ul class="out">
+    <li>O texto do aceite e a definição da base legal. São do jurídico da Sinaf; a Fattoria desenha o mecanismo e implementa o que for aprovado.</li>
+    <li>Abordagem à base que não deu aceite. É exatamente o que esta fase existe para tornar desnecessário.</li>
+    <li>Conteúdo e criação das campanhas de ativação, que seguem com o time de marketing.</li>
+  </ul>
+
+  <div class="box">
+    <h4>Por que esta fase é diferente das outras</h4>
+    <p>É a única em que a Fattoria está dos dois lados. Nas fases 2 e 3 o dado nasce em sistema de terceiro. Aqui ele nasce no portal do cliente, construído pela Fattoria sobre uma camada que já registra ação com trilha de auditoria, e <strong>não há dependência de time externo para coletar nem para registrar o aceite</strong>. A dependência que sobra não é técnica: é o texto e a base legal, que vêm do jurídico da Sinaf e têm calendário próprio.</p>
+  </div>
+
+  <div class="box">
+    <h4>Onde termina o jurídico e onde começa a Fattoria</h4>
+    <p>O jurídico entrega o texto e define a base legal; <strong>a Fattoria não opina sobre isso</strong>. O bloco 4.1 transforma essa decisão em especificação: quais campos provam o aceite, o que acontece quando o texto muda, se o aceite é único ou separado por finalidade e canal, e o que significa "revogado" em cada sistema. São decisões que o jurídico informa mas não toma, a diferença entre ter um termo aprovado e ter um mecanismo que o cumpre.</p>
+  </div>
+
+  <div class="box">
+    <h4>Aceite não é uma caixinha marcada</h4>
+    <p>Para valer como consentimento, precisa ser demonstrável depois: quando, de qual tela, sob qual versão do texto, e tão fácil de desfazer quanto de dar, propagando a revogação para o CRM e para todos os canais.</p>
+  </div>
+
+  <div class="box attn">
+    <span class="tag">Ponto de atenção</span>
+    <h4>O aceite é dado à Sinaf, e quem vai comunicar é o Viva Sinaf</h4>
+    <p>São CNPJs distintos. O consentimento só autoriza comunicação do Viva Sinaf <strong>se o texto disser isso de forma explícita</strong>, e refazer depois significa pedir de novo a cada pessoa que já aceitou.</p>
+  </div>
+
+  <h3>Escopo e esforço</h3>
+  <table class="d">
+    <tr><th>Bloco</th><th class="num">Mín.</th><th class="num">Máx.</th></tr>
+    <tr><td>4.1 · Especificação do mecanismo de consentimento, a partir do termo aprovado</td><td class="num">16</td><td class="num">24</td></tr>
+    <tr><td>4.2 · Tela de aceite no portal do cliente</td><td class="num">24</td><td class="num">32</td></tr>
+    <tr><td>4.3 · Registro do consentimento com evidência e trilha de auditoria</td><td class="num">24</td><td class="num">32</td></tr>
+    <tr><td>4.4 · Fluxo de revogação, integrado ao descadastro dos canais</td><td class="num">18</td><td class="num">24</td></tr>
+    <tr><td>4.5 · Envio do aceite ao CRM e entrada na base comunicável</td><td class="num">16</td><td class="num">22</td></tr>
+    <tr><td>4.6 · Régua de ativação para quem acabou de aceitar</td><td class="num">20</td><td class="num">26</td></tr>
+    <tr><td>4.7 · Gestão do projeto</td><td class="num">12</td><td class="num">16</td></tr>
+  </table>
+
+  <h3 class="val">Valores fase 4</h3>
+  <table class="d v">
+    <tr><th>Item</th><th class="num">Horas</th><th class="num">Investimento</th></tr>
+    <tr><td><strong>Fase 4 · aceite pelo portal do cliente</strong></td><td class="num">130–176</td><td class="num">R$ 26–35 mil</td></tr>
+  </table>
+
+  <div class="box attn">
+    <span class="tag">Efeito no custo recorrente</span>
+    <h4>O sucesso desta fase aumenta a conta da licença</h4>
+    <p>A licença da HubSpot é cobrada por faixa de contatos de marketing, e a base de segurados da Sinaf é mais de uma ordem de grandeza maior que os 90 mil do Viva. Não é argumento contra a fase 4: é o custo da audiência que ela conquista. Mas <strong>vale confirmar com a HubSpot a tabela por faixa e a possibilidade de ativar em ondas antes da coleta crescer</strong>, e não depois.</p>
+  </div>
+
+  <div class="box">
+    <h4>Sustentação</h4>
+    <p>O mecanismo de aceite é a peça mais sensível do projeto do ponto de vista de risco, e ao mesmo tempo a de menor movimento: uma vez no ar, muda pouco. O incremento sobre a mensalidade é pequeno, e cobre principalmente a conferência periódica de que aceite e revogação continuam sendo registrados e propagados corretamente.</p>
+  </div>
+
+  <h2>O que destrava a fase 4</h2>
+  <ol class="dest">
+    <li><strong>A fase 1 concluída e no ar.</strong> O aceite só tem para onde ir se o CRM, os canais e o descadastro já existirem. As fases 2 e 3 não são pré-requisito.</li>
+    <li><strong>O portal do cliente em produção.</strong> A tela de aceite entra sobre um portal que já esteja no ar e recebendo acesso dos segurados.</li>
+    <li><strong>O texto do aceite e a base legal, aprovados pelo jurídico da Sinaf</strong>, dizendo explicitamente que a comunicação parte do Viva Sinaf. É o item de caminho crítico desta fase.</li>
+    <li><strong>A tabela de faixas de contatos de marketing da HubSpot</strong>, em reais, para dimensionar o efeito do crescimento da base antes de ele acontecer.</li>
+  </ol>
+
+  <!-- ==================== NOTA FINAL ==================== -->
+  <div class="phase">
+    <div class="kicker">Nota final</div>
+    <h2>Sobre reunir tudo num repositório único</h2>
+    <p>Foi levantada a hipótese de concentrar o uso de benefício e os eventos do aplicativo num repositório único, do qual o CRM leria tudo. Esse repositório ainda não existe, seria preciso construí-lo, e isso muda a natureza da hipótese.</p>
+  </div>
+
+  <div class="box">
+    <p>Um repositório a construir não é detalhe de origem do dado: é projeto próprio, de outro time, com escopo, prazo e orçamento próprios. Amarrar as fases 2 e 3 a ele é trocar duas fases que dependem de si mesmas por duas que dependem de uma obra que não começou. E o trabalho do lado do CRM continuaria existindo, da mesma natureza, modelar, ligar à pessoa, segmentar e medir, ainda que o desenho tivesse de ser reavaliado conforme o formato que o repositório viesse a ter.</p>
+    <p>Por isso a recomendação é tratá-lo como <strong>acelerador, nunca pré-requisito</strong>: começar pelas fontes que existem hoje e, se e quando o repositório entrar no ar, migrar as fontes para ele, reaproveitando o que já estiver construído.</p>
+    <p>E, se ele for construído, vale lembrar que reunir uso de benefício e comportamento num só lugar concentra dado sensível: a ressalva jurídica da fase 2 passaria a valer para o repositório inteiro.</p>
+  </div>
+
+  <div class="foot">
+    Fattoria Digital · Visão de investimento preliminar das fases 1 a 4 · Não constitui proposta comercial. O total da fase 2 depende do inventário dos parceiros de benefício, e o da fase 3 depende das respostas sobre o aplicativo e a exportação de eventos; nenhum dos dois está fechado aqui. Os valores de licença da HubSpot não estão dimensionados aqui e devem ser confirmados com ela. O custo de mensageria também não está dimensionado: depende do broker definido e da categoria que a Meta aprovar para cada template.
+  </div>
+
+</div>
+</body>
+</html>
