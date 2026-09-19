@@ -10,6 +10,14 @@ A data é a data de emissão do documento.
 - `historico/`: original e versões anteriores, para uso interno.
 - `materiais/imagens/`: imagens de origem e imagens produzidas.
 
+## ICONIC — marketplace B2B (proposta preliminar)
+
+- Versão final: [abrir proposta](clientes/iconic/2026-09-19-marketplace-b2b/publicar/iconic_2026-09-19_marketplace-b2b.html).
+- `publicar/`: HTML único e offline, com meta `robots` e cópia do `robots.txt`.
+- `materiais/imagens/`: logos Fattoria e o mapa do Brasil (`@svg-maps/brazil`, CC BY 4.0, crédito no rodapé do documento).
+- `materiais/fonte/`: template HTML com placeholders e `build_lp.py`, que embute logos e mapa e gera o arquivo de `publicar/`. Para editar: alterar o template e rodar `python3 build_lp.py` dentro da pasta `materiais/fonte/` (o script espera `../imagens/` e grava em `../../publicar/`).
+- Projeto confidencial: sem valores em reais nesta versão; proposta final até 15/10/2026.
+
 ## Compartilhamento
 
 O arquivo final funciona sozinho e offline. Para ter uma URL acessível por clientes, é necessário hospedá-lo. O endereço file:// só funciona no computador local.
