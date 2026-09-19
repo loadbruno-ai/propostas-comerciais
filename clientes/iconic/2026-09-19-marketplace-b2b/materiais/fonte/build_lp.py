@@ -1,6 +1,8 @@
 """Monta a landing page da proposta ICONIC a partir do template, dos logos e do mapa.
 Saída: ../../publicar/iconic_2026-09-19_marketplace-b2b.html (arquivo único, offline)."""
-import base64, re, pathlib, sys
+import base64, re, pathlib, sys, os, shutil
+from urllib.parse import urljoin
+from html import escape
 
 ROOT = pathlib.Path(__file__).parent
 SRC = ROOT / 'iconic_2026-09-19_marketplace-b2b.template.html'
@@ -53,9 +55,16 @@ html = html.replace('{{CASE_BRADESCO_SCREEN}}', data_uri(MAT / 'case-bradesco-in
 html = html.replace('{{CASE_IPIRANGA_COVER}}', data_uri(MAT / 'case-ipiranga.jpg', 'image/jpeg'))
 html = html.replace('{{CASE_IPIRANGA_SCREEN}}', data_uri(MAT / 'case-ipiranga-interface.jpg', 'image/jpeg'))
 html = html.replace('{{HERO_LOOPS}}', data_uri(MAT / 'hero-elos-fattoria-v1.png', 'image/png'))
+# Set PUBLIC_PAGE_URL to the final HTTPS page URL when deploying.
+social_name = 'iconic-marketplace-b2b-social.png'
+public_page_url = os.environ.get('PUBLIC_PAGE_URL', '')
+html = html.replace('{{SOCIAL_IMAGE_URL}}', escape(urljoin(public_page_url, social_name), quote=True))
+if public_page_url:
+    html = html.replace('</head>', '<meta property="og:url" content="' + escape(public_page_url, quote=True) + '"></head>')
 assert '{{' not in html, 'placeholder sobrando'
 if len(sys.argv) > 1:
     OUT = pathlib.Path(sys.argv[1])
 OUT.parent.mkdir(parents=True, exist_ok=True)
+shutil.copy2(MAT / social_name, OUT.parent / social_name)
 OUT.write_text(html, encoding='utf-8')
 print(OUT, len(html))

@@ -1,0 +1,1041 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ICONIC Marketplace B2B</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+  :root {
+    --bg: #F3F6F9;
+    --surface: #FFFFFF;
+    --surface-2: #E9EFF5;
+    --text: #182430;
+    --muted: #5B6B7B;
+    --border: #D2DBE5;
+    --accent: #1F4E79;
+    --accent-ink: #FFFFFF;
+    --accent-soft: #E1EAF4;
+    --ok: #2A7A4C;
+    --ok-soft: #E2F1E7;
+    --warn: #9E5E14;
+    --warn-soft: #F8ECD9;
+    --later: #6E7A88;
+    --later-soft: #EDF0F3;
+    --shadow: 0 1px 2px rgba(24, 36, 48, 0.06), 0 6px 20px rgba(24, 36, 48, 0.06);
+    --font-display: "Poppins", "Segoe UI", system-ui, sans-serif;
+    --font-body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0E161E;
+      --surface: #152028;
+      --surface-2: #1C2A35;
+      --text: #E6EDF4;
+      --muted: #9DAEBF;
+      --border: #2B3B4A;
+      --accent: #7FB0E0;
+      --accent-ink: #0E161E;
+      --accent-soft: #1D3145;
+      --ok: #6ECB95;
+      --ok-soft: #163124;
+      --warn: #E4A85C;
+      --warn-soft: #3A2B15;
+      --later: #98A6B5;
+      --later-soft: #1F2A34;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 6px 20px rgba(0, 0, 0, 0.25);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0E161E;
+    --surface: #152028;
+    --surface-2: #1C2A35;
+    --text: #E6EDF4;
+    --muted: #9DAEBF;
+    --border: #2B3B4A;
+    --accent: #7FB0E0;
+    --accent-ink: #0E161E;
+    --accent-soft: #1D3145;
+    --ok: #6ECB95;
+    --ok-soft: #163124;
+    --warn: #E4A85C;
+    --warn-soft: #3A2B15;
+    --later: #98A6B5;
+    --later-soft: #1F2A34;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 6px 20px rgba(0, 0, 0, 0.25);
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding-inline: 20px;
+    padding-block: 36px 96px;
+  }
+  a { color: var(--accent); }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  /* Header */
+  .header { display: grid; gap: 18px; margin-bottom: 28px; }
+  .eyebrow {
+    font-family: var(--font-display);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
+  }
+  .eyebrow .sep { color: var(--muted); font-weight: 400; }
+  h1 {
+    font-family: var(--font-display);
+    font-size: clamp(30px, 4.2vw, 44px);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    margin: 0;
+    text-wrap: balance;
+    max-width: 30ch;
+  }
+  .lede {
+    font-size: 20px;
+    line-height: 1.45;
+    color: var(--muted);
+    max-width: 60ch;
+    margin: 0;
+  }
+  .meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px 24px;
+    padding: 16px 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin: 0;
+  }
+  .meta div { display: grid; gap: 2px; }
+  .meta dt { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  .meta dd { margin: 0; font-weight: 600; }
+
+  .banner {
+    display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: start;
+    background: var(--warn-soft);
+    border-left: 4px solid var(--warn);
+    border-radius: 6px;
+    padding: 14px 18px;
+    color: var(--text);
+  }
+  .banner strong { color: var(--warn); font-family: var(--font-display); font-weight: 600; }
+  .banner .icon { width: 22px; height: 22px; flex: none; color: var(--warn); margin-top: 2px; }
+
+  /* Layout: nav + content */
+  .layout {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: 48px;
+    align-items: start;
+  }
+  .toc {
+    position: sticky; top: 24px;
+    display: grid; gap: 4px;
+    padding: 0; margin: 0; list-style: none;
+    font-size: 14px;
+  }
+  .toc-title { font-family: var(--font-display); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 8px; }
+  .toc a {
+    display: block; padding: 6px 10px; border-radius: 6px;
+    color: var(--muted); text-decoration: none; border-left: 2px solid transparent;
+  }
+  .toc a:hover { color: var(--text); background: var(--surface-2); }
+  .toc a.sub { padding-left: 22px; font-size: 13px; }
+  .content { display: grid; gap: 56px; min-width: 0; }
+
+  section { scroll-margin-top: 24px; }
+  .section-head { display: grid; gap: 8px; margin-bottom: 20px; }
+  .section-head .kicker { font-family: var(--font-display); font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+  h2 {
+    font-family: var(--font-display);
+    font-size: 26px; font-weight: 600; line-height: 1.2;
+    margin: 0; text-wrap: balance; letter-spacing: -0.01em;
+  }
+  h3 {
+    font-family: var(--font-display);
+    font-size: 17px; font-weight: 600; line-height: 1.3;
+    margin: 0 0 8px;
+  }
+  p { margin: 0; max-width: 68ch; }
+  .prose { display: grid; gap: 14px; }
+  .prose strong { font-weight: 700; }
+  .thesis {
+    font-family: var(--font-display);
+    font-size: 21px; font-weight: 500; line-height: 1.4;
+    padding: 18px 22px;
+    background: var(--accent-soft);
+    border-radius: 10px;
+    color: var(--text);
+    max-width: none;
+    border-left: 4px solid var(--accent);
+  }
+  ul, ol { margin: 0; padding-left: 22px; display: grid; gap: 6px; }
+  li { padding-left: 2px; }
+  li::marker { color: var(--muted); }
+  .tight { gap: 3px; }
+
+  /* Facts grid */
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 0;
+  }
+  .facts div { background: var(--surface); padding: 14px 16px; display: grid; gap: 4px; }
+  .facts dt { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  .facts dd { margin: 0; }
+
+  /* Quotes */
+  .quotes { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+  blockquote {
+    margin: 0; padding: 14px 16px 14px 18px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 8px;
+    font-size: 16px;
+    color: var(--text);
+  }
+  blockquote cite { display: block; margin-top: 8px; font-style: normal; font-size: 13px; color: var(--muted); }
+
+  /* Funnel */
+  .funnel {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    list-style: none; padding: 0; margin: 0;
+    counter-reset: step;
+  }
+  .funnel li {
+    counter-increment: step;
+    flex: 1 1 150px;
+    position: relative;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px 12px 14px;
+    display: grid; gap: 4px;
+  }
+  .funnel li::before {
+    content: counter(step);
+    font-family: var(--font-display);
+    font-size: 12px; font-weight: 600;
+    color: var(--accent);
+  }
+  .funnel li strong { font-family: var(--font-display); font-weight: 600; font-size: 15px; }
+  .funnel li span { font-size: 14px; color: var(--muted); }
+  .funnel li.later { border-style: dashed; color: var(--later); }
+  .funnel li.later strong, .funnel li.later::before { color: var(--later); }
+
+  /* Split: in / later */
+  .split { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+    display: grid; gap: 12px; align-content: start;
+  }
+  .panel h3 { display: flex; align-items: center; gap: 10px; margin: 0; }
+  .pill {
+    display: inline-block; font-family: var(--font-display); font-size: 11px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 3px 9px; border-radius: 999px; line-height: 1.5;
+  }
+  .pill.ok { background: var(--ok-soft); color: var(--ok); }
+  .pill.later { background: var(--later-soft); color: var(--later); }
+  .pill.warn { background: var(--warn-soft); color: var(--warn); }
+  .pill.accent { background: var(--accent-soft); color: var(--accent); }
+  .panel ul { gap: 8px; }
+  .panel li span { color: var(--muted); }
+
+  /* Tables */
+  .table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 10px; background: var(--surface); }
+  table { border-collapse: collapse; width: 100%; font-size: 15.5px; }
+  th, td { text-align: left; vertical-align: top; padding: 12px 14px; border-bottom: 1px solid var(--border); }
+  th { font-family: var(--font-display); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 600; background: var(--surface-2); }
+  tr:last-child td { border-bottom: none; }
+  td.num { font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+  th.num { text-align: right; }
+  td.key { font-weight: 600; white-space: nowrap; }
+  .compare th:first-child, .compare td:first-child { width: 22%; color: var(--muted); font-weight: 600; }
+  .compare td strong { font-family: var(--font-display); font-weight: 600; }
+  .raci td .who { font-family: var(--font-display); font-weight: 600; }
+
+  /* Blocks */
+  .block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  .block-head {
+    display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px 16px;
+    padding: 18px 24px;
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+  .block-head .label { font-family: var(--font-display); font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.85; }
+  .block-head h3 { font-size: 20px; margin: 0; color: inherit; }
+  .block-head .dur { margin-left: auto; font-family: var(--font-display); font-size: 13px; font-weight: 600; opacity: 0.9; }
+  .block-body { padding: 22px 24px 24px; display: grid; gap: 22px; }
+  .block-body .why { font-size: 17px; color: var(--muted); max-width: 70ch; }
+  .fronts { display: grid; gap: 14px; padding: 0; margin: 0; list-style: none; }
+  .fronts li { display: grid; gap: 3px; padding-left: 16px; border-left: 2px solid var(--border); }
+  .fronts li strong { font-family: var(--font-display); font-weight: 600; }
+  .fronts li p { color: var(--text); max-width: 72ch; }
+  .fronts li ul { margin-top: 4px; font-size: 15.5px; color: var(--muted); }
+  .two { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+  .mini { display: grid; gap: 8px; }
+  .mini h4 { font-family: var(--font-display); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin: 0; }
+  .mini ul, .mini ol { font-size: 15.5px; }
+
+  /* Checklist */
+  .checklist { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+  .checklist li { display: grid; grid-template-columns: 20px 1fr; gap: 12px; align-items: start; }
+  .checklist li::before {
+    content: ""; width: 18px; height: 18px; margin-top: 4px;
+    border: 2px solid var(--accent); border-radius: 4px; background: var(--surface);
+  }
+  .checklist li span { color: var(--muted); }
+
+  /* Timeline */
+  .timeline { list-style: none; padding: 0; margin: 0; display: grid; }
+  .timeline li {
+    display: grid; grid-template-columns: 150px 1fr; gap: 20px;
+    padding: 14px 0; border-top: 1px solid var(--border);
+  }
+  .timeline li:last-child { border-bottom: 1px solid var(--border); }
+  .timeline .when { font-family: var(--font-display); font-weight: 600; font-size: 14px; color: var(--accent); display: grid; gap: 2px; }
+  .timeline .when small { font-weight: 500; color: var(--muted); font-family: var(--font-body); font-size: 13px; }
+  .timeline .what { display: grid; gap: 4px; }
+  .timeline .what strong { font-family: var(--font-display); font-weight: 600; }
+  .timeline .what p { color: var(--muted); font-size: 15.5px; }
+
+  /* Team */
+  .team { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; list-style: none; padding: 0; margin: 0; }
+  .team li { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; display: grid; gap: 2px; }
+  .team li strong { font-family: var(--font-display); font-weight: 600; font-size: 15px; }
+  .team li span { font-size: 14px; color: var(--muted); }
+
+  /* Investment */
+  .invest-note { display: flex; gap: 10px; align-items: flex-start; font-size: 15px; color: var(--muted); }
+  .invest-note .pill { flex: none; margin-top: 3px; }
+  .totals td { font-family: var(--font-display); font-weight: 600; background: var(--surface-2); }
+
+  /* Changes */
+  .changes { display: grid; gap: 10px; list-style: none; padding: 0; margin: 0; }
+  .changes li { display: grid; grid-template-columns: minmax(180px, 1fr) 2fr; gap: 16px; padding: 12px 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; }
+  .changes li strong { font-family: var(--font-display); font-weight: 600; }
+  .changes li span { color: var(--muted); }
+
+  /* Next steps */
+  .steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; counter-reset: next; }
+  .steps li { display: grid; grid-template-columns: 34px 1fr; gap: 12px; align-items: start; counter-increment: next; }
+  .steps li::before {
+    content: counter(next);
+    width: 30px; height: 30px; border-radius: 50%;
+    background: var(--accent); color: var(--accent-ink);
+    font-family: var(--font-display); font-weight: 600; font-size: 14px;
+    display: grid; place-items: center;
+  }
+  .steps li strong { font-family: var(--font-display); font-weight: 600; }
+  .steps li span { display: block; color: var(--muted); font-size: 15.5px; }
+  .open-q { background: var(--surface-2); border-radius: 10px; padding: 18px 20px; display: grid; gap: 10px; }
+
+  footer { margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 14px; color: var(--muted); display: grid; gap: 4px; }
+
+  @media (max-width: 900px) {
+    .layout { grid-template-columns: 1fr; gap: 28px; }
+    .toc { position: static; display: flex; flex-wrap: wrap; gap: 6px; }
+    .toc-title { width: 100%; }
+    .toc a { border: 1px solid var(--border); background: var(--surface); padding: 5px 10px; }
+    .toc a.sub { display: none; }
+    .timeline li { grid-template-columns: 1fr; gap: 6px; }
+    .changes li { grid-template-columns: 1fr; gap: 6px; }
+    .block-head .dur { margin-left: 0; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+  }
+</style>
+</head>
+<body>
+
+
+<div class="page">
+  <header class="header">
+    <div class="eyebrow">Fattoria <span class="sep">·</span> Uso interno <span class="sep">·</span> Proposta em construção <span class="sep">·</span> v3, 13 set 2026</div>
+    <h1>ICONIC: marketplace B2B, do cadastro do CNPJ à recompra</h1>
+    <p class="lede">Referência interna do time para a proposta de lançamento e operação digital. Vai mais fundo que o deck: tem os pedidos literais da Camila, o recorte do piloto, os critérios de go/no-go, as jornadas de CRM, a matriz de responsabilidades, o roadmap e a estimativa de horas.</p>
+    <dl class="meta">
+      <div><dt>Cliente</dt><dd>ICONIC (Camila Brandão Soares, Thatiany Souza)</dd></div>
+      <div><dt>Briefing</dt><dd>11 set 2026, 11h30</dd></div>
+      <div><dt>Entrega do escopo</dt><dd>Terça, 15 set 2026</dd></div>
+      <div><dt>Início previsto</dt><dd>Dez 2026 ou jan 2027</dd></div>
+      <div><dt>Lideranças Fattoria</dt><dd>Thiago Nóbrega (CTO), Bruno Branco (Lead Product Designer), Vinicius Vasconcelos (Head de Growth)</dd></div>
+    </dl>
+    <div class="banner">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="10" rx="2" fill="none"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      <div><strong>Projeto confidencial.</strong> A marca do marketplace ainda não tem nome público e não pode aparecer ligada a ICONIC, Ipiranga ou Texaco. Poucas pessoas do lado do cliente sabem do projeto. Não repassar este documento fora do grupo de trabalho e não citar o cliente em portfólio, redes ou conversas com terceiros até o NDA e a lista de autorizados estarem definidos.</div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav aria-label="Seções">
+      <div class="toc-title">Nesta página</div>
+      <ul class="toc">
+        <li><a href="#resumo">Resumo em uma tela</a></li>
+        <li><a href="#pedido">O que a Camila pediu</a></li>
+        <li><a href="#recorte">Recorte do piloto</a></li>
+        <li><a href="#publicos">Dois públicos, duas máquinas</a></li>
+        <li><a href="#blocos">Os três blocos</a></li>
+        <li><a href="#bloco1" class="sub">1. Setup</a></li>
+        <li><a href="#bloco2" class="sub">2. Primeiro estado</a></li>
+        <li><a href="#bloco3" class="sub">3. Operação e expansão</a></li>
+        <li><a href="#crm">CRM: duas opções</a></li>
+        <li><a href="#social">Redes sociais</a></li>
+        <li><a href="#gate">Go/no-go por estado</a></li>
+        <li><a href="#raci">Quem faz o quê</a></li>
+        <li><a href="#roadmap">Roadmap</a></li>
+        <li><a href="#time">Time</a></li>
+        <li><a href="#premissas">Premissas e fora de escopo</a></li>
+        <li><a href="#investimento">Investimento</a></li>
+        <li><a href="#ajustes">O que mudou no plano</a></li>
+        <li><a href="#proximos">Próximos passos</a></li>
+      </ul>
+    </nav>
+
+    <main class="content">
+
+      <section id="resumo">
+        <div class="section-head">
+          <div class="kicker">Resumo em uma tela</div>
+          <h2>A ordem importa mais que a quantidade de canais</h2>
+        </div>
+        <div class="prose">
+          <p class="thesis">Com orçamento limitado, o lançamento se decide pela ordem: primeiro a base quente do distribuidor via CRM, depois a awareness no estado, e só quando o mix daquele estado estiver atrativo. Um estado por vez, medido de ponta a ponta, e o playbook repetido nos próximos.</p>
+          <p>A ICONIC vai lançar um marketplace B2B de aftermarket automotivo (carros, motos e caminhões) com marca própria, vendendo para pequenos varejistas com CNPJ. O mercado é fragmentado, não existe portal consolidado e o varejista pequeno nem sabe que pode comprar online. A plataforma de e-commerce está sendo escolhida agora, entre dois fornecedores, e a decisão sai em cerca de 15 dias. Não existe time digital do lado do cliente: a contratação prevista é só comercial, para trazer fornecedores e mix.</p>
+          <p>A proposta se organiza em três blocos com investimento separado: <strong>setup estratégico e tecnológico</strong>, <strong>lançamento do primeiro estado</strong> e <strong>operação mensal com um kit por novo estado</strong>. Fidelidade (clube, cashback, cupons), offline e expansão nacional ficam explicitamente para depois.</p>
+        </div>
+        <dl class="facts" style="margin-top: 20px;">
+          <div><dt>O que é</dt><dd>Marketplace B2B white label, aftermarket automotivo</dd></div>
+          <div><dt>Para quem</dt><dd>Pequenos varejistas (CNPJ) de carros, motos e caminhões. O varejo grande, que negocia direto com o distribuidor, não é o perfil.</dd></div>
+          <div><dt>Onde começa</dt><dd>Santa Catarina, Minas Gerais e Rio de Janeiro, um estado por vez, conforme a prontidão de cada um.</dd></div>
+          <div><dt>Ritmo por estado</dt><dd>Cerca de 3 meses para conectar estoque, preço e frete; 1 a 2 meses para startar o estado depois disso.</dd></div>
+          <div><dt>Plataforma</dt><dd>Em definição (fase Bridge), dois fornecedores, front-end vem junto. Decisão em ~15 dias.</dd></div>
+          <div><dt>O que a ICONIC não tem</dt><dd>Tráfego, criação de arte, CRM (ferramenta e operação) e estratégia digital. Tudo a contratar.</dd></div>
+        </dl>
+      </section>
+
+      <section id="pedido">
+        <div class="section-head">
+          <div class="kicker">Briefing de 11 de setembro</div>
+          <h2>O que a Camila pediu, nas palavras dela</h2>
+        </div>
+        <div class="prose" style="margin-bottom: 18px;">
+          <p>Ela quer estratégia e execução juntas ("ambos"), porque não vai ter time interno para isso. O pedido em uma frase é o funil inteiro: cadastrar o CNPJ, fazer comprar, aumentar o mix, gerar recompra. E ela foi clara sobre o limite: orçamento baixo e "o mato está alto".</p>
+        </div>
+        <div class="quotes">
+          <blockquote>"Eu preciso cadastrar o CNPJ dele lá, eu preciso que ele compre lá, eu preciso aumentar o mix dele lá, eu preciso gerar recompra lá."<cite>O objetivo, em uma frase</cite></blockquote>
+          <blockquote>"A gente busca uma agência para ajudar a gente a estruturar toda essa estratégia de venda." "Ambos."<cite>Estratégia e execução</cite></blockquote>
+          <blockquote>"A gente não vai lançar o Brasil inteiro ao mesmo tempo. A gente vai começar por Santa Catarina, Minas e Rio de Janeiro."<cite>Piloto por estado</cite></blockquote>
+          <blockquote>"É uma awareness para quem não conhece. O ponto de venda não sabe nem que ele pode comprar online."<cite>Awareness e educação</cite></blockquote>
+          <blockquote>"Eu tenho uma outra base que não é do distribuidor, que eu preciso achar onde está. São CNPJ, CNPJ é base pública."<cite>Prospecção</cite></blockquote>
+          <blockquote>"Não temos nada ainda, vamos comprar tudo." "Para a base do distribuidor, que a gente já vai ter o lead, cara, é CRM na veia."<cite>CRM do zero</cite></blockquote>
+          <blockquote>"Tem banner, você tem pop-up, você tem estratégia de conversão lá dentro da plataforma. As imagens, os banners, a parte de visual das campanhas não vai ter ninguém aqui para criar."<cite>Conversão e criação</cite></blockquote>
+          <blockquote>"Primeiro passo: trazer pessoas para dentro da plataforma para comprar. Segundo passo, clube de compras, programa de fidelidade."<cite>Fidelidade é fase 2</cite></blockquote>
+        </div>
+        <div class="two" style="margin-top: 22px;">
+          <div class="mini">
+            <h4>Barreiras que ela nomeou</h4>
+            <ul>
+              <li>Distribuidores resistem a ceder a base de clientes e a pagar comissão. "A base é minha."</li>
+              <li>Não começa estado com investimento alto se só tiver óleo no catálogo.</li>
+              <li>A fidelidade de hoje é offline, via distribuidor: cartão, vale-presente, comunicação feita por ele.</li>
+              <li>Prazo: 3 meses para fechar agência e contrato; execução em dezembro ou janeiro.</li>
+            </ul>
+          </div>
+          <div class="mini">
+            <h4>O que ela precisa de nós agora</h4>
+            <ul>
+              <li>Um escopo concreto, não uma proposta genérica.</li>
+              <li>Roadmap com frentes, prioridades, marcos, time e esforço estimado.</li>
+              <li>Divisão clara: o que a ICONIC assume (comercial, fornecedores) e o que a agência assume (estratégia, CRM, awareness, mídia, criação, ativação).</li>
+              <li>Proposta calibrada para orçamento restrito e decisão rápida.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="recorte">
+        <div class="section-head">
+          <div class="kicker">Recorte do piloto</div>
+          <h2>O que entra agora e o que fica para depois</h2>
+        </div>
+        <div class="prose" style="margin-bottom: 18px;">
+          <p>O plano inicial cobria tudo e parecia canivete suíço. A proposta cobre o que gera cadastro e primeira compra com pouca verba; o resto é fase 2 e fica escrito como fora de escopo, para não inflar preço nem prometer o que ela disse que ainda não está pensando.</p>
+        </div>
+        <ol class="funnel" aria-label="Funil do varejista">
+          <li><strong>Awareness</strong><span>Só depois do mix atrativo no estado</span></li>
+          <li><strong>Cadastro do CNPJ</strong><span>Base do distribuidor primeiro, varejo novo depois</span></li>
+          <li><strong>Primeira compra</strong><span>O indicador que valida o piloto</span></li>
+          <li><strong>Aumento de mix</strong><span>Categorias novas via CRM e vitrines</span></li>
+          <li><strong>Recompra</strong><span>Recorrência medida por base e distribuidor</span></li>
+          <li class="later"><strong>Fidelização</strong><span>Fase 2: clube, cashback, cupons</span></li>
+        </ol>
+        <div class="split" style="margin-top: 18px;">
+          <div class="panel">
+            <h3><span class="pill ok">Entra no piloto</span></h3>
+            <ul>
+              <li><strong>Base do distribuidor ativada por CRM.</strong> <span>Onde a primeira compra tem mais chance com menos verba.</span></li>
+              <li><strong>Um estado por vez, com gate de prontidão.</strong> <span>Nenhum investimento relevante em mídia antes do critério cumprido.</span></li>
+              <li><strong>Awareness geolocalizada no estado.</strong> <span>Google por categoria e intenção, Instagram educativo, remarketing.</span></li>
+              <li><strong>Prospecção por CNPJ com ICP definido.</strong> <span>Varredura de base pública em vez de comprar lista, com regra de contato e LGPD.</span></li>
+              <li><strong>Conversão dentro da plataforma.</strong> <span>Banners, pop-ups, vitrines, páginas promocionais, campanhas de mix.</span></li>
+              <li><strong>Presença da nova marca nas redes.</strong> <span>Instagram como vitrine e canal de educação, aberto e abastecido antes da primeira campanha.</span></li>
+              <li><strong>Medição simples do funil.</strong> <span>Atração, cadastro, primeira compra, mix, recompra. É o pedido dela em uma frase.</span></li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3><span class="pill later">Fica para depois</span></h3>
+            <ul>
+              <li><strong>Clube de compras, cashback e cupons sofisticados.</strong> <span>Fase 2, depois de validar adesão e primeira compra.</span></li>
+              <li><strong>Ativações offline, feiras e ponto de venda.</strong> <span>Ela aceitou que offline não é prioridade no primeiro ano.</span></li>
+              <li><strong>Expansão nacional simultânea.</strong> <span>Cada estado é um ciclo de aprendizado antes do próximo.</span></li>
+              <li><strong>Front-end e branding pesado.</strong> <span>O front vem com a plataforma escolhida. Nós entramos na ativação e na conversão.</span></li>
+              <li><strong>Stack completa de martech antes do piloto.</strong> <span>CRM e tracking sim; o resto conforme a operação pedir.</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="publicos">
+        <div class="section-head">
+          <div class="kicker">Segmentação</div>
+          <h2>Dois públicos, duas máquinas</h2>
+        </div>
+        <div class="prose" style="margin-bottom: 18px;">
+          <p>Misturar as duas bases é o jeito mais rápido de gastar mídia com quem já era cliente e mandar CRM para quem nunca ouviu falar da marca. Oferta, canal e indicador são diferentes para cada uma.</p>
+        </div>
+        <div class="table-wrap">
+          <table class="compare">
+            <thead>
+              <tr><th scope="col"></th><th scope="col">Base do distribuidor</th><th scope="col">Varejo novo e fragmentado</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Quem é</td><td>Clientes inativos ou de baixa frequência que o distribuidor já conhece e vai ceder com regra de uso.</td><td>Varejistas de carros, motos e caminhões que nem sabem que existe um canal online. Mapeados por CNAE, porte e região.</td></tr>
+              <tr><td>Máquina</td><td><strong>CRM pesado.</strong> Jornadas de apresentação, cadastro, primeira compra, mix e reativação.</td><td><strong>Awareness e prospecção.</strong> Mídia geolocalizada, conteúdo educativo, varredura de CNPJ.</td></tr>
+              <tr><td>Oferta</td><td>Sua conta já existe. Compre com condição, sem depender de ligação.</td><td>Um lugar para abastecer o negócio: vários fornecedores, compra por CNPJ.</td></tr>
+              <tr><td>Canal</td><td>E-mail, WhatsApp e SMS a partir do CRM, com o distribuidor alinhado.</td><td>Facebook e Instagram, Google (busca por categoria), remarketing, contato de prospecção.</td></tr>
+              <tr><td>Indicadores</td><td>Cadastro, primeira compra, recompra e comparação com o status quo do distribuidor.</td><td>Alcance qualificado, custo por visita, início e conclusão de cadastro, primeira compra.</td></tr>
+              <tr><td>Fora do perfil</td><td colspan="2">O varejo grande que negocia direto com o distribuidor. Excluído de propósito do ICP e das campanhas.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="blocos">
+        <div class="section-head">
+          <div class="kicker">Escopo</div>
+          <h2>Os três blocos da proposta</h2>
+        </div>
+        <div class="prose" style="margin-bottom: 22px;">
+          <p>Cada bloco tem entregáveis, prazo e investimento próprios. O Bloco 1 prepara; o Bloco 2 aplica o playbook uma vez e mede; o Bloco 3 mantém o funil rodando e repete o playbook estado a estado.</p>
+        </div>
+        <div style="display: grid; gap: 28px;">
+
+          <article class="block" id="bloco1">
+            <div class="block-head">
+              <span class="label">Bloco 1</span>
+              <h3>Setup estratégico e tecnológico</h3>
+              <span class="dur">8 semanas · outubro a meados de novembro</span>
+            </div>
+            <div class="block-body">
+              <p class="why">Deixar o lançamento pronto para decidir, não para descobrir no meio do caminho. É aqui que entram as quatro frentes que faltavam no plano original: confidencialidade, gate por estado, adesão do distribuidor e o recorte orçamentário.</p>
+              <ul class="fronts">
+                <li><strong>Imersão</strong><p>Mercado e concorrência (como o varejista pequeno compra hoje e quem já tenta vender online para ele), conversas com varejistas e distribuidores dos estados de lançamento, persona do comprador, rascunho da jornada do primeiro contato ao pedido recorrente e diagnóstico com a tese de estratégia. Entregáveis: persona, mapa da jornada, diagnóstico.</p></li>
+                <li><strong>Planejamento de mídia e social</strong><p>Estratégia por objetivo (awareness, remarketing, conversão), volume por localização, canais e editoriais com Facebook e Instagram como base, estratégia de entrada e expansão, dois cenários de investimento.</p></li>
+                <li><strong>Governança e confidencialidade</strong><p>NDA, lista de quem pode saber, como a marca aparece nos materiais enquanto não tem nome público, protocolo de compartilhamento de arquivos e aprovação.</p></li>
+                <li><strong>Requisitos de marketing para a escolha da plataforma</strong><p>Entregues dentro da janela de decisão dos dois fornecedores, para influenciar a escolha e não só "trabalhar junto depois".</p>
+                  <ul class="tight">
+                    <li>Eventos de navegação e compra (cadastro iniciado e concluído, carrinho, pedido).</li>
+                    <li>Integração nativa ou via API com o CRM escolhido.</li>
+                    <li>Tags, analytics e relatórios de conversão.</li>
+                    <li>Espaços promocionais: banners, pop-ups, vitrines, páginas de campanha.</li>
+                    <li>Cupom, regras de campanha e recuperação de carrinho.</li>
+                  </ul>
+                </li>
+                <li><strong>Pacote de adesão do distribuidor</strong><p>Narrativa para o distribuidor, regras de uso da base cedida, o que ele ganha, o que a plataforma não canibaliza, regra de contato e prevenção de duplicidade entre ICONIC e distribuidor. Sem isso, CRM e mídia travam na origem dos dados.</p></li>
+                <li><strong>Critérios de go/no-go por estado</strong><p>Mix mínimo atrativo amarrado a fornecedores, integração de estoque, preço e frete, base disponível, CRM e rastreamento funcionando. Detalhado <a href="#gate">abaixo</a>.</p></li>
+                <li><strong>Definição do CRM entre duas opções e modelo de dados</strong><p>RD Station como entrada ou HubSpot como opção robusta (<a href="#crm">comparação abaixo</a>). A escolha sai com os requisitos de marketing e a plataforma de e-commerce na mão, antes do Bloco 2. Junto, o modelo de dados do varejista:</p>
+                  <ul class="tight">
+                    <li>Origem e vínculo com o distribuidor.</li>
+                    <li>Estado e região.</li>
+                    <li>Categorias de interesse.</li>
+                    <li>Histórico de navegação e compra.</li>
+                    <li>Recência, frequência e valor.</li>
+                  </ul>
+                </li>
+                <li><strong>Plano de mensuração e rastreamento</strong><p>Os cinco indicadores do funil, GTM como camada de tags, GA4, pixels de Meta e Google, Microsoft Clarity e as integrações que a plataforma e o CRM pedirem, e o painel semanal que a ICONIC vai olhar.</p></li>
+                <li><strong>Desenho do atendimento ao varejista</strong><p>Canais, horário, responsável, roteiro, FAQ e regras de encaminhamento entre ICONIC (SAC), plataforma (suporte técnico) e distribuidores (entrega). A ICONIC não tem time para isso hoje; precisa sair definido antes do go-live.</p></li>
+                <li><strong>Matriz de responsabilidades e roadmap detalhado do primeiro estado</strong><p>Quem faz o quê entre ICONIC, Fattoria, plataforma e distribuidores; cronograma semana a semana do Bloco 2.</p></li>
+              </ul>
+              <div class="two">
+                <div class="mini">
+                  <h4>Entregáveis</h4>
+                  <ul>
+                    <li>Persona do comprador, mapa da jornada e diagnóstico (imersão).</li>
+                    <li>Plano de mídia por objetivo, plano editorial e cenários de investimento.</li>
+                    <li>Protocolo de confidencialidade e lista de autorizados.</li>
+                    <li>Documento de requisitos de marketing para a plataforma.</li>
+                    <li>Pacote de adesão do distribuidor.</li>
+                    <li>Critérios de go/no-go por estado.</li>
+                    <li>CRM definido (RD Station ou HubSpot) e modelo de dados.</li>
+                    <li>Plano de mensuração e matriz de responsabilidades.</li>
+                    <li>Desenho do atendimento: canais, roteiro, FAQ e encaminhamento.</li>
+                    <li>Roadmap detalhado do primeiro estado.</li>
+                  </ul>
+                </div>
+                <div class="mini">
+                  <h4>Estimativa</h4>
+                  <ul>
+                    <li>200 horas, R$ 40.000 (a R$ 200/h, ajustar).</li>
+                    <li>Time: liderança, growth, CRM, dados, apoio técnico.</li>
+                    <li>Dependência: plataforma escolhida até o início de outubro.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="block" id="bloco2">
+            <div class="block-head">
+              <span class="label">Bloco 2</span>
+              <h3>Lançamento do primeiro estado</h3>
+              <span class="dur">8 semanas · meados de novembro a janeiro</span>
+            </div>
+            <div class="block-body">
+              <p class="why">O playbook aplicado uma vez, medido e registrado para ser repetido. O estado só recebe verba depois de passar pelo gate do Bloco 1.</p>
+              <ul class="fronts">
+                <li><strong>Gate de prontidão</strong><p>Checklist de go/no-go aplicado ao estado escolhido entre SC, MG e RJ. Se não passa, o dinheiro de mídia espera.</p></li>
+                <li><strong>Posicionamento e mensagens de lançamento</strong><p>Mensagens a testar: variedade de produtos em um só lugar, compra B2B com CNPJ, facilidade para abastecer o negócio, acesso a vários fornecedores, conveniência e recorrência, condições exclusivas da plataforma. Fala de necessidade prática (pneu, bateria, peça, palheta, filtro), não só de marca.</p></li>
+                <li><strong>Kit de comunicação digital da nova marca</strong><p>Identidade de campanha, peças para mídia, CRM e plataforma. Sem branding pesado: o front vem com a plataforma.</p></li>
+                <li><strong>CRM na base do distribuidor</strong><p>Implantação da ferramenta escolhida e as dez jornadas iniciais:</p>
+                  <ol class="tight">
+                    <li>Apresentação da plataforma.</li>
+                    <li>Convite para cadastro.</li>
+                    <li>Cadastro incompleto.</li>
+                    <li>Boas-vindas.</li>
+                    <li>Incentivo à primeira compra.</li>
+                    <li>Carrinho abandonado.</li>
+                    <li>Pós-compra.</li>
+                    <li>Recomendação de novas categorias.</li>
+                    <li>Reativação de clientes.</li>
+                    <li>Estímulo à recompra.</li>
+                  </ol>
+                </li>
+                <li><strong>Prova de valor contra o status quo</strong><p>Mesma base inativa dividida em dois grupos: um trabalhado pelo marketplace, outro no fluxo atual do distribuidor. Compara cadastro, primeira compra e recompra. É o argumento que a Camila quer levar para o distribuidor.</p></li>
+                <li><strong>Prospecção de varejistas novos</strong><p>ICP por CNAE, porte e região; levantamento e enriquecimento de CNPJs públicos; priorização por estado e potencial; integração ao CRM; campanhas de ativação. Validação jurídica e de privacidade, regra de contato, higienização e prevenção de duplicidade com o distribuidor.</p></li>
+                <li><strong>Redes sociais da nova marca</strong><p>Perfis abertos e configurados, identidade do perfil, linha editorial em três eixos e estoque de lançamento de 12 posts e 16 stories prontos antes do go-live. Detalhado em <a href="#social">Redes sociais</a>.</p></li>
+                <li><strong>Awareness geolocalizada</strong><p>Google: busca por categoria e intenção de compra, campanhas por estado, remarketing, otimização de páginas para busca. Instagram e Facebook: os conteúdos da página impulsionados por estado, campanhas de alcance, tráfego e conversão, públicos semelhantes aos cadastrados.</p></li>
+                <li><strong>Conversão dentro da plataforma</strong><p>Calendário de campanhas, banners, pop-ups, vitrines, páginas promocionais, comunicação por categoria e necessidade, produtos complementares, campanhas de aumento de mix, testes de mensagem e oferta.</p></li>
+                <li><strong>Painel do funil e registro de aprendizados</strong><p>Atração, cadastro do CNPJ, primeira compra, mix e recompra, por base e por distribuidor. O que funcionou vira insumo do próximo estado.</p></li>
+              </ul>
+              <div class="two">
+                <div class="mini">
+                  <h4>Indicadores do bloco</h4>
+                  <ul>
+                    <li>Awareness: alcance no público-alvo, tráfego qualificado, custo por visita, busca pela marca.</li>
+                    <li>Cadastro: início e conclusão, taxa por base e por canal.</li>
+                    <li>CRM: entrega e abertura, primeira compra, conversão por base e distribuidor.</li>
+                    <li>Recompra: frequência, ticket médio, mix por cliente.</li>
+                    <li>Prova de valor: diferença entre grupo marketplace e grupo status quo.</li>
+                  </ul>
+                </div>
+                <div class="mini">
+                  <h4>Estimativa</h4>
+                  <ul>
+                    <li>300 horas, R$ 60.000 (a R$ 200/h, ajustar), com implantação do RD Station incluída.</li>
+                    <li>HubSpot no lugar: adicional de 60 h, R$ 12.000.</li>
+                    <li>Time: growth, CRM, mídia, criação, dados, atendimento.</li>
+                    <li>Go-live em dezembro ou janeiro, condicionado ao gate.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="block" id="bloco3">
+            <div class="block-head">
+              <span class="label">Bloco 3</span>
+              <h3>Operação mensal e expansão por estado</h3>
+              <span class="dur">A partir do go-live · mínimo de 6 meses</span>
+            </div>
+            <div class="block-body">
+              <p class="why">Uma operação enxuta que mantém o funil rodando e repete o playbook nos próximos estados. Vende-se um kit replicável de lançamento, não um projeto infinito.</p>
+              <ul class="fronts">
+                <li><strong>Mídia</strong><p>Planejamento mensal, distribuição de verba por objetivo, acompanhamento semanal, testes de criativos e públicos, otimização por cadastro e compra, não por clique. Verba paga pela ICONIC às plataformas, com taxa de gestão de 15% sobre o investido.</p></li>
+                <li><strong>CRM</strong><p>Manutenção das jornadas, novas segmentações por recência, frequência e valor, campanhas de recorrência e de aumento de mix, reativação de quem não compra há tempo.</p></li>
+                <li><strong>Redes sociais</strong><p>Calendário mensal aprovado com a ICONIC, produção e publicação de até 12 posts e 16 stories por mês, comunidade no primeiro nível e relatório de crescimento, alcance e tráfego para a plataforma.</p></li>
+                <li><strong>Criação de campanha</strong><p>Peças de mídia, CRM e plataforma dentro do volume mensal contratado (até 8 peças por mês, além dos conteúdos das redes).</p></li>
+                <li><strong>Dados</strong><p>Painel do funil, leitura mensal, recomendações e ajustes de rota.</p></li>
+                <li><strong>Kit por novo estado</strong><p>Preparação da base do distribuidor local, campanhas geolocalizadas, ajuste de jornadas e peças, gate de prontidão e lançamento controlado. De 4 a 6 semanas por estado, depois que estoque, preço e frete estão conectados.</p></li>
+                <li><strong>Atendimento que cresce com os estados</strong><p>Cada estado novo aumenta cadastros, pedidos e dúvidas, e o SAC da ICONIC sente isso primeiro. O kit por estado inclui a previsão de contatos a partir do funil do estado anterior (quantas dúvidas por cadastro e por pedido), FAQ local e automações de autoatendimento no CRM e no WhatsApp para absorver o repetitivo: status de pedido, cadastro, frete e troca. Do nosso lado, o fee mensal sobe por estado ativo, e o atendimento de campanha, se ficar com a Fattoria, é cobrado por faixa de volume revista a cada lançamento.</p></li>
+                <li><strong>Laboratório estado a estado</strong><p>O primeiro estado valida mensagem, mídia e CRM; o que ele ensina vira o playbook dos próximos, e a ordem entre SC, MG e RJ segue a prontidão de integração e base.</p></li>
+                <li><strong>Preparação da fase 2</strong><p>Desenho da convivência entre o programa de fidelidade offline (cartão, vale-presente, comunicação pelo distribuidor) e a plataforma no primeiro ano. Clube, cashback e cupons só entram quando a adesão e a primeira compra estiverem validadas.</p></li>
+              </ul>
+              <div class="two">
+                <div class="mini">
+                  <h4>Rotina</h4>
+                  <ul>
+                    <li>Semanal: acompanhamento de mídia e CRM, publicação nas redes, ajustes de peças.</li>
+                    <li>Mensal: planejamento, leitura do painel, recomendações.</li>
+                    <li>Por estado: gate de prontidão, lançamento, registro de aprendizados.</li>
+                  </ul>
+                </div>
+                <div class="mini">
+                  <h4>Estimativa</h4>
+                  <ul>
+                    <li>Operação com 1 estado ativo: 120 h/mês, R$ 24.000/mês (ajustar) + 15% da verba de mídia.</li>
+                    <li>Kit por novo estado: 80 h, R$ 16.000 por estado (opcional, uma vez).</li>
+                    <li>Estado adicional em operação: +20 h/mês, +R$ 4.000/mês por estado ativo.</li>
+                    <li>Atendimento de campanha e WhatsApp (opcional): por faixa de conversas/mês.</li>
+                    <li>Verba de mídia e licenças fora do fee, pagas pela ICONIC.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="crm">
+        <div class="section-head">
+          <div class="kicker">Ferramenta</div>
+          <h2>CRM: uma opção de entrada e uma robusta</h2>
+        </div>
+        <div class="prose" style="margin-bottom: 18px;">
+          <p>"Não temos nada ainda, vamos comprar tudo." Em vez de recomendar uma ferramenta só, a proposta apresenta duas e amarra a escolha ao Bloco 1, quando os requisitos de marketing e a plataforma de e-commerce já estiverem definidos. Trocar depois custa retrabalho de jornadas e dados, então a decisão sai com critério, não com preferência.</p>
+        </div>
+        <div class="split">
+          <div class="panel">
+            <h3><span class="pill ok">Entrada</span> RD Station</h3>
+            <ul>
+              <li><strong>Custo e prazo.</strong> <span>Licença menor, em reais, e implantação rápida. A Fattoria é parceira RD Station, o que encurta setup e suporte.</span></li>
+              <li><strong>Jornadas.</strong> <span>Cobre as dez jornadas iniciais por e-mail e WhatsApp, com segmentação por estado, distribuidor e categoria.</span></li>
+              <li><strong>Dados.</strong> <span>Campos personalizados de contato e empresa. Dá conta de origem, distribuidor, estado e categorias; pedido e recência, frequência e valor entram por integração ou campo calculado.</span></li>
+              <li><strong>Integração.</strong> <span>Conectores e API, dependendo da plataforma de e-commerce escolhida.</span></li>
+              <li><strong>Quando faz sentido.</strong> <span>Piloto de um estado com orçamento apertado e modelo de dados simples. É a opção que casa com o recorte de MVP.</span></li>
+              <li><strong>Esforço.</strong> <span>Implantação incluída nas 300 h do Bloco 2.</span></li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3><span class="pill accent">Robusta</span> HubSpot</h3>
+            <ul>
+              <li><strong>Custo e prazo.</strong> <span>Licença maior, cobrada em dólar e crescendo com a base de contatos. Implantação mais longa.</span></li>
+              <li><strong>Jornadas.</strong> <span>Workflows com ramificações, pontuação de leads, testes e relatórios de atribuição mais completos.</span></li>
+              <li><strong>Dados.</strong> <span>Objetos personalizados para distribuidor, pedido e estado. Dá mais precisão à prova de valor e à leitura de recência, frequência e valor por base.</span></li>
+              <li><strong>Integração.</strong> <span>Ecossistema amplo de integrações e API robusta para a plataforma de e-commerce e ferramentas de dados.</span></li>
+              <li><strong>Quando faz sentido.</strong> <span>Se a expansão para vários estados e a fase 2 de fidelidade já estiverem decididas e a ICONIC aceitar a licença maior.</span></li>
+              <li><strong>Esforço.</strong> <span>Adicional de 60 h (R$ 12.000) no Bloco 2 para objetos, workflows e integração.</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="prose" style="margin-top: 16px;">
+          <p>Em qualquer opção, a licença é contratada pela ICONIC e fica fora do fee. Critérios que decidem no Bloco 1: integração nativa com a plataforma escolhida, WhatsApp como canal principal da base do distribuidor, necessidade de objeto de pedido para a prova de valor, número de estados no horizonte de 12 meses e teto de licença aceito pela Camila.</p>
+        </div>
+      </section>
+
+      <section id="social">
+        <div class="section-head">
+          <div class="kicker">Canal próprio</div>
+          <h2>Redes sociais: criação e gestão</h2>
+        </div>
+        <div class="prose" style="margin-bottom: 18px;">
+          <p>"Como a gente cria uma baita página no Instagram para essa galera ir no site conhecer." A página é a vitrine da marca nova para um varejista que nunca ouviu falar dela: precisa existir antes da primeira campanha, porque é para lá que a mídia e o CRM mandam quem quer conferir se a marca é séria, e precisa continuar viva depois, porque é o único canal que segue falando com quem ainda não cadastrou. Até aqui estava diluída em mídia e criação; agora é frente própria, com volume e indicadores.</p>
+        </div>
+        <div class="split">
+          <div class="panel">
+            <h3><span class="pill accent">Bloco 2</span> No lançamento</h3>
+            <ul>
+              <li><strong>Perfis abertos e configurados.</strong> <span>Facebook e Instagram primeiro, o arroz com feijão, em nome da marca nova, com WhatsApp Business conectado.</span></li>
+              <li><strong>Identidade do perfil.</strong> <span>Bio, avatar, capa, destaques e grid dentro do kit de comunicação.</span></li>
+              <li><strong>Linha editorial em três eixos.</strong> <span>Educação (como comprar online com CNPJ), produto e necessidade (pneu, bateria, peça, palheta, filtro) e prova (fornecedores e distribuidores na plataforma).</span></li>
+              <li><strong>Estoque de lançamento.</strong> <span>12 posts e 16 stories prontos antes do go-live, para a página não nascer vazia.</span></li>
+              <li><strong>Ponte com a mídia paga.</strong> <span>Os conteúdos que melhor performam viram impulsionados por estado, em vez de criar peças separadas para tudo.</span></li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3><span class="pill ok">Bloco 3</span> Na operação</h3>
+            <ul>
+              <li><strong>Calendário mensal</strong> <span>aprovado com a ICONIC, alinhado ao calendário comercial e aos lançamentos por estado.</span></li>
+              <li><strong>Produção e publicação.</strong> <span>Até 12 posts e 16 stories por mês, com direção de arte e copy, dentro das 120 h do fee.</span></li>
+              <li><strong>Comunidade.</strong> <span>Respostas a comentários e DMs no primeiro nível, com encaminhamento ao SAC da ICONIC.</span></li>
+              <li><strong>Relatório mensal.</strong> <span>Seguidores qualificados, alcance, engajamento, cliques e cadastros originados nas redes.</span></li>
+              <li><strong>Escala por estado.</strong> <span>Conteúdos regionais e cobertura de cada lançamento dentro do kit por estado.</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="prose" style="margin-top: 16px;">
+          <p>Novo canal só depois: com a base rodando e medida, um canal novo é testado por vez, escolhido pela sinergia com o que a imersão e a persona mostrarem. Influenciadores e produção de vídeo em estúdio ficam fora por enquanto.</p>
+        </div>
+      </section>
+
+      <section id="gate">
+        <div class="section-head">
+          <div class="kicker">Critério comercial</div>
+          <h2>Go/no-go por estado: o que precisa estar pronto antes da verba</h2>
+        </div>
+        <div class="prose" style="margin-bottom: 18px;">
+          <p>Ela foi explícita: não começa estado com investimento alto se só tiver óleo no catálogo. O gate protege a verba de mídia e dá ao comercial da ICONIC um alvo claro de mix e fornecedores. Um estado só recebe investimento relevante quando cumpre a lista inteira.</p>
+        </div>
+        <div class="two">
+          <ul class="checklist">
+            <li><div><strong>Estoques conectados</strong><br><span>Integração do distribuidor com a plataforma validada em ambiente real.</span></div></li>
+            <li><div><strong>Preços e fretes validados</strong><br><span>Tabelas carregadas e testadas para as regiões do estado.</span></div></li>
+            <li><div><strong>Mix mínimo atrativo</strong><br><span>Categorias e fornecedores acordados com o comercial. Não é só óleo: pneu, bateria, peça, palheta, filtro.</span></div></li>
+            <li><div><strong>Distribuidores alinhados</strong><br><span>Pacote de adesão aceito, regra de uso da base e de comissão fechada.</span></div></li>
+          </ul>
+          <ul class="checklist">
+            <li><div><strong>Base de clientes preparada</strong><br><span>Base do distribuidor higienizada e carregada no CRM; ICP de prospecção definido.</span></div></li>
+            <li><div><strong>CRM e canais configurados</strong><br><span>Jornadas ativas, contas de mídia e públicos criados.</span></div></li>
+            <li><div><strong>Peças e páginas aprovadas</strong><br><span>Kit de campanha, banners, vitrines e páginas promocionais no ar.</span></div></li>
+            <li><div><strong>Rastreamento funcionando</strong><br><span>Eventos de cadastro, carrinho e pedido chegando no painel.</span></div></li>
+            <li><div><strong>Atendimento definido</strong><br><span>SAC da ICONIC com canal, horário e responsável; roteiro e FAQ prontos; encaminhamento para plataforma e distribuidores acordado.</span></div></li>
+          </ul>
+        </div>
+        <div class="prose" style="margin-top: 18px;">
+          <p>Depois do gate, o playbook do estado segue nove passos: validação da integração, avaliação do mix, definição da base disponível, preparação das campanhas, configuração dos fluxos de CRM, configuração de mídia, analytics e conversões, lançamento controlado, acompanhamento e otimização, registro dos aprendizados para o próximo estado.</p>
+        </div>
+      </section>
+
+      <section id="raci">
+        <div class="section-head">
+          <div class="kicker">Responsabilidades</div>
+          <h2>Quem faz o quê</h2>
+        </div>
+        <div class="prose" style="margin-bottom: 18px;">
+          <p>Para o marketing não esperar por mix que não chegou e o comercial não esperar por campanha que não foi pedida. A ICONIC vai contratar só comercial; campanha, arte, tráfego e CRM não terão gente lá dentro.</p>
+        </div>
+        <div class="table-wrap">
+          <table class="raci">
+            <thead>
+              <tr><th scope="col">Quem</th><th scope="col">Assume</th><th scope="col">Entrega para os outros</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><span class="who">ICONIC</span></td><td>Fornecedores e mix, política comercial e comissão, relacionamento e acordo com os distribuidores, verba de mídia, aprovação de campanhas, interlocução única com a Fattoria. <strong>SAC do varejista:</strong> cadastro, pedido, pagamento, entrega e troca, com canal, horário e responsável definidos antes do go-live.</td><td>Mix por estado, bases cedidas com regra de uso, calendário comercial e promoções, decisão da plataforma, NDA e lista de autorizados, SAC em operação.</td></tr>
+              <tr><td><span class="who">Fattoria</span></td><td>Estratégia, CRM (seleção, implantação e operação), planejamento e execução de mídia, redes sociais (criação e gestão), criação, conversão dentro da plataforma, dados e o playbook por estado. <strong>No atendimento:</strong> roteiro e FAQ do lançamento e primeiro nível nas redes e nos canais de campanha (comentários, DMs, respostas de e-mail e WhatsApp de CRM), encaminhando ao SAC da ICONIC.</td><td>Requisitos de marketing para a plataforma, pacote de adesão do distribuidor, critérios de go/no-go, jornadas, campanhas, peças, painel do funil, roteiro e FAQ de atendimento.</td></tr>
+              <tr><td><span class="who">Plataforma de e-commerce</span></td><td>Front-end, catálogo, checkout, integração de estoque, preço, frete e logística, eventos e espaços promocionais definidos no Bloco 1. <strong>Suporte técnico</strong> da plataforma: erros, checkout, integrações.</td><td>Ambiente com eventos e tags ativos, espaços promocionais editáveis, integração com o CRM, canal de suporte com prazo de resposta.</td></tr>
+              <tr><td><span class="who">Distribuidores</span></td><td>Base de clientes com regra de uso acordada, estoque, preço e frete por estado, comunicação com a base própria alinhada ao marketplace. <strong>Ocorrências de entrega e logística</strong> dos pedidos que atendem.</td><td>Base higienizada, tabelas atualizadas, retorno sobre a prova de valor, resolução de ocorrências de entrega.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="roadmap">
+        <div class="section-head">
+          <div class="kicker">Cronograma</div>
+          <h2>Roadmap até o primeiro estado no ar</h2>
+        </div>
+        <ul class="timeline">
+          <li>
+            <div class="when">Setembro 2026<small>agora</small></div>
+            <div class="what"><strong>Escopo, crítica e alinhamento</strong><p>15/9: escopo preliminar para a Camila. Depois: crítica dela, reunião com Vinicius Vasconcelos (Head de Growth) e Thiago Nóbrega (CTO), NDA, portfólio com o case Bradesco Seguros / Clube de Vantagens. Requisitos de marketing entregues dentro da janela de decisão da plataforma.</p></div>
+          </li>
+          <li>
+            <div class="when">Out a meados de nov<small>Bloco 1 · 8 semanas</small></div>
+            <div class="what"><strong>Setup estratégico e tecnológico</strong><p>Imersão (persona, jornada, diagnóstico), planejamento de mídia e social, governança e confidencialidade, pacote do distribuidor, critérios de go/no-go, definição do CRM e modelo de dados, plano de mensuração e rastreamento, matriz de responsabilidades, roadmap detalhado do primeiro estado.</p></div>
+          </li>
+          <li>
+            <div class="when">Meados de nov a jan<small>Bloco 2 · 8 semanas</small></div>
+            <div class="what"><strong>Lançamento do primeiro estado</strong><p>Kit de comunicação, implantação do CRM e das dez jornadas, prospecção por CNPJ, campanhas de awareness, conversão na plataforma, gate de prontidão, go-live controlado, painel do funil.</p></div>
+          </li>
+          <li>
+            <div class="when">Dez 2026 a jan 2027<small>go-live</small></div>
+            <div class="what"><strong>Entrada em operação</strong><p>Campanha de awareness no estado, ativação da base do distribuidor, aquisição dos primeiros varejistas, prova de valor rodando, monitoramento de cadastro e primeira compra.</p></div>
+          </li>
+          <li>
+            <div class="when">A partir do go-live<small>Bloco 3 · contínuo</small></div>
+            <div class="what"><strong>Operação mensal e próximos estados</strong><p>Rotina de mídia, CRM, criação e dados. Kit por novo estado a cada 4 a 6 semanas, conforme a prontidão de estoque, preço e frete. Fase 2 (fidelidade) desenhada com base no que o primeiro estado ensinou.</p></div>
+          </li>
+        </ul>
+        <div class="prose" style="margin-top: 16px;">
+          <p>Um cronograma detalhado é criado no início de cada bloco, com acompanhamento em metodologia Ágil e devolutivas semanais. O go-live do estado depende da prontidão de mix, integração e base, não de uma data fixa.</p>
+        </div>
+      </section>
+
+      <section id="time">
+        <div class="section-head">
+          <div class="kicker">Capacidade</div>
+          <h2>Time recomendado</h2>
+        </div>
+        <div class="prose" style="margin-bottom: 18px;">
+          <p>Três lideranças respondem pelo projeto, uma por frente. Abaixo delas, um núcleo enxuto na preparação, crescendo conforme novos estados, distribuidores e campanhas entram na operação. A ICONIC contrata comercial; o resto é nosso.</p>
+        </div>
+        <h3 style="margin-bottom: 10px;">Quem comanda</h3>
+        <ul class="team" style="margin-bottom: 22px;">
+          <li><strong>Thiago Nóbrega</strong><span>CTO</span><span style="margin-top: 6px; color: var(--text);">CRM (seleção, implantação e integrações), dados e rastreamento, requisitos de marketing para a plataforma, apoio técnico às integrações.</span></li>
+          <li><strong>Bruno Branco</strong><span>Lead Product Designer</span><span style="margin-top: 6px; color: var(--text);">Estratégia e interlocução com a Camila, governança e confidencialidade, conversão dentro da plataforma, kit de comunicação, redes sociais e direção de criação.</span></li>
+          <li><strong>Vinicius Vasconcelos</strong><span>Head de Growth</span><span style="margin-top: 6px; color: var(--text);">Funil, planejamento e execução de mídia, prova de valor, prospecção por CNPJ e o playbook por estado.</span></li>
+        </ul>
+        <h3 style="margin-bottom: 10px;">Núcleo de execução</h3>
+        <ul class="team">
+          <li><strong>CRM e automação</strong><span>Implantação, jornadas, segmentações</span></li>
+          <li><strong>Gestão de mídia</strong><span>Google, Instagram, verba, otimização por cadastro e compra</span></li>
+          <li><strong>Redes sociais e comunidade</strong><span>Calendário, posts e stories, comentários e DMs</span></li>
+          <li><strong>Planejamento e conteúdo</strong><span>Mensagens, linha editorial, campanhas por categoria</span></li>
+          <li><strong>Direção de arte e design</strong><span>Kit de campanha, peças de mídia, CRM e plataforma</span></li>
+          <li><strong>Dados e analytics</strong><span>Eventos, tags, painel do funil, leitura mensal</span></li>
+          <li><strong>Apoio técnico para integrações</strong><span>Plataforma, CRM, tracking, enriquecimento de CNPJ</span></li>
+        </ul>
+      </section>
+
+      <section id="premissas">
+        <div class="section-head">
+          <div class="kicker">Condições</div>
+          <h2>Premissas e fora de escopo</h2>
+        </div>
+        <div class="split">
+          <div class="panel">
+            <h3><span class="pill accent">Premissas</span></h3>
+            <ul>
+              <li>NDA assinado e lista de pessoas autorizadas definida antes do kickoff.</li>
+              <li>Interlocutor único na ICONIC, com retornos consolidados e duas rodadas de revisão por entrega.</li>
+              <li>Plataforma de e-commerce escolhida até o início de outubro, com acesso ao fornecedor para os requisitos de marketing.</li>
+              <li>Base de clientes do distribuidor do primeiro estado disponível, com regra de uso e de contato acordada.</li>
+              <li>Verba de mídia paga pela ICONIC diretamente às plataformas, com taxa de gestão de 15% sobre o valor investido, faturada junto com o fee mensal. Licenças de CRM (RD Station ou HubSpot), analytics e ferramentas contratadas pela ICONIC.</li>
+              <li>CRM definido no Bloco 1, entre as duas opções, antes do início do Bloco 2.</li>
+              <li>SAC do varejista operado pela ICONIC, com canal, horário e responsável definidos antes do go-live. A Fattoria entrega roteiro e FAQ e faz o primeiro nível nas redes e nos canais de campanha.</li>
+              <li>O go-live do estado depende dos critérios de prontidão: mix, integração, base, rastreamento e atendimento.</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3><span class="pill warn">Fora de escopo</span></h3>
+            <ul>
+              <li>Desenvolvimento e implantação da plataforma de e-commerce e do front-end.</li>
+              <li>Programa de fidelidade: clube de compras, cashback e cupons. Fase 2, orçada após a validação da primeira compra.</li>
+              <li>Ativações offline, feiras, eventos e material de ponto de venda.</li>
+              <li>Produção de foto e vídeo de produto em estúdio.</li>
+              <li>Licenças e custos de CRM, mídia, ferramentas de dados e enriquecimento de CNPJ.</li>
+              <li>Operação do SAC: atendimento a cadastro, pedido, pagamento, entrega e troca. Fica com a ICONIC; se precisar de terceiro, pode ser orçado à parte.</li>
+              <li>Expansão para estados além do primeiro: contratada como kit por estado.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="investimento">
+        <div class="section-head">
+          <div class="kicker">Investimento</div>
+          <h2>Estimativa de horas e valores</h2>
+        </div>
+        <div class="invest-note" style="margin-bottom: 16px;">
+          <span class="pill warn">Ajustar</span>
+          <p>Estimativa interna a R$ 200/h, a referência das propostas anteriores. Os números abaixo são para o Bruno calibrar antes do envio; o deck para a Camila apresenta pacote fechado por bloco, sem itemizar. Verba de mídia e licenças ficam fora do fee; sobre a verba incide a taxa de gestão de 15%.</p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th scope="col">Bloco</th><th scope="col">O que cobre</th><th scope="col" class="num">Horas</th><th scope="col" class="num">Valor</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="key">1. Setup</td><td>Imersão (persona, jornada, diagnóstico), planejamento de mídia e social, governança, requisitos para a plataforma, pacote do distribuidor, go/no-go, CRM e dados, mensuração e rastreamento, roadmap.</td><td class="num">200 h</td><td class="num">R$ 40.000,00</td></tr>
+              <tr><td class="key">2. Primeiro estado</td><td>Kit de comunicação, CRM RD Station e dez jornadas, prova de valor, prospecção por CNPJ, awareness, conversão na plataforma, painel.</td><td class="num">300 h</td><td class="num">R$ 60.000,00</td></tr>
+              <tr class="totals"><td>Projeto (1 + 2)</td><td>30% na assinatura, 30% na entrega do Bloco 1, 40% no go-live do primeiro estado.</td><td class="num">500 h</td><td class="num">R$ 100.000,00</td></tr>
+              <tr><td class="key">Adicional: HubSpot</td><td>No lugar do RD Station. Objetos personalizados, workflows e integração com a plataforma. Só se a escolha do Bloco 1 for HubSpot.</td><td class="num">60 h</td><td class="num">R$ 12.000,00</td></tr>
+              <tr><td class="key">3. Operação mensal<br><span style="font-weight: 400; color: var(--muted); font-size: 14px;">1 estado ativo</span></td><td>Redes sociais (até 12 posts e 16 stories), mídia, CRM, criação de campanha (até 8 peças), dados, acompanhamento semanal e primeiro nível de atendimento nas redes e canais de campanha. Mínimo de 6 meses a partir do go-live. Sobre a verba de mídia, paga pela ICONIC direto às plataformas, incide a taxa de gestão de 15%, apurada e faturada junto com o fee.</td><td class="num">120 h/mês</td><td class="num">R$ 24.000,00/mês<br>+ 15% da verba de mídia</td></tr>
+              <tr><td class="key">Kit por novo estado</td><td>Opcional, uma vez por estado. Base local, campanhas geolocalizadas, ajuste de jornadas e peças, FAQ e automações de autoatendimento locais, gate e lançamento controlado.</td><td class="num">80 h</td><td class="num">R$ 16.000,00/estado</td></tr>
+              <tr><td class="key">Estado adicional em operação</td><td>Depois do kit, cada estado ativo além do primeiro soma ao fee mensal: mídia local, segmentos de CRM, peças e o volume extra de primeiro nível de atendimento. O 15% sobre a verba continua valendo para a verba total.</td><td class="num">20 h/mês</td><td class="num">+ R$ 4.000,00/mês por estado</td></tr>
+              <tr><td class="key">Atendimento de campanha e WhatsApp<br><span style="font-weight: 400; color: var(--muted); font-size: 14px;">opcional</span></td><td>Só se a ICONIC decidir que a Fattoria opera o atendimento além do primeiro nível (dúvidas de cadastro, pedido e frete que chegam pelos canais de campanha). Cobrado por faixa de conversas por mês, revista a cada novo estado.</td><td class="num">até 300 conv.<br>até 800 conv.</td><td class="num">R$ 6.000,00/mês<br>R$ 14.000,00/mês<br>acima: sob consulta</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="prose" style="margin-top: 16px;">
+          <p>Validade sugerida: 15 dias. Atendimento em horário comercial, de segunda a sexta, das 9h às 18h. Valores com impostos inclusos.</p>
+        </div>
+      </section>
+
+      <section id="ajustes">
+        <div class="section-head">
+          <div class="kicker">Revisão</div>
+          <h2>O que mudou em relação ao plano inicial</h2>
+        </div>
+        <div class="prose" style="margin-bottom: 18px;">
+          <p>O plano de ação cobria bem awareness, CRM, mídia, conversão e o piloto por estado. Faltava o que mais muda a proposta: o recorte orçamentário e as condições que destravam a base. Quatro frentes entraram, e algumas coisas saíram de propósito.</p>
+        </div>
+        <ul class="changes">
+          <li><strong>Confidencialidade, NDA e governança</strong><span>Condição para avançar. Marca nova sem vínculo com ICONIC, Ipiranga ou Texaco; pouca gente por dentro; protocolo de compartilhamento.</span></li>
+          <li><strong>Critérios de go/no-go por estado</strong><span>Evita queimar mídia com catálogo fraco. Mix, integração e base como gate antes de qualquer verba relevante.</span></li>
+          <li><strong>Pacote de adesão do distribuidor</strong><span>Destrava a base do CRM. "A base é minha" e comissão são política, não mídia; precisam de narrativa e regra.</span></li>
+          <li><strong>MVP orçamentário em três blocos</strong><span>Responde ao "orçamento baixo". Setup, primeiro estado e mensal, com kit por estado em vez de projeto infinito.</span></li>
+          <li><strong>Prova de valor contra o status quo</strong><span>Teste A/B operacional na base inativa: é o argumento que ela quer levar ao distribuidor.</span></li>
+          <li><strong>Requisitos de martech na escolha da plataforma</strong><span>Entrar agora, na janela de 15 dias, como quem destrava conversão, não como agência de post.</span></li>
+          <li><strong>Imersão como fase explícita</strong><span>Persona do comprador, rascunho da jornada e diagnóstico como entregáveis nomeados no início do Bloco 1, antes de decidir canal ou verba.</span></li>
+          <li><strong>Facebook e Instagram primeiro</strong><span>Arroz com feijão nos canais; novo canal só com a base rodando, escolhido pela imersão e pela persona.</span></li>
+          <li><strong>Redes sociais como frente própria</strong><span>Estava diluída em mídia e criação. Agora tem perfis, linha editorial, estoque de lançamento, volume mensal e indicadores próprios.</span></li>
+          <li><strong>Dois públicos separados</strong><span>Base do distribuidor (CRM) e varejo novo (awareness) com oferta, canal e KPI próprios. Varejo grande excluído do ICP.</span></li>
+          <li><strong>Saiu da fase 1</strong><span>Clube, cashback e cupom sofisticado; branding e front pesado; eventos e offline; escopo nacional; stack completa antes do piloto.</span></li>
+        </ul>
+      </section>
+
+      <section id="proximos">
+        <div class="section-head">
+          <div class="kicker">Agora</div>
+          <h2>Próximos passos e o que o time precisa responder</h2>
+        </div>
+        <ol class="steps">
+          <li><div><strong>Escopo preliminar para a Camila até terça, 15/9.</strong><span>Deck no template oficial, com os três blocos e os valores calibrados. Ela critica e aponta gaps.</span></div></li>
+          <li><div><strong>Portfólio da Fattoria com o case Bradesco Seguros / Clube de Vantagens.</strong><span>Serve para dimensionar capacidade técnica de plataforma e operação de benefícios.</span></div></li>
+          <li><div><strong>Reunião com Vinicius Vasconcelos (Head de Growth) e Thiago Nóbrega (CTO) na segunda quinzena de setembro.</strong><span>Aprofundar base do distribuidor, jornadas, prospecção por CNPJ e prova de valor.</span></div></li>
+          <li><div><strong>NDA enviado pela ICONIC e lista de autorizados.</strong><span>Formalizar o sigilo antes de qualquer material com a marca circular.</span></div></li>
+          <li><div><strong>Requisitos de marketing para a plataforma dentro da janela de decisão.</strong><span>Lista curta e objetiva, entregue antes de a ICONIC fechar com um dos dois fornecedores.</span></div></li>
+          <li><div><strong>Decisão até o início de outubro.</strong><span>Para o Bloco 1 começar e o primeiro estado sair em dezembro ou janeiro.</span></div></li>
+        </ol>
+        <div class="open-q" style="margin-top: 22px;">
+          <h3>Perguntas em aberto para o time</h3>
+          <ul>
+            <li>Qual dos três estados (SC, MG, RJ) tem integração e base mais prontas para ser o primeiro?</li>
+            <li>Das duas plataformas de e-commerce em avaliação, qual integra nativamente com RD Station e qual com HubSpot? Isso pode decidir o CRM sozinho.</li>
+            <li>Como fazemos a varredura de CNPJ por CNAE e região com regra de contato e LGPD, sem comprar lista?</li>
+            <li>Qual o volume mensal realista de peças e de horas de mídia para o fee de operação?</li>
+            <li>O que mostramos do case Bradesco / Clube de Vantagens sem expor dados do cliente?</li>
+            <li>Quem opera o SAC na ICONIC se a única contratação prevista é comercial? Se não houver ninguém, vale oferecer atendimento de campanha e WhatsApp como opcional ou indicar um terceiro.</li>
+          </ul>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <footer>
+    <div>Fattoria · documento interno de trabalho · ICONIC Marketplace B2B · v3 de 13 de setembro de 2026 (imersão como fase, Facebook e Instagram primeiro, rastreamento com GTM e Clarity, CRM em duas opções, taxa de gestão de mídia, SAC na matriz, lideranças do time, escala por estado, redes sociais)</div>
+    <div>Fontes: briefing de 11/9 (notas Granola), plano de ação, ajustes de MVP e conteúdo da proposta v2. Cobertura: só a reunião de 11/9; não comparado com outras conversas ICONIC/Ipiranga.</div>
+  </footer>
+</div>
+
+</body>
+</html>
