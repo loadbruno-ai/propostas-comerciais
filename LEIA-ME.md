@@ -18,6 +18,14 @@ A data é a data de emissão do documento.
 - `materiais/fonte/`: template HTML com placeholders e `build_lp.py`, que embute logos e mapa e gera o arquivo de `publicar/`. Para editar: alterar o template e rodar `python3 build_lp.py` dentro da pasta `materiais/fonte/` (o script espera `../imagens/` e grava em `../../publicar/`).
 - Projeto confidencial: sem valores em reais nesta versão; proposta final até 15/10/2026.
 
+## Sinaf — manutenção do portal
+
+- Versão final: [abrir proposta](clientes/sinaf/2026-09-21-manutencao-portal/publicar/sinaf_2026-09-21_manutencao-portal.html).
+- `publicar/`: HTML único e offline, com meta `robots` e cópia do `robots.txt`.
+- `materiais/imagens/`: logos Fattoria (reaproveitados da pasta ICONIC) e a imagem de compartilhamento `sinaf-manutencao-portal-social.png` (2400×1260, gerada a partir do hero do documento; o build copia para `publicar/`).
+- `materiais/fonte/`: template HTML com placeholders e `build_lp.py`, que embute os logos (inclusive como favicon), resolve a imagem de compartilhamento e gera o arquivo de `publicar/`. Para editar: alterar o template e rodar `python3 build_lp.py` dentro da pasta `materiais/fonte/`. No deploy, rodar com `PUBLIC_PAGE_URL=https://.../sinaf_2026-09-21_manutencao-portal.html python3 build_lp.py` para as metas `og:image`, `twitter:image` e `og:url` saírem com URL absoluta (sem isso, a imagem fica relativa ao HTML e só funciona quando os dois arquivos estão na mesma pasta do servidor).
+- Documento de fechamento comercial (não é pré-proposta): manutenção inicial da assinatura até 29/01/2027, com custo mensal de R$ 14.000 (70h/mês a R$ 200/h, incluindo 8h de atendimento, reuniões e PO; 4 meses = 280h / R$ 56.000, 3 meses = 210h / R$ 42.000, faturamento mensal, horas acumuladas no período com planilha de controle compartilhada), seguida de contrato de 12 meses a partir de fevereiro de 2027, dimensionado na reavaliação. Um capítulo por frente (performance do portal, manutenção técnica, SEO técnico e AEO, landing pages, e-mail marketing, apoio técnico ao blog), cada um fechado por um painel de escopo (limites + quando/como/condições), com as entregas acrescentadas pela Fattoria marcadas como "Sugestão Fattoria"; reuniões quinzenais; sem seção de backlog. A correção de performance das LPs (proposta de setembro) está absorvida como primeira grande ação. `materiais/imagens/` também guarda o retrato do Bruno usado nos cards da equipe.
+
 ## Compartilhamento
 
 O arquivo final funciona sozinho e offline. Para ter uma URL acessível por clientes, é necessário hospedá-lo. O endereço file:// só funciona no computador local.

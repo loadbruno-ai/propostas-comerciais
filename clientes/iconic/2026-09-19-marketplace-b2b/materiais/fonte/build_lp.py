@@ -31,6 +31,30 @@ labels = ('<g aria-hidden="true">'
 svg = svg.replace('</svg>', labels + '</svg>')
 
 html = SRC.read_text(encoding='utf-8')
+# Usa o arquivo oficial da marca AWS no card de credenciais.
+aws_wordmark = ('<div class="credential-brand credential-aws" aria-label="AWS">'
+                'aws<span aria-hidden="true">⌣</span></div>')
+assert aws_wordmark in html, 'marca AWS original não encontrada'
+html = html.replace(
+    aws_wordmark,
+    '<div class="credential-brand"><img src="{{AWS_LOGO}}" alt="AWS"></div>'
+)
+# Substitui a arte abstrata do card de growth pelo retrato final do Vini.
+vini_art = ('<div class="leader-art leader-art-growth" aria-hidden="true">'
+            '<span></span><span></span><span></span><span></span><span></span></div>')
+assert vini_art in html, 'arte original do card do Vini não encontrada'
+html = html.replace(
+    vini_art,
+    '<img src="{{VINI_PORTRAIT}}" alt="Retrato de Vinicius Vasconcelos" loading="lazy">'
+)
+# Substitui a arte abstrata do card de tecnologia pelo retrato final do Thiago.
+thiago_art = ('<div class="leader-art leader-art-tech" aria-hidden="true">'
+              '<span></span><span></span><span></span><span></span></div>')
+assert thiago_art in html, 'arte original do card do Thiago não encontrada'
+html = html.replace(
+    thiago_art,
+    '<img src="{{THIAGO_PORTRAIT}}" alt="Retrato de Thiago Nóbrega" loading="lazy">'
+)
 # Restore to True when the commercial chapter is ready to present.
 SHOW_COMMERCIAL = False
 if not SHOW_COMMERCIAL:
@@ -48,11 +72,14 @@ for placeholder, filename in [('GSAP_JS', 'gsap.min.js'), ('SCROLLTRIGGER_JS', '
     html = html.replace('{{' + placeholder + '}}', (ROOT / 'vendor' / filename).read_text(encoding='utf-8'))
 html = html.replace('{{HUBSPOT_LOGO}}', data_uri(MAT / 'hubspot.svg'))
 html = html.replace('{{RD_LOGO}}', data_uri(MAT / 'rd-station.svg'))
+html = html.replace('{{AWS_LOGO}}', data_uri(MAT / 'aws-logo.webp', 'image/webp'))
 html = html.replace('{{SCHEDULE_INFOGRAPHIC}}', data_uri(MAT / 'infografico-cronograma-estrategia-v2.png', 'image/png'))
-html = html.replace('{{BRUNO_PORTRAIT}}', data_uri(MAT / 'bruno-branco-close-sorrindo-v1.png', 'image/png'))
-html = html.replace('{{CASE_BRADESCO_COVER}}', data_uri(MAT / 'case-bradesco.jpg', 'image/jpeg'))
+html = html.replace('{{BRUNO_PORTRAIT}}', data_uri(MAT / 'bruno-portrait-v1.webp', 'image/webp'))
+html = html.replace('{{VINI_PORTRAIT}}', data_uri(MAT / 'vini-portrait-v1.webp', 'image/webp'))
+html = html.replace('{{THIAGO_PORTRAIT}}', data_uri(MAT / 'thiago-nobrega-portrait-v1.webp', 'image/webp'))
+html = html.replace('{{CASE_BRADESCO_COVER}}', data_uri(MAT / 'case-bradesco-thumb.png', 'image/png'))
 html = html.replace('{{CASE_BRADESCO_SCREEN}}', data_uri(MAT / 'case-bradesco-interface.jpg', 'image/jpeg'))
-html = html.replace('{{CASE_IPIRANGA_COVER}}', data_uri(MAT / 'case-ipiranga.jpg', 'image/jpeg'))
+html = html.replace('{{CASE_IPIRANGA_COVER}}', data_uri(MAT / 'case-ipiranga-thumb.png', 'image/png'))
 html = html.replace('{{CASE_IPIRANGA_SCREEN}}', data_uri(MAT / 'case-ipiranga-interface.jpg', 'image/jpeg'))
 html = html.replace('{{HERO_LOOPS}}', data_uri(MAT / 'hero-elos-fattoria-v1.png', 'image/png'))
 # Set PUBLIC_PAGE_URL to the final HTTPS page URL when deploying.
