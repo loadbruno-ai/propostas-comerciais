@@ -81,6 +81,8 @@ html = html.replace('{{CASE_BRADESCO_COVER}}', data_uri(MAT / 'case-bradesco-thu
 html = html.replace('{{CASE_BRADESCO_SCREEN}}', data_uri(MAT / 'case-bradesco-interface.jpg', 'image/jpeg'))
 html = html.replace('{{CASE_IPIRANGA_COVER}}', data_uri(MAT / 'case-ipiranga-thumb.png', 'image/png'))
 html = html.replace('{{CASE_IPIRANGA_SCREEN}}', data_uri(MAT / 'case-ipiranga-interface.jpg', 'image/jpeg'))
+html = html.replace('{{CASE_DESKTOP_COVER}}', data_uri(MAT / 'case-desktop-thumb.png', 'image/png'))
+html = html.replace('{{CASE_AMIL_COVER}}', data_uri(MAT / 'case-amil-thumb.png', 'image/png'))
 html = html.replace('{{HERO_LOOPS}}', data_uri(MAT / 'hero-elos-fattoria-v1.png', 'image/png'))
 # Set PUBLIC_PAGE_URL to the final HTTPS page URL when deploying.
 social_name = 'iconic-marketplace-b2b-social.png'
