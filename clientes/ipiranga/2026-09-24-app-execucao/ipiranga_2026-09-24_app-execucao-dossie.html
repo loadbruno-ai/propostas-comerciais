@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow, nosnippet, noimageindex">
+<title>Ipiranga · App de Execução · Dossiê de entendimento</title>
+<style>
+  :root { --ink:#13141d; --pink:#f72585; --grey:#6b6e7a; --line:#e3e4e8; --bg:#f3f3f5; }
+  @page { size: A4; margin: 22mm 20mm 20mm 20mm; }
+  * { box-sizing: border-box; }
+  body { font-family: 'Poppins', sans-serif; font-weight: 300; color: var(--ink); font-size: 9.6pt; line-height: 1.55; margin: 0; }
+  b, strong { font-weight: 700; }
+  .kicker { color: var(--pink); font-weight: 700; letter-spacing: .22em; font-size: 8pt; text-transform: uppercase; margin: 0 0 14px; }
+  h1 { font-weight: 300; font-size: 27pt; line-height: 1.12; margin: 0 0 16px; letter-spacing: -.01em; }
+  h1 b { font-weight: 700; }
+  .lead { font-size: 11pt; line-height: 1.6; margin: 0 0 26px; }
+  table.ficha { width: 100%; border-collapse: collapse; border-top: 2px solid var(--ink); margin-bottom: 26px; }
+  table.ficha td { padding: 8px 0; border-bottom: 1px solid var(--line); vertical-align: top; font-size: 9.4pt; }
+  table.ficha td:first-child { width: 25%; color: var(--pink); font-weight: 700; letter-spacing: .14em; font-size: 7.4pt; text-transform: uppercase; padding-top: 10px; }
+  .box { background: var(--bg); border-left: 4px solid var(--pink); padding: 14px 18px; margin: 16px 0; break-inside: avoid; }
+  .box h4 { margin: 0 0 6px; font-size: 9.8pt; font-weight: 700; }
+  .box p { margin: 0 0 8px; } .box p:last-child { margin-bottom: 0; }
+  .box.dark { background: var(--ink); color: #fff; }
+  .box ul { margin: 4px 0 0; padding-left: 18px; } .box li { margin-bottom: 3px; }
+  .sec { background: var(--ink); color: #fff; margin: 0 -8mm 16px; padding: 12px 8mm; font-size: 13pt; font-weight: 500; break-after: avoid; }
+  .sec span { color: var(--pink); font-weight: 700; margin-right: 10px; }
+  .page { break-before: page; }
+  h3 { font-size: 10.5pt; font-weight: 700; margin: 20px 0 6px; break-after: avoid; }
+  h3::before { content: ''; display: inline-block; width: 8px; height: 8px; background: var(--pink); margin-right: 8px; vertical-align: 1px; }
+  p { margin: 0 0 10px; }
+  table.t { width: 100%; border-collapse: collapse; margin-bottom: 8px; }
+  table.t thead { display: table-header-group; }
+  table.t th { text-align: left; font-size: 7pt; letter-spacing: .12em; text-transform: uppercase; color: var(--grey); font-weight: 700; padding: 6px 6px 7px; border-bottom: 1.5px solid var(--ink); }
+  table.t td { padding: 7px 6px; border-bottom: 1px solid var(--line); vertical-align: top; font-size: 8.6pt; line-height: 1.45; }
+  table.t tr { break-inside: avoid; }
+  table.dor td.feat { width: 24%; }
+  .tight td { padding: 5px 6px; } table.dor td.who { width: 22%; color: var(--grey); font-size: 7.8pt; }
+  td.feat b { display: block; font-size: 8.8pt; line-height: 1.35; }
+  td.feat .src { display: block; color: var(--grey); font-size: 7pt; letter-spacing: .06em; margin-top: 3px; }
+  table.ice td.n { width: 4%; color: var(--grey); font-weight: 500; }
+  table.ice td.feat { width: 22%; }
+  table.ice td.num { width: 4.5%; text-align: center; font-weight: 500; }
+  table.ice td.sc { font-weight: 700; color: var(--pink); width: 6%; }
+  table.ice td.pz { width: 12%; text-align: right; }
+  table.ice th.c { text-align: center; } table.ice th.r { text-align: right; }
+  .val { margin-top: 5px; font-size: 7.8pt; color: #4a4c57; }
+  .tag { display: inline-block; font-size: 6.4pt; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; padding: 2px 6px; border-radius: 2px; white-space: nowrap; line-height: 1.5; }
+  .tag.dark { background: var(--ink); color: #fff; }
+  .tag.pink { background: var(--pink); color: #fff; }
+  .tag.line { border: 1px solid var(--ink); color: var(--ink); }
+  .tag.warn { border: 1px solid var(--pink); color: var(--pink); }
+  .grid3 { display: flex; gap: 10px; margin: 14px 0; }
+  .grid3 div { flex: 1; border-top: 2px solid var(--ink); padding-top: 8px; }
+  .grid3 .big { font-size: 20pt; font-weight: 700; line-height: 1; display: block; margin-bottom: 4px; }
+  .grid3 div.p { border-color: var(--pink); } .grid3 div.p .big { color: var(--pink); }
+  ol.steps { padding-left: 18px; } ol.steps li { margin-bottom: 4px; }
+  .note { color: var(--grey); font-size: 7.8pt; }
+</style>
+</head>
+<body>
+
+<p class="kicker">Fattoria Digital · Ipiranga Trade Marketing</p>
+<h1>Dossiê de entendimento,<br><b>App de Execução</b></h1>
+<p class="lead">O que entendemos dos materiais entregues pela Ipiranga: as dores da plataforma hoje e as funcionalidades propostas, ranqueadas e com a leitura do que cabe em 2026. Serve para validarmos juntos o entendimento antes do roadmap e da proposta comercial.</p>
+
+<table class="ficha">
+  <tr><td>Cliente</td><td>Ipiranga · Trade Marketing</td></tr>
+  <tr><td>Interlocução</td><td>Julio Araujo</td></tr>
+  <tr><td>Plataforma</td><td>App de Execução (PWA), desenvolvido e mantido pela Stringhini</td></tr>
+  <tr><td>Fontes</td><td>Documento de estratégia (set/2026) · Estudo de campo com 9 consultores e coordenadores e sugestões de roadmap (ago/2026) · Proposta aprovada da Stringhini (set/2025) · Reuniões de 18/09 com Ipiranga e Stringhini</td></tr>
+  <tr><td>Natureza</td><td>Dossiê de entendimento · sem valores · base para o roadmap e a proposta</td></tr>
+  <tr><td>Data</td><td>24 de setembro de 2026</td></tr>
+</table>
+
+<div class="box">
+  <h4>Como ler este documento</h4>
+  <p>A seção 02 reúne as <b>dores</b>, organizadas pelos momentos da rotina do consultor, com quem trouxe cada uma. A seção 03 lista as <b>funcionalidades propostas</b> nos materiais e nas conversas, ranqueadas pela técnica ICE e com a leitura de prazo:
+  <span class="tag dark">Dez/2026</span> cabe no recorte deste ano,
+  <span class="tag pink">1º tri 2027</span> logo na sequência,
+  <span class="tag line">2027</span> fica para o roadmap do ano que vem.</p>
+  <p>Itens marcados com <span class="tag warn">Validar Stringhini</span> dependem de uma resposta técnica da Stringhini antes de fecharmos o roadmap. A seção 04 junta essas perguntas.</p>
+</div>
+
+<!-- ============ 01 ============ -->
+<div class="page"></div>
+<div class="sec"><span>01</span>A plataforma hoje e para onde a Ipiranga quer levá-la</div>
+
+<p>O App de Execução é um PWA instalável, usado no celular Android fornecido pela companhia e no notebook. Desde novembro de 2023 a Stringhini desenvolve e mantém o produto, e o contrato vigente, aprovado em setembro de 2025, cobre gestão de conteúdo, manutenção e desenvolvimento, o monitoramento do checklist e as licenças.</p>
+
+<h3>O que existe</h3>
+<table class="t dor">
+  <thead><tr><th>Área</th><th>O que faz</th><th>Observação</th></tr></thead>
+  <tbody>
+    <tr><td class="feat"><b>Guia de Execução</b></td><td class="desc">Padrões da rede em 6 pilares: comunicação e imagem, produtos e equipamentos, atendimento, ativações promocionais, segurança e organização, serviços.</td><td class="who">Conteúdo atualizado pela Stringhini em até 12 dias úteis.</td></tr>
+    <tr><td class="feat"><b>Checklist</b></td><td class="desc">Uma tarefa por posto a cada quadrimestre, com perguntas sim/não/NA, texto e múltipla escolha, até 3 fotos por pergunta, nota por visita, auditoria e relatório em PDF.</td><td class="who">Contestação da auditoria em teste. Na demonstração, uma carteira tinha 452 tarefas.</td></tr>
+    <tr><td class="feat"><b>Dashboard</b></td><td class="desc">Notas consolidadas com filtros por hierarquia e período, postos excelentes (acima de 85) e críticos (abaixo de 50), pontos fortes e fracos por pilar.</td><td class="who">Pensado para o notebook.</td></tr>
+    <tr><td class="feat"><b>Posso Ajudar?</b></td><td class="desc">Materiais, roteiros e planos de ação de apoio ao campo.</td><td class="who">Lista longa, sem segmentação por tema.</td></tr>
+    <tr><td class="feat"><b>Base técnica</b></td><td class="desc">AWS (DynamoDB, Athena, AppSync, Cognito, serverless), funcionamento offline com sincronização ao concluir a tarefa, notificações push, logs customizados sem ferramenta de analytics.</td><td class="who">Define o que é fácil e o que é caro no roadmap.</td></tr>
+  </tbody>
+</table>
+
+<div class="box">
+  <h4>A ambição, nas palavras da estratégia</h4>
+  <p>Transformar o App de Execução no <b>hub de trabalho do consultor de trade</b>, a porta de entrada da rotina de campo, conectando postos, execução, visitas, Guia, dashboards e treinamentos sem duplicar os canais que já existem.</p>
+  <p>A primeira versão do hub precisa tornar visíveis quatro capacidades: <b>organizar a rotina, localizar postos, iniciar a execução e acessar os recursos prioritários</b>. Premissas: mobile first, offline como realidade, integração sem duplicação, ação antes de informação e construção validada com o usuário.</p>
+</div>
+
+<div class="box">
+  <h4>O que o Julio pediu nas reuniões de 18/09</h4>
+  <p>Um norte para apresentar e defender internamente, com pelo menos uma fase implementada em dezembro e o restante organizado no roadmap de 2027. O trabalho é colaborativo: a Fattoria desenha, a Stringhini implementa, e as limitações técnicas entram na conversa antes da tela final. O visual deve seguir as ferramentas mais recentes da Coordenação.</p>
+</div>
+
+<!-- ============ 02 ============ -->
+<div class="page"></div>
+<div class="sec"><span>02</span>O que entendemos de dores e problemas</div>
+<p>As dores abaixo aparecem no estudo de campo de agosto, no documento de sugestões e nas reuniões de 18/09. Organizamos pelos momentos da rotina que a estratégia descreve: organizar o dia, preparar a visita, executar, acompanhar e consultar.</p>
+
+<h3>Organizar o dia e a carteira</h3><table class="t dor"><thead><tr><th>Dor</th><th>O que acontece hoje</th><th>Quem trouxe</th></tr></thead><tbody>
+<tr><td class="feat"><b>Carteira fora do app</b></td><td class="desc">Os consultores montam a carteira no mapa em ferramentas de terceiros: Spoke (app de rota em que importam a planilha de postos), My Maps, KMV e Google Maps. Nem todos os postos aparecem corretamente nelas.</td><td class="who">Bianca, Karina, Misleine, Renan, João Ribas</td></tr>
+<tr><td class="feat"><b>Meta de visitas controlada à mão</b></td><td class="desc">A meta é visitar 100% da carteira no quadrimestre. O controle é feito em caderno, e a média de visitas por dia é recalculada manualmente, descontando reuniões e treinamentos.</td><td class="who">Misleine, Karina, Robert, Poliana, Eduardo</td></tr>
+<tr><td class="feat"><b>Status de visita pouco confiável</b></td><td class="desc">A última visita mostrada nem sempre é confiável, posto concluído segue como pendente, a virada do ciclo gera dúvida sobre quando o posto volta e um time ficou sem atualização das visitas desde julho.</td><td class="who">Renan, Luiza, Misleine, João Ribas</td></tr>
+<tr><td class="feat"><b>Home passiva</b></td><td class="desc">Quatro banners com o mesmo peso, sem dizer o que falta, o que está perto ou o que pede atenção. O app espera o consultor decidir o próximo passo.</td><td class="who">Luiza, estudo de sugestões, reunião 18/09</td></tr>
+<tr><td class="feat"><b>Busca mais trabalhosa</b></td><td class="desc">Depois da última atualização, achar um posto exige filtros e mais cliques. Grupos com a mesma razão social e a diferença entre razão social e nome fantasia confundem a identificação.</td><td class="who">Robert, Renan, estudo de sugestões</td></tr>
+</tbody></table>
+<h3>Preparar a visita</h3><table class="t dor"><thead><tr><th>Dor</th><th>O que acontece hoje</th><th>Quem trouxe</th></tr></thead><tbody>
+<tr><td class="feat"><b>Informação do posto espalhada</b></td><td class="desc">Galonagem, grupo econômico, consultor de negócios, Ipiranga Mais, mix, Jet Oil, AmPm, KMV e Clube do Milhão ficam em outras bases e no conhecimento de cada um.</td><td class="who">Bianca, Luiza, Karina, Misleine, Poliana, Eduardo</td></tr>
+<tr><td class="feat"><b>Responsável pelo posto sumiu</b></td><td class="desc">O nome do responsável existia no app e foi retirado numa atualização.</td><td class="who">Robert</td></tr>
+<tr><td class="feat"><b>Sem histórico à mão</b></td><td class="desc">Para saber o que foi apontado na visita anterior, o consultor precisa abrir relatórios ou outras fontes.</td><td class="who">Robert, Renan</td></tr>
+</tbody></table>
+<h3>Executar o checklist</h3><table class="t dor"><thead><tr><th>Dor</th><th>O que acontece hoje</th><th>Quem trouxe</th></tr></thead><tbody>
+<tr><td class="feat"><b>Ordem que não segue o posto</b></td><td class="desc">As perguntas seguem os pilares de Trade e fazem o consultor ir e voltar entre áreas. Na rodovia, com distâncias grandes, é a principal dor.</td><td class="who">Renan, Eduardo, Poliana</td></tr>
+<tr><td class="feat"><b>Guia fora do fluxo</b></td><td class="desc">Para consultar um padrão, o consultor sai do checklist, volta à home, busca no Guia e retorna. Há quem guarde os PDFs no bloco de notas para consultar em paralelo.</td><td class="who">Karina, Robert, Renan, Misleine</td></tr>
+<tr><td class="feat"><b>Fotos que alongam a visita</b></td><td class="desc">Visitas de 30 a 45 minutos, fotos repetidas, foto exigida em item que não se aplica e fotos impossíveis no momento da avaliação, como banheiro ocupado ou placa distante na rodovia.</td><td class="who">Karina, Eduardo</td></tr>
+<tr><td class="feat"><b>Interface do fluxo</b></td><td class="desc">O botão Concluir aparece no primeiro passo sem permitir concluir, não há noção clara de progresso nem de quais perguntas são obrigatórias.</td><td class="who">Reunião 18/09</td></tr>
+<tr><td class="feat"><b>Sincronização só no fim</b></td><td class="desc">O preenchimento fica no aparelho até a tarefa terminar. Se o aparelho falha, a visita se perde, e não dá para continuar em outro dispositivo.</td><td class="who">Reunião 18/09</td></tr>
+</tbody></table>
+<h3>Depois da visita</h3><table class="t dor"><thead><tr><th>Dor</th><th>O que acontece hoje</th><th>Quem trouxe</th></tr></thead><tbody>
+<tr><td class="feat"><b>Relatório montado à mão</b></td><td class="desc">Depois do checklist, o consultor baixa o PDF, preenche planilha, monta um e-mail padrão e envia ao consultor de negócios e ao revendedor, um posto por vez. Se uma resposta precisa de correção, o ciclo recomeça.</td><td class="who">Robert, Poliana, João Ribas</td></tr>
+<tr><td class="feat"><b>Auditoria invisível</b></td><td class="desc">O relatório não diz se já passou pela auditoria, e o consultor não é avisado quando a nota muda. &quot;Gerar relatório&quot; fica escondido num menu.</td><td class="who">Luiza, reunião 18/09</td></tr>
+<tr><td class="feat"><b>Planos de ação fora do app</b></td><td class="desc">Pontos positivos, negativos e planos de ação com responsável e prazo vivem em planilhas dos times.</td><td class="who">João Ribas</td></tr>
+<tr><td class="feat"><b>Consolidação manual</b></td><td class="desc">Somar os ofensores de um grupo, ver a nota média por consultor de negócios ou preparar pedidos de material exige extrair e consolidar os dados à mão.</td><td class="who">Renan, Karina, Robert</td></tr>
+<tr><td class="feat"><b>Relatório genérico</b></td><td class="desc">O relatório aponta o que está inadequado, mas não ajuda a explicar ao revendedor por que a melhoria importa para o negócio dele.</td><td class="who">Renan</td></tr>
+</tbody></table>
+<h3>Conhecimento, acessos e gestão</h3><table class="t dor"><thead><tr><th>Dor</th><th>O que acontece hoje</th><th>Quem trouxe</th></tr></thead><tbody>
+<tr><td class="feat"><b>Central sem organização</b></td><td class="desc">&quot;Posso Ajudar?&quot; é uma lista longa sem contexto. O Ipiranga Mais, que é um único ecossistema, aparece em várias entradas soltas. A seção fica baixa na tela e quase não é usada.</td><td class="who">Estudo de sugestões, Karina, Poliana</td></tr>
+<tr><td class="feat"><b>Canais espalhados</b></td><td class="desc">Dashboards de Clube do Milhão, Clube VIP, performance e treinamentos ficam fora do app, cada um com seu caminho.</td><td class="who">João Ribas, Eduardo, estratégia</td></tr>
+<tr><td class="feat"><b>Dashboard pensado para o notebook</b></td><td class="desc">O dashboard foi feito para o escritório. Para o consultor, a coordenação prefere uma home resumida e acionável, e deixar a visão analítica para coordenadores e gestores.</td><td class="who">Luiza, reunião 18/09</td></tr>
+<tr><td class="feat"><b>Pouca medição de uso</b></td><td class="desc">Não há analytics. Os logs customizados registram dispositivo e reaberturas, mas não se sabe o tempo médio de preenchimento nem o que o consultor busca no Guia.</td><td class="who">Reunião 18/09</td></tr>
+<tr><td class="feat"><b>Construção a partir do negócio</b></td><td class="desc">A ferramenta foi desenhada a partir das necessidades da companhia, com pouca escuta do consultor. O estudo de agosto foi o primeiro passo para mudar isso.</td><td class="who">Reunião 18/09, estratégia</td></tr>
+</tbody></table>
+
+<div class="box">
+  <h4>O que não é dor, ou não é para todos</h4>
+  <ul>
+    <li>Parte dos consultores considera que o app atende bem, e a separação entre postos concluídos e disponíveis, já implementada, resolveu uma dor antiga (Misleine).</li>
+    <li>"Posso Ajudar?" é útil para alguns e recomendado aos consultores de negócios (Misleine). Para outros, o grupo de mensagens da equipe é mais rápido (Robert).</li>
+    <li>Roteirização não é necessidade de quem conhece bem a região (Poliana). O mapa da carteira sozinho já resolve a maior parte (Karina).</li>
+    <li>Parte do que incomoda no checklist é <b>conteúdo e regra</b>, não interface: perguntas pouco ligadas a Trade, pontuação que não serve para a rodovia (Poliana, Eduardo). A revisão do conteúdo cabe à Ipiranga com a Stringhini. O redesign pode dar à interface a estrutura para isso, como a organização por setor do posto.</li>
+    <li>A realidade urbana e a de rodovia são diferentes e não devem ser tratadas com a mesma lógica (Eduardo, Luiza).</li>
+  </ul>
+</div>
+
+<!-- ============ 03 ============ -->
+<div class="page"></div>
+<div class="sec"><span>03</span>Funcionalidades propostas, ranqueadas</div>
+<p>Reunimos 28 funcionalidades citadas na estratégia, nas sugestões de roadmap, nas entrevistas e nas reuniões. Cada uma recebeu uma nota ICE e uma leitura de prazo.</p>
+
+<div class="box">
+  <h4>Como pontuamos (ICE)</h4>
+  <p><b>Impacto</b> (1 a 10): quanto muda a rotina do consultor e o quanto aproxima o app do hub da estratégia. <b>Confiança</b> (1 a 10): quantas fontes independentes pedem o item e quão claro ele está. <b>Facilidade</b> (1 a 10): esforço de design e de implementação na base atual. Cai quando depende de dados novos, integrações ou mudanças no motor de formulários.</p>
+  <p>A nota final é <b>I × C × F</b>, de 1 a 1.000. São notas preliminares da Fattoria. A facilidade será recalibrada com a Stringhini.</p>
+  <p class="note">Fontes: E = estratégia · S = sugestões de roadmap · C = entrevistas de campo (número de pessoas que citaram) · R = reuniões de 18/09.</p>
+</div>
+
+<table class="t ice">
+  <thead><tr><th>#</th><th>Funcionalidade</th><th>O que é</th><th class="c">I</th><th class="c">C</th><th class="c">F</th><th class="c">ICE</th><th class="r">Prazo</th></tr></thead>
+  <tbody>
+<tr><td class="n">1</td><td class="feat"><b>Minha carteira na home</b><span class="src">E · S · C5</span></td>
+<td class="desc">Progresso do quadrimestre (visitados, pendentes, % da meta) e quantas visitas por dia faltam para fechar 100%, recalculado a cada dia útil.<div class="val"><span class="tag warn">Validar Stringhini</span> Regra de dias úteis (reuniões de segunda, feriados) e da virada de ciclo.</div></td><td class="num">9</td><td class="num">9</td><td class="num">7</td>
+<td class="num sc">567</td><td class="pz"><span class="tag dark">Dez/2026</span></td></tr>
+<tr><td class="n">2</td><td class="feat"><b>Busca direta pelo posto</b><span class="src">S · C2 · R</span></td>
+<td class="desc">Voltar a buscar pelo nome com poucos cliques, mostrando nome fantasia e razão social juntos.<div class="val"><span class="tag warn">Validar Stringhini</span> Se a base traz o nome fantasia. A integração de cadastro da Rede envia só a razão social.</div></td><td class="num">7</td><td class="num">9</td><td class="num">8</td>
+<td class="num sc">504</td><td class="pz"><span class="tag dark">Dez/2026</span></td></tr>
+<tr><td class="n">3</td><td class="feat"><b>Checklist com progresso e regras claras</b><span class="src">R</span></td>
+<td class="desc">Barra de progresso, perguntas obrigatórias sinalizadas, botão Concluir só quando é possível concluir e retomada visível.</td><td class="num">7</td><td class="num">9</td><td class="num">8</td>
+<td class="num sc">504</td><td class="pz"><span class="tag dark">Dez/2026</span></td></tr>
+<tr><td class="n">4</td><td class="feat"><b>Acessos rápidos aos canais especialistas</b><span class="src">E · C2</span></td>
+<td class="desc">Atalhos para visitas, dashboards de Trade, Clube do Milhão, Clube VIP e plataforma de treinamentos, sem duplicar esses canais.<div class="val"><span class="tag warn">Validar Stringhini</span> Login entre plataformas: por link simples em 2026; login único (SSO) fica para depois.</div></td><td class="num">7</td><td class="num">8</td><td class="num">8</td>
+<td class="num sc">448</td><td class="pz"><span class="tag dark">Dez/2026</span></td></tr>
+<tr><td class="n">5</td><td class="feat"><b>Analytics de uso</b><span class="src">R</span></td>
+<td class="desc">Eventos que medem abrir o app, iniciar execução, tempo de visita, reaberturas e buscas no Guia. É a base para medir o antes e o depois.<div class="val"><span class="tag warn">Validar Stringhini</span> Hoje só há logs customizados, sem ferramenta de analytics.</div></td><td class="num">7</td><td class="num">9</td><td class="num">7</td>
+<td class="num sc">441</td><td class="pz"><span class="tag dark">Dez/2026</span></td></tr>
+<tr><td class="n">6</td><td class="feat"><b>Status da auditoria para o consultor</b><span class="src">C1 · R</span></td>
+<td class="desc">Relatório com a marca de auditado ou não, data da auditoria, aviso quando a nota mudar e &quot;Visualizar relatório&quot; no lugar de &quot;Gerar relatório&quot;.</td><td class="num">7</td><td class="num">9</td><td class="num">7</td>
+<td class="num sc">441</td><td class="pz"><span class="tag dark">Dez/2026</span></td></tr>
+<tr><td class="n">7</td><td class="feat"><b>Envio do relatório direto do app</b><span class="src">C4</span></td>
+<td class="desc">Ao concluir, enviar o relatório ao consultor de negócios e ao revendedor com destinatários salvos por posto, sem baixar PDF nem montar e-mail.<div class="val"><span class="tag warn">Validar Stringhini</span> Serviço de envio de e-mail, cadastro de destinatários e envio antes ou depois da auditoria.</div></td><td class="num">9</td><td class="num">9</td><td class="num">5</td>
+<td class="num sc">405</td><td class="pz"><span class="tag dark">Dez/2026</span></td></tr>
+<tr><td class="n">8</td><td class="feat"><b>Postos próximos</b><span class="src">E · S · C3</span></td>
+<td class="desc">Com localização, os postos da carteira mais perto e o botão de iniciar a visita. Sem localização, a busca manual no mesmo lugar.<div class="val"><span class="tag warn">Validar Stringhini</span> Coordenadas dos postos na base. A base do Mapa de Postos, mantida pela Fattoria, pode ser fonte.</div></td><td class="num">8</td><td class="num">8</td><td class="num">6</td>
+<td class="num sc">384</td><td class="pz"><span class="tag dark">Dez/2026</span></td></tr>
+<tr><td class="n">9</td><td class="feat"><b>Resumo do posto, versão básica</b><span class="src">E · S · C6</span></td>
+<td class="desc">Tela antes do checklist com nome, razão social, grupo, responsável, consultor de negócios, marcas (Jet Oil, AmPm), última visita e última nota.<div class="val"><span class="tag warn">Validar Stringhini</span> Quais desses campos já existem na base do app.</div></td><td class="num">8</td><td class="num">8</td><td class="num">6</td>
+<td class="num sc">384</td><td class="pz"><span class="tag dark">Dez/2026</span></td></tr>
+<tr><td class="n">10</td><td class="feat"><b>Status de visita confiável</b><span class="src">C4</span></td>
+<td class="desc">Última visita com data certa, posto concluído que deixa de aparecer como pendente e regra clara de quando o posto volta no novo ciclo.<div class="val"><span class="tag warn">Validar Stringhini</span> Parte é regra de dados no back-end, não só interface.</div></td><td class="num">8</td><td class="num">8</td><td class="num">6</td>
+<td class="num sc">384</td><td class="pz"><span class="tag dark">Dez/2026</span></td></tr>
+<tr><td class="n">11</td><td class="feat"><b>Guia de Execução dentro da pergunta</b><span class="src">E · C4</span></td>
+<td class="desc">Um botão &quot;i&quot; em cada pergunta abre a imagem e a orientação do padrão correto, sem sair do checklist.<div class="val"><span class="tag warn">Validar Stringhini</span> Ligação entre cada pergunta e o conteúdo do Guia, e as imagens disponíveis offline.</div></td><td class="num">8</td><td class="num">9</td><td class="num">5</td>
+<td class="num sc">360</td><td class="pz"><span class="tag dark">Dez/2026</span></td></tr>
+<tr><td class="n">12</td><td class="feat"><b>Central de conhecimento por tema</b><span class="src">S · R</span></td>
+<td class="desc">&quot;Posso Ajudar?&quot; reorganizado em categorias (Ipiranga Mais, AmPm, Jet Oil, Uniformes, Materiais...), no modelo do Guia.</td><td class="num">6</td><td class="num">8</td><td class="num">7</td>
+<td class="num sc">336</td><td class="pz"><span class="tag dark">Dez/2026</span></td></tr>
+<tr><td class="n">13</td><td class="feat"><b>Estados de conexão e sincronização</b><span class="src">E · R</span></td>
+<td class="desc">Deixar claro quando o app está offline, o que ficou salvo no aparelho e o que já foi enviado.</td><td class="num">6</td><td class="num">8</td><td class="num">7</td>
+<td class="num sc">336</td><td class="pz"><span class="tag dark">Dez/2026</span></td></tr>
+<tr><td class="n">14</td><td class="feat"><b>Carteira em mapa e lista</b><span class="src">E · S · C6</span></td>
+<td class="desc">Mapa da carteira com postos visitados e pendentes, marcas no pin e filtros por status, proximidade e consultor de negócios, com a lista ao lado.<div class="val"><span class="tag warn">Validar Stringhini</span> Biblioteca de mapa, custo do serviço de mapa e o que funciona sem sinal. Uma versão simples pode caber em 2026.</div></td><td class="num">9</td><td class="num">9</td><td class="num">4</td>
+<td class="num sc">324</td><td class="pz"><span class="tag pink">1º tri 2027</span></td></tr>
+<tr><td class="n">15</td><td class="feat"><b>Histórico do último checklist</b><span class="src">E · C2</span></td>
+<td class="desc">Ao iniciar a visita, ver os principais ofensores e os pontos de atenção da visita anterior daquele posto.<div class="val"><span class="tag warn">Validar Stringhini</span> Guardar no aparelho o checklist anterior para uso offline.</div></td><td class="num">8</td><td class="num">8</td><td class="num">5</td>
+<td class="num sc">320</td><td class="pz"><span class="tag pink">1º tri 2027</span></td></tr>
+<tr><td class="n">16</td><td class="feat"><b>Foto anexada depois</b><span class="src">C2</span></td>
+<td class="desc">Permitir concluir a pergunta e anexar a foto mais tarde, e revisar quando a foto é obrigatória.<div class="val"><span class="tag warn">Validar Stringhini</span> Suporte do motor de formulários a foto pendente, e impacto na auditoria.</div></td><td class="num">7</td><td class="num">7</td><td class="num">5</td>
+<td class="num sc">245</td><td class="pz"><span class="tag pink">1º tri 2027</span></td></tr>
+<tr><td class="n">17</td><td class="feat"><b>Checklist organizado por setor do posto</b><span class="src">C3</span></td>
+<td class="desc">Perguntas agrupadas pelo deslocamento físico (pista, loja, banheiro...), com versões para urbano e rodovia.<div class="val"><span class="tag warn">Validar Stringhini</span> Seções e variantes no motor de formulários. Depende da revisão do conteúdo pela Ipiranga.</div></td><td class="num">8</td><td class="num">7</td><td class="num">4</td>
+<td class="num sc">224</td><td class="pz"><span class="tag line">2027</span></td></tr>
+<tr><td class="n">18</td><td class="feat"><b>Ofensores e média por grupo</b><span class="src">C3</span></td>
+<td class="desc">Consolidar os problemas mais frequentes e a nota média por grupo econômico e por consultor de negócios.<div class="val"><span class="tag warn">Validar Stringhini</span> Agregação no back-end a partir das respostas.</div></td><td class="num">7</td><td class="num">7</td><td class="num">4</td>
+<td class="num sc">196</td><td class="pz"><span class="tag line">2027</span></td></tr>
+<tr><td class="n">19</td><td class="feat"><b>Dashboard do coordenador no celular</b><span class="src">C2 · R</span></td>
+<td class="desc">Visão de execução da equipe adaptada ao celular, com filtros por diretoria e por consultor de negócios.</td><td class="num">6</td><td class="num">7</td><td class="num">4</td>
+<td class="num sc">168</td><td class="pz"><span class="tag line">2027</span></td></tr>
+<tr><td class="n">20</td><td class="feat"><b>Pendências e planos de ação</b><span class="src">E · C1</span></td>
+<td class="desc">Registrar pendências com responsável e prazo e acompanhar na visita seguinte, no lugar das planilhas dos times.</td><td class="num">8</td><td class="num">7</td><td class="num">3</td>
+<td class="num sc">168</td><td class="pz"><span class="tag line">2027</span></td></tr>
+<tr><td class="n">21</td><td class="feat"><b>Registro de oportunidades</b><span class="src">R</span></td>
+<td class="desc">Novo tipo de tarefa, fora do ciclo, para o consultor registrar expansão de valor, inaugurações e outras ações comerciais.<div class="val"><span class="tag warn">Validar Stringhini</span> Tipo de tarefa fora do ciclo no motor atual. O formulário ainda não foi definido.</div></td><td class="num">7</td><td class="num">6</td><td class="num">4</td>
+<td class="num sc">168</td><td class="pz"><span class="tag line">2027</span></td></tr>
+<tr><td class="n">22</td><td class="feat"><b>Resumo do posto com dados comerciais</b><span class="src">E · C6</span></td>
+<td class="desc">Galonagem, Ipiranga Mais, mix, KMV, faturamento de Jet Oil e Clube do Milhão no resumo do posto.<div class="val"><span class="tag warn">Validar Stringhini</span> Integração com outras bases da Ipiranga e as autorizações de acesso.</div></td><td class="num">9</td><td class="num">7</td><td class="num">2</td>
+<td class="num sc">126</td><td class="pz"><span class="tag line">2027</span></td></tr>
+<tr><td class="n">23</td><td class="feat"><b>Sincronização contínua</b><span class="src">R</span></td>
+<td class="desc">Salvar no servidor durante a visita e continuar em outro aparelho.<div class="val"><span class="tag warn">Validar Stringhini</span> A arquitetura offline atual só sincroniza quando a tarefa termina.</div></td><td class="num">6</td><td class="num">7</td><td class="num">3</td>
+<td class="num sc">126</td><td class="pz"><span class="tag line">2027</span></td></tr>
+<tr><td class="n">24</td><td class="feat"><b>Assistente do Guia com IA</b><span class="src">R</span></td>
+<td class="desc">Busca por pergunta em linguagem natural sobre o Guia e a central de conhecimento.</td><td class="num">5</td><td class="num">5</td><td class="num">4</td>
+<td class="num sc">100</td><td class="pz"><span class="tag line">2027</span></td></tr>
+<tr><td class="n">25</td><td class="feat"><b>Notificações por WhatsApp</b><span class="src">R</span></td>
+<td class="desc">Mensagens padronizadas de auditoria e contestação no canal que o campo já usa.<div class="val"><span class="tag warn">Validar Stringhini</span> Custo por mensagem, adesão do consultor e provedor.</div></td><td class="num">5</td><td class="num">5</td><td class="num">4</td>
+<td class="num sc">100</td><td class="pz"><span class="tag line">2027</span></td></tr>
+<tr><td class="n">26</td><td class="feat"><b>Roteirização</b><span class="src">C2</span></td>
+<td class="desc">Sugerir a ordem das visitas do dia a partir da localização.</td><td class="num">5</td><td class="num">5</td><td class="num">3</td>
+<td class="num sc">75</td><td class="pz"><span class="tag line">2027</span></td></tr>
+<tr><td class="n">27</td><td class="feat"><b>Validação de fotos por IA</b><span class="src">E · R</span></td>
+<td class="desc">Análise automática das fotos da visita para apoiar a auditoria.<div class="val"><span class="tag warn">Validar Stringhini</span> Processamento de imagem online e depois da sincronização.</div></td><td class="num">6</td><td class="num">5</td><td class="num">2</td>
+<td class="num sc">60</td><td class="pz"><span class="tag line">2027</span></td></tr>
+<tr><td class="n">28</td><td class="feat"><b>Relatório com argumento de valor</b><span class="src">C1</span></td>
+<td class="desc">Relacionar o nível de execução a resultado financeiro, para a conversa com o revendedor.<div class="val"><span class="tag warn">Validar Stringhini</span> Depende de dados financeiros por posto.</div></td><td class="num">6</td><td class="num">4</td><td class="num">2</td>
+<td class="num sc">48</td><td class="pz"><span class="tag line">2027</span></td></tr>
+  </tbody>
+</table>
+
+<div class="grid3">
+  <div><span class="big">13</span>itens com leitura de <b>Dez/2026</b>, a fechar com a capacidade real da Stringhini.</div>
+  <div><span class="big">3</span>itens para o <b>1º trimestre de 2027</b>, que podem entrar antes com uma versão simples.</div>
+  <div><span class="big">12</span>itens para o <b>roadmap de 2027</b>, a maioria dependente de dados ou integrações.</div>
+</div>
+
+<div class="box">
+  <h4>O recorte de 2026 conversa com a estratégia</h4>
+  <p>Os itens de dezembro cobrem as quatro capacidades da primeira versão do hub. <b>Organizar a rotina</b>: Minha carteira e status de visita confiável. <b>Localizar postos</b>: busca direta e postos próximos. <b>Iniciar a execução</b>: resumo básico do posto, checklist mais claro e o Guia dentro da pergunta. <b>Acessar os recursos</b>: acessos rápidos e central por tema. Somam-se as duas dores mais citadas depois da visita: o envio do relatório e o status da auditoria.</p>
+  <p>O tamanho final depende das semanas de desenvolvimento disponíveis entre a entrega do design e a data de corte.</p>
+</div>
+
+<!-- ============ 04 ============ -->
+<div class="page"></div>
+<div class="sec"><span>04</span>O que precisa da Stringhini antes do roadmap</div>
+<p>20 funcionalidades dependem de uma resposta técnica. Agrupamos as perguntas por tema, para uma sessão com o Igor e o Anderson antes de fecharmos o recorte de dezembro.</p>
+
+<table class="t dor tight">
+  <thead><tr><th>Tema</th><th>Pergunta</th><th>O que destrava</th></tr></thead>
+  <tbody>
+<tr><td class="feat"><b>Base de postos</b></td><td class="desc">A base do app tem coordenadas e nome fantasia de todos os postos da carteira?</td><td class="who">Postos próximos, mapa e busca. A base do Mapa de Postos, mantida pela Fattoria, pode ser fonte.</td></tr>
+<tr><td class="feat"><b>Mapa</b></td><td class="desc">Que biblioteca usar, qual o custo do serviço de mapa e o que funciona sem sinal?</td><td class="who">Define se a carteira em mapa cabe em 2026 ou vai para o 1º trimestre.</td></tr>
+<tr><td class="feat"><b>Motor de formulários</b></td><td class="desc">Suporta seções por setor, versões urbano e rodovia, foto pendente e um tipo de tarefa fora do ciclo?</td><td class="who">Checklist por setor, foto depois e registro de oportunidades. O contrato atual prevê 2 formulários de até 30 perguntas e até 3 fotos por pergunta.</td></tr>
+<tr><td class="feat"><b>Dados no aparelho</b></td><td class="desc">É possível guardar offline o checklist anterior e as imagens do Guia ligadas a cada pergunta?</td><td class="who">Histórico na visita e Guia dentro da pergunta.</td></tr>
+<tr><td class="feat"><b>Envio de e-mail</b></td><td class="desc">Existe serviço de envio na estrutura atual (AWS) e onde ficam os destinatários por posto?</td><td class="who">Envio do relatório direto do app.</td></tr>
+<tr><td class="feat"><b>Regras de ciclo e status</b></td><td class="desc">Como a virada do quadrimestre e a última visita são calculadas hoje, e por que aparecem incorretas?</td><td class="who">Minha carteira e status de visita confiável.</td></tr>
+<tr><td class="feat"><b>Integrações de dados</b></td><td class="desc">Quais bases comerciais da Ipiranga o app consegue ler e quem autoriza o acesso?</td><td class="who">Resumo do posto com dados comerciais.</td></tr>
+<tr><td class="feat"><b>Login entre plataformas</b></td><td class="desc">Os acessos rápidos podem levar o usuário já autenticado aos outros canais?</td><td class="who">Acessos rápidos. Sem isso, entram como link simples.</td></tr>
+<tr><td class="feat"><b>Analytics</b></td><td class="desc">Há restrição para incluir uma ferramenta de analytics ou novos eventos nos logs?</td><td class="who">Medir o antes e o depois do redesign.</td></tr>
+<tr><td class="feat"><b>Capacidade até dezembro</b></td><td class="desc">Quantas semanas de desenvolvimento cabem entre a entrega do design e a data de corte?</td><td class="who">Define o tamanho real do recorte de 2026.</td></tr>
+  </tbody>
+</table>
+
+<!-- ============ 05 ============ -->
+<div class="sec" style="margin-top:14px"><span>05</span>Próximos passos</div>
+<ol class="steps">
+  <li><b>Validar este dossiê com o Julio:</b> dores que faltaram, pesos do ICE e itens que a Ipiranga quer ver em dezembro por razão de negócio.</li>
+  <li><b>Sessão técnica com a Stringhini:</b> responder as perguntas da seção 04 e recalibrar a facilidade de cada item.</li>
+  <li><b>Fechar o recorte de 2026 e o roadmap de 2027:</b> a partir do ranking revisado e da capacidade real até a data de corte.</li>
+  <li><b>Proposta comercial:</b> consultoria e redesign sobre o recorte acordado, com cronograma e investimento.</li>
+</ol>
+
+</body>
+</html>
