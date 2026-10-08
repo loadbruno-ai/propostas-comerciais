@@ -1,0 +1,2 @@
+# Contratos e minutas ficam fora do git e do deploy (dados bancários, CNPJ e assinaturas)
+clientes/*/*/contrato/
