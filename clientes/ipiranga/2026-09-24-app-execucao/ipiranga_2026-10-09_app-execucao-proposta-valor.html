@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow, nosnippet, noimageindex">
+<title>Ipiranga · App de Execução · Proposta de valor</title>
+<style>
+  :root { --ink:#13141d; --pink:#f72585; --grey:#6b6e7a; --line:#e3e4e8; --bg:#f3f3f5; }
+  @page { size: A4; margin: 22mm 20mm 20mm 20mm; }
+  * { box-sizing: border-box; }
+  body { font-family: 'Poppins', sans-serif; font-weight: 300; color: var(--ink); font-size: 9.6pt; line-height: 1.55; margin: 0; }
+  b, strong { font-weight: 700; }
+  .kicker { color: var(--pink); font-weight: 700; letter-spacing: .22em; font-size: 8pt; text-transform: uppercase; margin: 0 0 14px; }
+  h1 { font-weight: 300; font-size: 27pt; line-height: 1.12; margin: 0 0 16px; letter-spacing: -.01em; }
+  h1 b { font-weight: 700; }
+  .lead { font-size: 11pt; line-height: 1.6; margin: 0 0 26px; }
+  table.ficha { width: 100%; border-collapse: collapse; border-top: 2px solid var(--ink); margin-bottom: 26px; }
+  table.ficha td { padding: 8px 0; border-bottom: 1px solid var(--line); vertical-align: top; font-size: 9.4pt; }
+  table.ficha td:first-child { width: 25%; color: var(--pink); font-weight: 700; letter-spacing: .14em; font-size: 7.4pt; text-transform: uppercase; padding-top: 10px; }
+  .box { background: var(--bg); border-left: 4px solid var(--pink); padding: 14px 18px; margin: 16px 0; break-inside: avoid; }
+  .box h4 { margin: 0 0 6px; font-size: 9.8pt; font-weight: 700; }
+  .box p { margin: 0 0 8px; } .box p:last-child { margin-bottom: 0; }
+  .box.dark { background: var(--ink); color: #fff; }
+  .box ul { margin: 4px 0 0; padding-left: 18px; } .box li { margin-bottom: 3px; }
+  .sec { background: var(--ink); color: #fff; margin: 0 -8mm 16px; padding: 12px 8mm; font-size: 13pt; font-weight: 500; break-after: avoid; }
+  .sec span { color: var(--pink); font-weight: 700; margin-right: 10px; }
+  .page { break-before: page; }
+  h3 { font-size: 10.5pt; font-weight: 700; margin: 20px 0 6px; break-after: avoid; }
+  h3::before { content: ''; display: inline-block; width: 8px; height: 8px; background: var(--pink); margin-right: 8px; vertical-align: 1px; }
+  p { margin: 0 0 10px; }
+  table.t { width: 100%; border-collapse: collapse; margin-bottom: 8px; }
+  table.t thead { display: table-header-group; }
+  table.t th { text-align: left; font-size: 7pt; letter-spacing: .12em; text-transform: uppercase; color: var(--grey); font-weight: 700; padding: 6px 6px 7px; border-bottom: 1.5px solid var(--ink); }
+  table.t td { padding: 7px 6px; border-bottom: 1px solid var(--line); vertical-align: top; font-size: 8.6pt; line-height: 1.45; }
+  table.t tr { break-inside: avoid; }
+  table.dor td.feat { width: 24%; }
+  .tight td { padding: 5px 6px; }
+  body > ul { padding-left: 18px; } body > ul li { margin-bottom: 7px; } table.dor td.who { width: 22%; color: var(--grey); font-size: 7.8pt; }
+  td.feat b { display: block; font-size: 8.8pt; line-height: 1.35; }
+  td.feat .src { display: block; color: var(--grey); font-size: 7pt; letter-spacing: .06em; margin-top: 3px; }
+  table.ice td.n { width: 4%; color: var(--grey); font-weight: 500; }
+  table.ice td.feat { width: 22%; }
+  table.ice td.num { width: 4.5%; text-align: center; font-weight: 500; }
+  table.ice td.sc { font-weight: 700; color: var(--pink); width: 6%; }
+  table.ice td.pz { width: 12%; text-align: right; }
+  table.ice th.c { text-align: center; } table.ice th.r { text-align: right; }
+  .val { margin-top: 5px; font-size: 7.8pt; color: #4a4c57; }
+  .tag { display: inline-block; font-size: 6.4pt; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; padding: 2px 6px; border-radius: 2px; white-space: nowrap; line-height: 1.5; }
+  .tag.dark { background: var(--ink); color: #fff; }
+  .tag.pink { background: var(--pink); color: #fff; }
+  .tag.line { border: 1px solid var(--ink); color: var(--ink); }
+  .tag.warn { border: 1px solid var(--pink); color: var(--pink); }
+  .grid3 { display: flex; gap: 10px; margin: 14px 0; }
+  .grid3 div { flex: 1; border-top: 2px solid var(--ink); padding-top: 8px; }
+  .grid3 .big { font-size: 20pt; font-weight: 700; line-height: 1; display: block; margin-bottom: 4px; }
+  .grid3 div.p { border-color: var(--pink); } .grid3 div.p .big { color: var(--pink); }
+  ol.steps { padding-left: 18px; } ol.steps li { margin-bottom: 4px; }
+  .note { color: var(--grey); font-size: 7.8pt; }
+</style>
+
+</head>
+<body>
+
+<p class="kicker">Fattoria Digital · Ipiranga Trade Marketing</p>
+<h1>Proposta de valor,<br><b>escritório de produto do App de Execução</b></h1>
+<p class="lead">O papel que propomos para a Fattoria na evolução do App de Execução: conduzir com a Ipiranga as decisões de produto, do campo à implementação, em vez de entregar um pacote de telas. Este documento apresenta a lógica da parceria antes da proposta comercial.</p>
+
+<table class="ficha">
+  <tr><td>Cliente</td><td>Ipiranga · Trade Marketing</td></tr>
+  <tr><td>Interlocução</td><td>Julio Araujo</td></tr>
+  <tr><td>Plataforma</td><td>App de Execução, desenvolvido e mantido pela Stringhini</td></tr>
+  <tr><td>Base</td><td>Dossiê de entendimento de 24/09 · estratégia do hub (set/2026) · estudo de campo de agosto · reuniões de 18/09</td></tr>
+  <tr><td>Natureza</td><td>Proposta de valor · sem valores · antecede a proposta comercial</td></tr>
+  <tr><td>Data</td><td>9 de outubro de 2026</td></tr>
+</table>
+
+<div class="box">
+  <h4>Como ler este documento</h4>
+  <p>A seção 01 mostra o que falta hoje para o hub sair do papel. A 02 apresenta o papel da Fattoria e a divisão de responsabilidades com a Ipiranga e a Stringhini. A 03 explica como a parceria funciona em ciclos até dezembro, começando a partir do que já foi levantado. A 04 traz os indicadores que vão medir o sucesso, e a 05, por que a Fattoria.</p>
+  <p>Valores, condições e prazos de pagamento entram na proposta comercial, depois de validada esta lógica.</p>
+</div>
+
+<!-- 01 -->
+<div class="page"></div>
+<div class="sec"><span>01</span>O que falta para o hub sair do papel</div>
+
+<p>A estratégia da Ipiranga é clara: transformar o App de Execução no <b>hub de trabalho do consultor de trade</b>, a porta de entrada da rotina de campo. A Ipiranga conhece o negócio, e a Stringhini tem contrato para desenvolver e manter o app e cumprir o roadmap. Entre as duas pontas existe um espaço que hoje não tem dono.</p>
+
+<table class="t dor">
+  <thead><tr><th>O que falta</th><th>Como aparece hoje</th><th>O que acontece sem isso</th></tr></thead>
+  <tbody>
+    <tr><td class="feat"><b>Decisão de produto</b></td><td class="desc">O app foi construído a partir das necessidades do negócio. As demandas chegam por áreas diferentes e o Julio concentra a priorização. Ele mesmo disse que não quer ser o gargalo.</td><td class="who">O roadmap vira uma fila de pedidos e cada entrega resolve um pedaço, sem formar o hub.</td></tr>
+    <tr><td class="feat"><b>A voz do campo, sempre</b></td><td class="desc">O estudo de agosto foi o primeiro contato estruturado com os consultores, feito numa ação de desenvolvimento, e não tem continuidade prevista.</td><td class="who">Funcionalidades entram sem validação, e problemas como a ordem do checklist ou o relatório manual voltam a cada ciclo.</td></tr>
+    <tr><td class="feat"><b>Conexão com o ecossistema</b></td><td class="desc">O hub precisa levar o consultor ao Ipiranga Mais, ao Clube do Milhão, aos treinamentos e aos dashboards sem duplicar esses canais, e cada um tem dono e fornecedor diferentes.</td><td class="who">O app copia funções que já existem ou vira uma lista de links, dois riscos que a própria estratégia aponta.</td></tr>
+    <tr><td class="feat"><b>Medição</b></td><td class="desc">O app tem logs customizados, sem analytics, e ninguém acompanha hoje o tempo de visita, o uso da home ou o que o consultor busca no Guia.</td><td class="who">Não há como provar internamente que a evolução funcionou nem como decidir o próximo passo com dados.</td></tr>
+  </tbody>
+</table>
+
+<div class="box">
+  <h4>Por que não propomos apenas um projeto de telas</h4>
+  <p>Entregar layouts prontos para a Stringhini enxugar depois gera retrabalho, como o próprio time da Stringhini observou na reunião de 18/09. O valor desta evolução está nas decisões: o que entra em dezembro, o que espera, o que o app não deve fazer e como saber se deu certo. Telas são a consequência dessas decisões.</p>
+</div>
+
+<!-- 02 -->
+<div class="page"></div>
+<div class="sec"><span>02</span>A Fattoria como escritório de produto</div>
+
+<p>Propomos que a Fattoria assuma o papel de <b>escritório de produto</b> do App de Execução: o time que conduz as decisões de produto e experiência junto com a Ipiranga, coordena o trabalho técnico com a Stringhini e mantém o consultor dentro do processo. A Ipiranga segue dona da estratégia, e a Stringhini segue dona da engenharia.</p>
+
+<h3>Quem faz o quê</h3>
+<table class="t dor">
+  <thead><tr><th>Quem</th><th>Papel</th><th>Decide</th></tr></thead>
+  <tbody>
+    <tr><td class="feat"><b>Ipiranga · Trade Marketing</b></td><td class="desc">Dona do negócio e da estratégia. Traz as prioridades da companhia, aprova o roadmap e responde pelo resultado internamente.</td><td class="who">Prioridades de negócio e aprovação do roadmap</td></tr>
+    <tr><td class="feat"><b>Fattoria · escritório de produto</b></td><td class="desc">Conduz pesquisa, priorização, arquitetura, design e validação. Prepara as decisões com evidência, combina viabilidade com a Stringhini e acompanha a implementação e os indicadores.</td><td class="who">Experiência, critérios de aceite e a proposta de roadmap</td></tr>
+    <tr><td class="feat"><b>Stringhini · engenharia</b></td><td class="desc">Avalia viabilidade, implementa, mantém o app e opera conteúdo e checklist, como prevê o contrato vigente.</td><td class="who">Solução técnica e estimativa de esforço</td></tr>
+    <tr><td class="feat"><b>Consultores e coordenadores</b></td><td class="desc">Um grupo fixo, com perfis urbano e de rodovia, que valida cada entrega antes de ela chegar à rede.</td><td class="who">Se a solução funciona no campo</td></tr>
+  </tbody>
+</table>
+
+<h3>O que a Ipiranga ganha</h3>
+<table class="t dor">
+  <thead><tr><th>Compromisso</th><th>O que a Fattoria faz</th><th>O que muda para o Julio</th></tr></thead>
+  <tbody>
+    <tr><td class="feat"><b>Decisão, não só tela</b></td><td class="desc">Roadmap priorizado com critérios explícitos, como o ICE do dossiê, critérios de aceite por entrega e faseamento combinado com a Stringhini.</td><td class="who">Um projeto que ele consegue defender e uma régua para dizer não a pedidos fora do norte.</td></tr>
+    <tr><td class="feat"><b>O campo no processo</b></td><td class="desc">Grupo de consultores ativo, validação de cada onda antes da implementação e retorno do campo levado ao comitê.</td><td class="who">Menos retrabalho e um argumento interno: o que entra foi testado com quem usa.</td></tr>
+    <tr><td class="feat"><b>Hub conectado</b></td><td class="desc">Arquitetura que decide o que fica no hub, o que vira resumo e o que leva ao canal especialista, com continuidade visual entre as ferramentas da Coordenação.</td><td class="who">O app vira a porta de entrada sem disputar espaço com os canais que já existem.</td></tr>
+    <tr><td class="feat"><b>Orquestração sem gargalo</b></td><td class="desc">Canal direto entre design e desenvolvimento, conversa técnica semanal com a Stringhini e decisões registradas.</td><td class="who">Ele participa das decisões que importam, sem precisar intermediar cada conversa.</td></tr>
+  </tbody>
+</table>
+
+<!-- 03 -->
+<div class="page"></div>
+<div class="sec"><span>03</span>Como a parceria funciona até dezembro</div>
+
+<p>A parceria começa direto em ciclos, sem uma etapa separada de diagnóstico. Em vez de um saldo de horas, a Ipiranga conta com um time de papéis fixos e entregas combinadas no início de cada ciclo, repriorizadas no comitê quando o campo ou a Stringhini trouxerem algo novo. O norte que o Julio precisa apresentar nasce no primeiro ciclo, fechado com a Stringhini e aprovado no primeiro comitê.</p>
+
+<div class="box">
+  <h4>Por que dá para começar sem uma etapa de diagnóstico</h4>
+  <p>A estratégia do hub, o estudo de campo de agosto e o dossiê de 24/09 já cobrem a maior parte da imersão: as dores estão mapeadas, as 28 funcionalidades estão ranqueadas e as perguntas técnicas para a Stringhini estão listadas. O que falta, como ouvir consultores de rodovia e de vários estados e confirmar os limites técnicos, entra no próprio ciclo, junto com o design.</p>
+</div>
+
+<h3>Ciclos da parceria de produto</h3>
+<table class="t dor">
+  <thead><tr><th>Ciclo</th><th>O que acontece</th><th>Entrega</th></tr></thead>
+  <tbody>
+    <tr><td class="feat"><b>Ciclo 1</b><span class="src">19/10 a 13/11</span></td><td class="desc">Na primeira semana, kickoff entre as três partes, validação do dossiê com o Julio, sessão técnica com a Stringhini e recorte de dezembro fechado. Em seguida, conceito da home e jornadas da onda 1 (Minha carteira, busca direta e acessos rápidos) em fluxo, wireframe e interface, validadas com o grupo de consultores e passadas à Stringhini.</td><td class="who">Recorte e roadmap aprovados no primeiro comitê, telas da onda 1, UI kit inicial e linha de base dos indicadores.</td></tr>
+    <tr><td class="feat"><b>Ciclo 2</b><span class="src">16/11 a 18/12</span></td><td class="desc">Jornadas da onda 2 (checklist com progresso e status da auditoria), acompanhamento da implementação em homologação, ajustes, primeira leitura dos indicadores e preparação do roadmap de 2027.</td><td class="who">Telas da onda 2, revisão do que foi implementado, leitura dos indicadores e proposta de continuidade para 2027.</td></tr>
+  </tbody>
+</table>
+
+<div class="box">
+  <h4>O prazo de dezembro pede um recorte enxuto</h4>
+  <p>Com o início em 19/10, a primeira fase deve ficar entre os itens de maior ICE e menor dependência técnica do dossiê: <b>Minha carteira, busca direta, checklist com progresso, acessos rápidos e status da auditoria</b>. Os demais seguem priorizados para 2027, com a decisão registrada no comitê.</p>
+</div>
+
+<div class="page"></div>
+<h3 style="margin-top:0">Rituais</h3>
+<table class="t dor tight">
+  <thead><tr><th>Ritual</th><th>Quem</th><th>Para quê</th></tr></thead>
+  <tbody>
+    <tr><td class="feat"><b>Comitê de produto · mensal</b></td><td class="desc">Ipiranga, Fattoria e Stringhini</td><td class="who">Roadmap, prioridades do próximo ciclo e indicadores</td></tr>
+    <tr><td class="feat"><b>Alinhamento · quinzenal</b></td><td class="desc">Julio e Fattoria</td><td class="who">Andamento, decisões de negócio e preparação do comitê</td></tr>
+    <tr><td class="feat"><b>Técnica · semanal</b></td><td class="desc">Fattoria e Stringhini</td><td class="who">Viabilidade, passagem de design e revisão em homologação</td></tr>
+    <tr><td class="feat"><b>Grupo de consultores · por onda</b></td><td class="desc">Fattoria e consultores selecionados</td><td class="who">Validação antes da implementação</td></tr>
+  </tbody>
+</table>
+
+<h3>Time</h3>
+<p><b>Bruno Branco</b>, Lead Product Designer, na liderança de produto e nas decisões de experiência. <b>Thiago Brito</b>, Tech Lead, na ponte técnica com a Stringhini. Um product designer dedicado às jornadas e ao UI kit, e apoio de pesquisa nas validações com o campo.</p>
+
+<!-- 04 -->
+<div class="sec" style="margin-top:22px"><span>04</span>Como vamos saber se deu certo</div>
+
+<p>Os indicadores partem dos sinais de sucesso descritos na estratégia. A linha de base é medida no primeiro ciclo, com a Stringhini, e os números são revistos no comitê mensal. Eles orientam as decisões do ciclo seguinte e não têm vínculo com a remuneração, já que a implementação está com a Stringhini.</p>
+
+<table class="t dor">
+  <thead><tr><th>Sinal da estratégia</th><th>Indicador</th><th>Como medir</th></tr></thead>
+  <tbody>
+    <tr><td class="feat"><b>Eficiência</b></td><td class="desc">Tempo entre abrir o app e iniciar uma execução</td><td class="who">Eventos no app, combinados com a Stringhini</td></tr>
+    <tr><td class="feat"><b>Relevância</b></td><td class="desc">Consultores que usam a home e a Minha carteira toda semana</td><td class="who">Eventos no app</td></tr>
+    <tr><td class="feat"><b>Acesso</b></td><td class="desc">Consultores que deixam de usar ferramentas externas para a carteira</td><td class="who">Pergunta ao grupo de consultores, antes e depois</td></tr>
+    <tr><td class="feat"><b>Preparação</b></td><td class="desc">Visitas iniciadas com o resumo do posto ou a visita anterior consultados</td><td class="who">Eventos no app, quando essas telas entrarem</td></tr>
+    <tr><td class="feat"><b>Continuidade</b></td><td class="desc">Tempo e passos do pós-visita até o relatório chegar a quem precisa</td><td class="who">Grupo de consultores e eventos de envio</td></tr>
+    <tr><td class="feat"><b>Qualidade</b></td><td class="desc">Satisfação do consultor com o app</td><td class="who">Pesquisa curta a cada ciclo</td></tr>
+  </tbody>
+</table>
+
+<!-- 05 -->
+<div class="page"></div>
+<div class="sec"><span>05</span>Por que a Fattoria</div>
+<ul>
+  <li><b>Já operamos canais da Coordenação.</b> O Painel de Desempenho Ipiranga Mais, a API do Mapa de Postos, as telas da página de treinamentos e o protótipo de Clube do Milhão e desempenho das franquias passam pela Fattoria. Conhecemos as pontas que o hub precisa conectar.</li>
+  <li><b>Continuidade visual de saída.</b> O Julio pediu que o app siga as ferramentas mais recentes da Coordenação, e várias delas foram desenhadas por nós.</li>
+  <li><b>A imersão já começou.</b> O dossiê de 24/09 consolidou as dores, ranqueou 28 funcionalidades e listou as perguntas técnicas para a Stringhini. A parceria começa desse ponto, sem repetir o diagnóstico.</li>
+  <li><b>Experiência em produto, não só em interface.</b> Conduzimos a estratégia e a operação de produtos como o Clube de Vantagens da Bradesco Seguros, com esteira contínua de testes e indicadores.</li>
+</ul>
+
+<!-- 06 -->
+<div class="sec" style="margin-top:22px"><span>06</span>Projeto por horas ou escritório de produto</div>
+<table class="t dor">
+  <thead><tr><th>Ponto</th><th>Projeto por horas</th><th>Escritório de produto</th></tr></thead>
+  <tbody>
+    <tr><td class="feat"><b>O que se compra</b></td><td class="desc">Um pacote de telas com escopo fechado</td><td class="desc">Decisões e entregas por ciclo, com um time de papéis fixos</td></tr>
+    <tr><td class="feat"><b>Quando algo muda</b></td><td class="desc">Aditivo, nova estimativa e nova aprovação</td><td class="desc">Repriorização no comitê, dentro do ciclo</td></tr>
+    <tr><td class="feat"><b>Relação com a Stringhini</b></td><td class="desc">Entrega o design e sai</td><td class="desc">Combina a viabilidade antes e acompanha a implementação</td></tr>
+    <tr><td class="feat"><b>Papel do Julio</b></td><td class="desc">Coordena os fornecedores e intermedia as conversas</td><td class="desc">Decide o que importa, sem ser o gargalo</td></tr>
+    <tr><td class="feat"><b>Como se mede o sucesso</b></td><td class="desc">Telas aprovadas</td><td class="desc">Indicadores do campo, revistos todo mês</td></tr>
+    <tr><td class="feat"><b>O que fica para 2027</b></td><td class="desc">Um arquivo de Figma</td><td class="desc">Um roadmap priorizado, um método e uma base de indicadores</td></tr>
+  </tbody>
+</table>
+
+<div class="sec" style="margin-top:22px"><span>07</span>Próximos passos</div>
+<ol class="steps">
+  <li><b>Retorno ao Julio:</b> agenda para apresentar esta lógica junto com o dossiê de entendimento.</li>
+  <li><b>Sessão técnica com a Stringhini:</b> as perguntas do dossiê e o recorte possível até dezembro.</li>
+  <li><b>Proposta comercial:</b> fee mensal da parceria por ciclo, no modelo da Fattoria.</li>
+  <li><b>Início da parceria em 19/10</b>, com o kickoff entre as três partes.</li>
+</ol>
+
+</body>
+</html>

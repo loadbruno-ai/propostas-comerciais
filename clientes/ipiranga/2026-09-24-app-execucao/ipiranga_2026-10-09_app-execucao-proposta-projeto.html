@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow, nosnippet, noimageindex">
+<title>Ipiranga · App de Execução · Proposta de projeto</title>
+<style>
+  :root { --ink:#13141d; --pink:#f72585; --grey:#6b6e7a; --line:#e3e4e8; --bg:#f3f3f5; }
+  @page { size: A4; margin: 22mm 20mm 20mm 20mm; }
+  * { box-sizing: border-box; }
+  body { font-family: 'Poppins', sans-serif; font-weight: 300; color: var(--ink); font-size: 9.6pt; line-height: 1.55; margin: 0; }
+  b, strong { font-weight: 700; }
+  .kicker { color: var(--pink); font-weight: 700; letter-spacing: .22em; font-size: 8pt; text-transform: uppercase; margin: 0 0 14px; }
+  h1 { font-weight: 300; font-size: 27pt; line-height: 1.12; margin: 0 0 16px; letter-spacing: -.01em; }
+  h1 b { font-weight: 700; }
+  .lead { font-size: 11pt; line-height: 1.6; margin: 0 0 26px; }
+  table.ficha { width: 100%; border-collapse: collapse; border-top: 2px solid var(--ink); margin-bottom: 26px; }
+  table.ficha td { padding: 8px 0; border-bottom: 1px solid var(--line); vertical-align: top; font-size: 9.4pt; }
+  table.ficha td:first-child { width: 25%; color: var(--pink); font-weight: 700; letter-spacing: .14em; font-size: 7.4pt; text-transform: uppercase; padding-top: 10px; }
+  .box { background: var(--bg); border-left: 4px solid var(--pink); padding: 14px 18px; margin: 16px 0; break-inside: avoid; }
+  .box h4 { margin: 0 0 6px; font-size: 9.8pt; font-weight: 700; }
+  .box p { margin: 0 0 8px; } .box p:last-child { margin-bottom: 0; }
+  .box.dark { background: var(--ink); color: #fff; }
+  .box ul { margin: 4px 0 0; padding-left: 18px; } .box li { margin-bottom: 3px; }
+  .sec { background: var(--ink); color: #fff; margin: 0 0 16px; padding: 14px 18px; font-size: 13pt; font-weight: 500; break-after: avoid; }
+  .sec span { color: var(--pink); font-weight: 700; margin-right: 10px; }
+  .page { break-before: page; }
+  h3 { font-size: 10.5pt; font-weight: 700; margin: 20px 0 6px; break-after: avoid; }
+  h3::before { content: ''; display: inline-block; width: 8px; height: 8px; background: var(--pink); margin-right: 8px; vertical-align: 1px; }
+  p { margin: 0 0 10px; }
+  table.t { width: 100%; border-collapse: collapse; margin-bottom: 8px; }
+  table.t thead { display: table-header-group; }
+  table.t th { text-align: left; font-size: 7pt; letter-spacing: .12em; text-transform: uppercase; color: var(--grey); font-weight: 700; padding: 6px 6px 7px; border-bottom: 1.5px solid var(--ink); }
+  table.t td { padding: 7px 6px; border-bottom: 1px solid var(--line); vertical-align: top; font-size: 8.6pt; line-height: 1.45; }
+  table.t tr { break-inside: avoid; }
+  table.dor td.feat { width: 24%; }
+  .tight td { padding: 5px 6px; }
+  body > ul { padding-left: 18px; } body > ul li { margin-bottom: 7px; } table.dor td.who { width: 22%; color: var(--grey); font-size: 7.8pt; }
+  td.feat b { display: block; font-size: 8.8pt; line-height: 1.35; }
+  td.feat .src { display: block; color: var(--grey); font-size: 7pt; letter-spacing: .06em; margin-top: 3px; }
+  table.ice td.n { width: 4%; color: var(--grey); font-weight: 500; }
+  table.ice td.feat { width: 22%; }
+  table.ice td.num { width: 4.5%; text-align: center; font-weight: 500; }
+  table.ice td.sc { font-weight: 700; color: var(--pink); width: 6%; }
+  table.ice td.pz { width: 12%; text-align: right; }
+  table.ice th.c { text-align: center; } table.ice th.r { text-align: right; }
+  .val { margin-top: 5px; font-size: 7.8pt; color: #4a4c57; }
+  .tag { display: inline-block; font-size: 6.4pt; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; padding: 2px 6px; border-radius: 2px; white-space: nowrap; line-height: 1.5; }
+  .tag.dark { background: var(--ink); color: #fff; }
+  .tag.pink { background: var(--pink); color: #fff; }
+  .tag.line { border: 1px solid var(--ink); color: var(--ink); }
+  .tag.warn { border: 1px solid var(--pink); color: var(--pink); }
+  .grid3 { display: flex; gap: 10px; margin: 14px 0; }
+  .grid3 div { flex: 1; border-top: 2px solid var(--ink); padding-top: 8px; }
+  .grid3 .big { font-size: 20pt; font-weight: 700; line-height: 1; display: block; margin-bottom: 4px; }
+  .grid3 div.p { border-color: var(--pink); } .grid3 div.p .big { color: var(--pink); }
+  ol.steps { padding-left: 18px; } ol.steps li { margin-bottom: 4px; }
+  .note { color: var(--grey); font-size: 7.8pt; }
+
+  .gantt { margin: 10px 0 14px; break-inside: avoid; }
+  .g-row { display: flex; align-items: center; min-height: 22px; border-bottom: 1px solid var(--line); }
+  .g-head { border-bottom: 1.5px solid var(--ink); min-height: 20px; }
+  .g-label { width: 34%; font-size: 7.8pt; line-height: 1.3; padding: 3px 8px 3px 0; }
+  .g-track { position: relative; width: 66%; height: 22px; }
+  .g-head .g-track { height: 18px; }
+  .g-wk { position: absolute; top: 2px; text-align: center; font-size: 6.6pt; font-weight: 700; letter-spacing: .06em; color: var(--grey); }
+  .g-grid { position: absolute; top: 0; bottom: 0; width: 0; border-left: 1px dashed #e8e9ee; }
+  .g-bar { position: absolute; top: 6px; height: 10px; border-radius: 5px; display: inline-block; }
+  .g-bar.exe { background: var(--pink); }
+  .g-bar.dir { background: var(--ink); }
+  .g-bar.str { background: repeating-linear-gradient(45deg, #b9bcc8 0 4px, #dcdee5 4px 8px); }
+  .g-mark { position: absolute; top: 5px; width: 11px; height: 11px; background: var(--ink); transform: rotate(45deg); display: inline-block; }
+  .g-sep { font-size: 7.4pt; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--pink); padding: 9px 0 4px; border-bottom: 1px solid var(--line); }
+  .g-legend { display: flex; gap: 18px; margin-top: 8px; font-size: 7.4pt; color: var(--grey); }
+  .g-legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .g-legend .g-bar, .g-legend .g-mark { position: static; width: 18px; }
+  .g-legend .g-mark { width: 9px; height: 9px; }
+  table.t th.r { text-align: right; }
+  td.val-r { text-align: right; white-space: nowrap; font-weight: 500; width: 18%; }
+  tr.tot td { border-top: 1.5px solid var(--ink); background: var(--bg); }
+</style>
+
+</head>
+<body>
+
+<p class="kicker">Fattoria Digital · Ipiranga Trade Marketing</p>
+<h1>Proposta de projeto,<br><b>escritório de produto do App de Execução</b></h1>
+
+<table class="ficha">
+  <tr><td>Cliente</td><td>Ipiranga · Trade Marketing</td></tr>
+  <tr><td>Interlocução</td><td>Julio Araujo</td></tr>
+  <tr><td>Plataforma</td><td>App de Execução, desenvolvido e mantido pela Stringhini</td></tr>
+  <tr><td>Base</td><td>Dossiê de entendimento de 24/09 · estratégia do hub (set/2026) · estudo de campo de agosto · reuniões de 18/09</td></tr>
+  <tr><td>Natureza</td><td>Proposta Comercial em 2 sprints de entrega</td></tr>
+  <tr><td>Data</td><td>9 de outubro de 2026</td></tr>
+</table>
+
+
+<!-- 01 -->
+<div class="page"></div>
+<div class="sec"><span>01</span>Contexto e proposta de valor</div>
+
+<p>A Ipiranga deseja transformar o App de Execução desenvolvido pela Stringhini em um <b>hub de trabalho</b> para o consultor de trade da empresa.</p>
+
+<p>O app foi construído a partir das necessidades do negócio e precisa ter uma experiência em sua jornada à altura da sua importância. O hub precisa levar o consultor às suas tarefas, treinamentos e informações de forma ágil, e que apoie a sua operação.</p>
+
+<p>Hoje não existe uma medição estruturada a partir de analytics, existem apenas alguns logs customizados, o que dificulta a comprovação do sucesso das evoluções propostas a partir deste projeto.</p>
+
+<div class="box">
+  <h4>A proposta de valor da Fattoria</h4>
+  <p>A Fattoria quer ir além da entrega de telas prontas para a Stringhini. O objetivo desta proposta é apoiar o time nas decisões e na definição dos sprints e módulos dentro das datas propostas, tendo como consequência as telas finais de cada jornada para implementação pelo time da Stringhini.</p>
+</div>
+
+<!-- 02 -->
+<div class="page"></div>
+<div class="sec"><span>02</span>A Fattoria como escritório de produto</div>
+
+<p>A Fattoria conduz as decisões de produto e experiência junto com a Ipiranga, desenha as jornadas, coordena o trabalho técnico com a Stringhini e acompanha a implementação. A Ipiranga segue responsável pela estratégia e a Stringhini pela engenharia.</p>
+
+<h3>Quem faz o quê</h3>
+<table class="t dor">
+  <thead><tr><th>Quem</th><th>Papel</th><th>Decide</th></tr></thead>
+  <tbody>
+    <tr><td class="feat"><b>Ipiranga · Trade Marketing</b></td><td class="desc">Dona do negócio e da estratégia. Traz as prioridades da companhia, aprova o roadmap e as entregas e responde pelo resultado internamente.</td><td class="who">Prioridades de negócio e aprovação</td></tr>
+    <tr><td class="feat"><b>Fattoria · escritório de produto</b></td><td class="desc">Conduz a priorização, a arquitetura e o design das jornadas, combina a viabilidade com a Stringhini e acompanha a implementação e os indicadores.</td><td class="who">Experiência, critérios de aceite e proposta de roadmap</td></tr>
+    <tr><td class="feat"><b>Stringhini · engenharia</b></td><td class="desc">Avalia a viabilidade, implementa, mantém o app e opera conteúdo e checklist, como prevê o contrato vigente.</td><td class="who">Solução técnica e estimativa de esforço</td></tr>
+    <tr><td class="feat"><b>Consultores e coordenadores</b></td><td class="desc">Usam o novo produto a partir do lançamento. O retorno do campo vira o backlog evolutivo da plataforma.</td><td class="who">Se a solução funciona no dia a dia</td></tr>
+  </tbody>
+</table>
+
+<h3>O que a Ipiranga ganha</h3>
+<table class="t dor">
+  <thead><tr><th>Compromisso</th><th>O que a Fattoria faz</th><th>O que muda para a Ipiranga</th></tr></thead>
+  <tbody>
+    <tr><td class="feat"><b>Decisão, não só tela</b></td><td class="desc">Roadmap priorizado com critérios explícitos, critérios de aceite por entrega e faseamento combinado com a Stringhini.</td><td class="who">Um projeto estruturado para apresentar internamente, com critérios claros de priorização.</td></tr>
+    <tr><td class="feat"><b>Novo produto no ar em dezembro</b></td><td class="desc">Design pensado para ser implementado no prazo, passado à Stringhini por módulo e acompanhado em homologação.</td><td class="who">A primeira fase do hub entregue ainda em 2026.</td></tr>
+    <tr><td class="feat"><b>Hub conectado</b></td><td class="desc">Arquitetura que decide o que fica no hub, o que vira resumo e o que leva ao canal especialista, com continuidade visual entre as ferramentas da Coordenação.</td><td class="who">O app vira a porta de entrada sem disputar espaço com os canais que já existem.</td></tr>
+    <tr><td class="feat"><b>Times conectados</b></td><td class="desc">Canal direto entre design e desenvolvimento, conversa técnica semanal com a Stringhini e decisões registradas.</td><td class="who">A Ipiranga acompanha as decisões principais, enquanto a troca técnica acontece direto entre Fattoria e Stringhini.</td></tr>
+  </tbody>
+</table>
+
+<!-- 03 -->
+<div class="page"></div>
+<div class="sec"><span>03</span>Os dois sprints do projeto</div>
+
+<p>O projeto começa em 19/10 a partir do que a Ipiranga já entregou: a estratégia, o estudo de campo de agosto e o dossiê de 24/09. Cada sprint tem entregas fechadas e um esforço estimado. Se algo novo precisar entrar, troca de lugar no comitê com uma entrega do mesmo tamanho, sem mudar o valor do projeto. A entrega final das telas de cada módulo é feita em Figma, com as especificações necessárias para a implementação pela Stringhini.</p>
+
+<div class="box">
+  <h4>Validação com o produto em uso</h4>
+  <p>O estudo de agosto e as reuniões com a Ipiranga e a Stringhini já apontam com clareza as principais necessidades do consultor, por isso o projeto não prevê testes de protótipo antes do lançamento. A validação acontece com o novo produto em uso, e o retorno dos consultores é organizado como backlog evolutivo da plataforma (ver seção 06).</p>
+</div>
+
+<h3>Sprint 1 · 19/10 a 13/11 · recorte fechado e módulo 1 pronto para implementar</h3>
+<table class="t dor">
+  <thead><tr><th>Entrega</th><th>O que é</th><th>Pronta quando</th></tr></thead>
+  <tbody>
+    <tr><td class="feat"><b>Kickoff e validação do dossiê</b><span class="src">Direção</span></td><td class="desc">Reunião entre as três partes para confirmar as necessidades, os pesos do ranking e as prioridades de negócio.</td><td class="who">Decisões registradas e compartilhadas</td></tr>
+    <tr><td class="feat"><b>Sessão técnica e recorte de dezembro</b><span class="src">Direção</span></td><td class="desc">Respostas da Stringhini às perguntas técnicas do dossiê e definição do que é viável até a data de corte.</td><td class="who">Lista de dezembro e data de corte fechadas</td></tr>
+    <tr><td class="feat"><b>Comitê de produto 1</b><span class="src">Direção</span></td><td class="desc">Roadmap priorizado, recorte de dezembro e metas do projeto aprovados.</td><td class="who">Ata com o roadmap aprovado</td></tr>
+    <tr><td class="feat"><b>Arquitetura do hub e conceito da home</b><span class="src">G</span></td><td class="desc">Mapa do que fica no hub, do que vira resumo e do que leva aos canais especialistas, e o conceito da home.</td><td class="who">Aprovados pela Ipiranga e confirmados pela Stringhini</td></tr>
+    <tr><td class="feat"><b>Módulo 1 · fluxos e wireframes</b><span class="src">G</span></td><td class="desc">Jornadas de Minha carteira, busca direta e acessos rápidos, com os estados de campo.</td><td class="who">Validados com a Ipiranga e a Stringhini</td></tr>
+    <tr><td class="feat"><b>Módulo 1 · interface</b><span class="src">G</span></td><td class="desc">Telas finais no Figma, para celular e notebook.</td><td class="who">Aprovadas pela Ipiranga</td></tr>
+    <tr><td class="feat"><b>UI kit inicial</b><span class="src">M</span></td><td class="desc">Componentes, cores, tipografia e ícones, seguindo as ferramentas mais recentes da Coordenação e adaptados às bibliotecas da Stringhini.</td><td class="who">Publicado no Figma e revisado pela Stringhini</td></tr>
+    <tr><td class="feat"><b>Especificação e passagem do módulo 1</b><span class="src">P</span></td><td class="desc">Telas anotadas, regras de comportamento e sessão de passagem.</td><td class="who">Stringhini confirma que pode implementar</td></tr>
+    <tr><td class="feat"><b>Linha de base dos indicadores</b><span class="src">P</span></td><td class="desc">Eventos a registrar definidos com a Stringhini e o ponto de partida medido.</td><td class="who">Números iniciais registrados</td></tr>
+  </tbody>
+</table>
+
+<h3>Sprint 2 · 16/11 a 18/12 · módulo 2, implementação e lançamento</h3>
+<table class="t dor">
+  <thead><tr><th>Entrega</th><th>O que é</th><th>Pronta quando</th></tr></thead>
+  <tbody>
+    <tr><td class="feat"><b>Módulo 2 · fluxos e wireframes</b><span class="src">M</span></td><td class="desc">Checklist com progresso e regras claras, conclusão, relatório e status da auditoria.</td><td class="who">Validados com a Ipiranga e a Stringhini</td></tr>
+    <tr><td class="feat"><b>Módulo 2 · interface</b><span class="src">G</span></td><td class="desc">Telas finais no Figma, para celular e notebook.</td><td class="who">Aprovadas pela Ipiranga</td></tr>
+    <tr><td class="feat"><b>Evolução do UI kit</b><span class="src">P</span></td><td class="desc">Componentes novos do módulo 2 incorporados e documentados.</td><td class="who">Publicado no Figma</td></tr>
+    <tr><td class="feat"><b>Especificação e passagem do módulo 2</b><span class="src">P</span></td><td class="desc">Telas anotadas, regras de comportamento e sessão de passagem.</td><td class="who">Stringhini confirma que pode implementar</td></tr>
+    <tr><td class="feat"><b>Acompanhamento da implementação</b><span class="src">G</span></td><td class="desc">Revisão em homologação das telas dos dois módulos, lista de ajustes e conferência depois de corrigidos, até 18/12.</td><td class="who">Implementado conferido contra o design</td></tr>
+    <tr><td class="feat"><b>Primeira leitura dos indicadores</b><span class="src">P</span></td><td class="desc">Comparação com a linha de base, levada ao comitê.</td><td class="who">Leitura apresentada no comitê 2</td></tr>
+    <tr><td class="feat"><b>Comitê de produto 2 e roadmap de 2027</b><span class="src">Direção</span></td><td class="desc">Revisão do lançamento, indicadores e roadmap de 2027 priorizado.</td><td class="who">Roadmap de 2027 aprovado</td></tr>
+  </tbody>
+</table>
+<p class="note">Tamanho das entregas: P (pequena), M (média), G (grande). As entregas de direção fazem parte do valor fixo de condução do projeto.</p>
+
+<div class="page"></div>
+<h3 style="margin-top:0">Cronograma</h3>
+<p>Distribuição das entregas nas nove semanas do projeto. A implementação aparece como referência e é conduzida pela Stringhini, a partir da passagem de cada módulo.</p>
+<div class="gantt">
+<div class="g-row g-head"><div class="g-label"></div><div class="g-track">
+<div class="g-wk" style="left:0.000%;width:11.111%">19/10</div>
+<div class="g-wk" style="left:11.111%;width:11.111%">26/10</div>
+<div class="g-wk" style="left:22.222%;width:11.111%">02/11</div>
+<div class="g-wk" style="left:33.333%;width:11.111%">09/11</div>
+<div class="g-wk" style="left:44.444%;width:11.111%">16/11</div>
+<div class="g-wk" style="left:55.556%;width:11.111%">23/11</div>
+<div class="g-wk" style="left:66.667%;width:11.111%">30/11</div>
+<div class="g-wk" style="left:77.778%;width:11.111%">07/12</div>
+<div class="g-wk" style="left:88.889%;width:11.111%">14/12</div>
+</div></div>
+<div class="g-sep">Sprint 1 · 19/10 a 13/11</div>
+<div class="g-row"><div class="g-label">Kickoff, sessão técnica e recorte de dezembro</div><div class="g-track">
+<span class="g-grid" style="left:0.000%"></span>
+<span class="g-grid" style="left:11.111%"></span>
+<span class="g-grid" style="left:22.222%"></span>
+<span class="g-grid" style="left:33.333%"></span>
+<span class="g-grid" style="left:44.444%"></span>
+<span class="g-grid" style="left:55.556%"></span>
+<span class="g-grid" style="left:66.667%"></span>
+<span class="g-grid" style="left:77.778%"></span>
+<span class="g-grid" style="left:88.889%"></span>
+<span class="g-bar dir" style="left:calc(0.000% + 2px);width:calc(11.111% - 4px)"></span>
+</div></div>
+<div class="g-row"><div class="g-label">Arquitetura do hub e conceito da home</div><div class="g-track">
+<span class="g-grid" style="left:0.000%"></span>
+<span class="g-grid" style="left:11.111%"></span>
+<span class="g-grid" style="left:22.222%"></span>
+<span class="g-grid" style="left:33.333%"></span>
+<span class="g-grid" style="left:44.444%"></span>
+<span class="g-grid" style="left:55.556%"></span>
+<span class="g-grid" style="left:66.667%"></span>
+<span class="g-grid" style="left:77.778%"></span>
+<span class="g-grid" style="left:88.889%"></span>
+<span class="g-bar exe" style="left:calc(0.000% + 2px);width:calc(22.222% - 4px)"></span>
+</div></div>
+<div class="g-row"><div class="g-label">Comitê de produto 1</div><div class="g-track">
+<span class="g-grid" style="left:0.000%"></span>
+<span class="g-grid" style="left:11.111%"></span>
+<span class="g-grid" style="left:22.222%"></span>
+<span class="g-grid" style="left:33.333%"></span>
+<span class="g-grid" style="left:44.444%"></span>
+<span class="g-grid" style="left:55.556%"></span>
+<span class="g-grid" style="left:66.667%"></span>
+<span class="g-grid" style="left:77.778%"></span>
+<span class="g-grid" style="left:88.889%"></span>
+<span class="g-mark" style="left:calc(16.667% - 6px)"></span>
+</div></div>
+<div class="g-row"><div class="g-label">Linha de base dos indicadores</div><div class="g-track">
+<span class="g-grid" style="left:0.000%"></span>
+<span class="g-grid" style="left:11.111%"></span>
+<span class="g-grid" style="left:22.222%"></span>
+<span class="g-grid" style="left:33.333%"></span>
+<span class="g-grid" style="left:44.444%"></span>
+<span class="g-grid" style="left:55.556%"></span>
+<span class="g-grid" style="left:66.667%"></span>
+<span class="g-grid" style="left:77.778%"></span>
+<span class="g-grid" style="left:88.889%"></span>
+<span class="g-bar exe" style="left:calc(11.111% + 2px);width:calc(22.222% - 4px)"></span>
+</div></div>
+<div class="g-row"><div class="g-label">Módulo 1 · fluxos e wireframes</div><div class="g-track">
+<span class="g-grid" style="left:0.000%"></span>
+<span class="g-grid" style="left:11.111%"></span>
+<span class="g-grid" style="left:22.222%"></span>
+<span class="g-grid" style="left:33.333%"></span>
+<span class="g-grid" style="left:44.444%"></span>
+<span class="g-grid" style="left:55.556%"></span>
+<span class="g-grid" style="left:66.667%"></span>
+<span class="g-grid" style="left:77.778%"></span>
+<span class="g-grid" style="left:88.889%"></span>
+<span class="g-bar exe" style="left:calc(11.111% + 2px);width:calc(22.222% - 4px)"></span>
+</div></div>
+<div class="g-row"><div class="g-label">Módulo 1 · interface</div><div class="g-track">
+<span class="g-grid" style="left:0.000%"></span>
+<span class="g-grid" style="left:11.111%"></span>
+<span class="g-grid" style="left:22.222%"></span>
+<span class="g-grid" style="left:33.333%"></span>
+<span class="g-grid" style="left:44.444%"></span>
+<span class="g-grid" style="left:55.556%"></span>
+<span class="g-grid" style="left:66.667%"></span>
+<span class="g-grid" style="left:77.778%"></span>
+<span class="g-grid" style="left:88.889%"></span>
+<span class="g-bar exe" style="left:calc(22.222% + 2px);width:calc(22.222% - 4px)"></span>
+</div></div>
+<div class="g-row"><div class="g-label">UI kit inicial</div><div class="g-track">
+<span class="g-grid" style="left:0.000%"></span>
+<span class="g-grid" style="left:11.111%"></span>
+<span class="g-grid" style="left:22.222%"></span>
+<span class="g-grid" style="left:33.333%"></span>
+<span class="g-grid" style="left:44.444%"></span>
+<span class="g-grid" style="left:55.556%"></span>
+<span class="g-grid" style="left:66.667%"></span>
+<span class="g-grid" style="left:77.778%"></span>
+<span class="g-grid" style="left:88.889%"></span>
+<span class="g-bar exe" style="left:calc(22.222% + 2px);width:calc(22.222% - 4px)"></span>
+</div></div>
+<div class="g-row"><div class="g-label">Especificação e passagem do módulo 1</div><div class="g-track">
+<span class="g-grid" style="left:0.000%"></span>
+<span class="g-grid" style="left:11.111%"></span>
+<span class="g-grid" style="left:22.222%"></span>
+<span class="g-grid" style="left:33.333%"></span>
+<span class="g-grid" style="left:44.444%"></span>
+<span class="g-grid" style="left:55.556%"></span>
+<span class="g-grid" style="left:66.667%"></span>
+<span class="g-grid" style="left:77.778%"></span>
+<span class="g-grid" style="left:88.889%"></span>
+<span class="g-bar exe" style="left:calc(33.333% + 2px);width:calc(11.111% - 4px)"></span>
+</div></div>
+<div class="g-sep">Sprint 2 · 16/11 a 18/12</div>
+<div class="g-row"><div class="g-label">Módulo 2 · fluxos e wireframes</div><div class="g-track">
+<span class="g-grid" style="left:0.000%"></span>
+<span class="g-grid" style="left:11.111%"></span>
+<span class="g-grid" style="left:22.222%"></span>
+<span class="g-grid" style="left:33.333%"></span>
+<span class="g-grid" style="left:44.444%"></span>
+<span class="g-grid" style="left:55.556%"></span>
+<span class="g-grid" style="left:66.667%"></span>
+<span class="g-grid" style="left:77.778%"></span>
+<span class="g-grid" style="left:88.889%"></span>
+<span class="g-bar exe" style="left:calc(44.444% + 2px);width:calc(11.111% - 4px)"></span>
+</div></div>
+<div class="g-row"><div class="g-label">Módulo 2 · interface</div><div class="g-track">
+<span class="g-grid" style="left:0.000%"></span>
+<span class="g-grid" style="left:11.111%"></span>
+<span class="g-grid" style="left:22.222%"></span>
+<span class="g-grid" style="left:33.333%"></span>
+<span class="g-grid" style="left:44.444%"></span>
+<span class="g-grid" style="left:55.556%"></span>
+<span class="g-grid" style="left:66.667%"></span>
+<span class="g-grid" style="left:77.778%"></span>
+<span class="g-grid" style="left:88.889%"></span>
+<span class="g-bar exe" style="left:calc(44.444% + 2px);width:calc(22.222% - 4px)"></span>
+</div></div>
+<div class="g-row"><div class="g-label">Evolução do UI kit</div><div class="g-track">
+<span class="g-grid" style="left:0.000%"></span>
+<span class="g-grid" style="left:11.111%"></span>
+<span class="g-grid" style="left:22.222%"></span>
+<span class="g-grid" style="left:33.333%"></span>
+<span class="g-grid" style="left:44.444%"></span>
+<span class="g-grid" style="left:55.556%"></span>
+<span class="g-grid" style="left:66.667%"></span>
+<span class="g-grid" style="left:77.778%"></span>
+<span class="g-grid" style="left:88.889%"></span>
+<span class="g-bar exe" style="left:calc(55.556% + 2px);width:calc(11.111% - 4px)"></span>
+</div></div>
+<div class="g-row"><div class="g-label">Especificação e passagem do módulo 2</div><div class="g-track">
+<span class="g-grid" style="left:0.000%"></span>
+<span class="g-grid" style="left:11.111%"></span>
+<span class="g-grid" style="left:22.222%"></span>
+<span class="g-grid" style="left:33.333%"></span>
+<span class="g-grid" style="left:44.444%"></span>
+<span class="g-grid" style="left:55.556%"></span>
+<span class="g-grid" style="left:66.667%"></span>
+<span class="g-grid" style="left:77.778%"></span>
+<span class="g-grid" style="left:88.889%"></span>
+<span class="g-bar exe" style="left:calc(66.667% + 2px);width:calc(11.111% - 4px)"></span>
+</div></div>
+<div class="g-row"><div class="g-label">Implementação do módulo 1 (Stringhini)</div><div class="g-track">
+<span class="g-grid" style="left:0.000%"></span>
+<span class="g-grid" style="left:11.111%"></span>
+<span class="g-grid" style="left:22.222%"></span>
+<span class="g-grid" style="left:33.333%"></span>
+<span class="g-grid" style="left:44.444%"></span>
+<span class="g-grid" style="left:55.556%"></span>
+<span class="g-grid" style="left:66.667%"></span>
+<span class="g-grid" style="left:77.778%"></span>
+<span class="g-grid" style="left:88.889%"></span>
+<span class="g-bar str" style="left:calc(44.444% + 2px);width:calc(55.556% - 4px)"></span>
+</div></div>
+<div class="g-row"><div class="g-label">Implementação do módulo 2 (Stringhini)</div><div class="g-track">
+<span class="g-grid" style="left:0.000%"></span>
+<span class="g-grid" style="left:11.111%"></span>
+<span class="g-grid" style="left:22.222%"></span>
+<span class="g-grid" style="left:33.333%"></span>
+<span class="g-grid" style="left:44.444%"></span>
+<span class="g-grid" style="left:55.556%"></span>
+<span class="g-grid" style="left:66.667%"></span>
+<span class="g-grid" style="left:77.778%"></span>
+<span class="g-grid" style="left:88.889%"></span>
+<span class="g-bar str" style="left:calc(66.667% + 2px);width:calc(33.333% - 4px)"></span>
+</div></div>
+<div class="g-row"><div class="g-label">Acompanhamento da implementação</div><div class="g-track">
+<span class="g-grid" style="left:0.000%"></span>
+<span class="g-grid" style="left:11.111%"></span>
+<span class="g-grid" style="left:22.222%"></span>
+<span class="g-grid" style="left:33.333%"></span>
+<span class="g-grid" style="left:44.444%"></span>
+<span class="g-grid" style="left:55.556%"></span>
+<span class="g-grid" style="left:66.667%"></span>
+<span class="g-grid" style="left:77.778%"></span>
+<span class="g-grid" style="left:88.889%"></span>
+<span class="g-bar exe" style="left:calc(55.556% + 2px);width:calc(44.444% - 4px)"></span>
+</div></div>
+<div class="g-row"><div class="g-label">Leitura dos indicadores e comitê de produto 2</div><div class="g-track">
+<span class="g-grid" style="left:0.000%"></span>
+<span class="g-grid" style="left:11.111%"></span>
+<span class="g-grid" style="left:22.222%"></span>
+<span class="g-grid" style="left:33.333%"></span>
+<span class="g-grid" style="left:44.444%"></span>
+<span class="g-grid" style="left:55.556%"></span>
+<span class="g-grid" style="left:66.667%"></span>
+<span class="g-grid" style="left:77.778%"></span>
+<span class="g-grid" style="left:88.889%"></span>
+<span class="g-bar dir" style="left:calc(88.889% + 2px);width:calc(11.111% - 4px)"></span>
+</div></div>
+<div class="g-row"><div class="g-label">Lançamento</div><div class="g-track">
+<span class="g-grid" style="left:0.000%"></span>
+<span class="g-grid" style="left:11.111%"></span>
+<span class="g-grid" style="left:22.222%"></span>
+<span class="g-grid" style="left:33.333%"></span>
+<span class="g-grid" style="left:44.444%"></span>
+<span class="g-grid" style="left:55.556%"></span>
+<span class="g-grid" style="left:66.667%"></span>
+<span class="g-grid" style="left:77.778%"></span>
+<span class="g-grid" style="left:88.889%"></span>
+<span class="g-mark" style="left:calc(98.333% - 6px)"></span>
+</div></div>
+<div class="g-legend"><span><i class="g-bar exe"></i>Execução Fattoria</span><span><i class="g-bar dir"></i>Direção de produto</span><span><i class="g-bar str"></i>Implementação Stringhini</span><span><i class="g-mark"></i>Marco</span></div>
+</div>
+
+<h3>Interfaces e fluxos de cada sprint</h3>
+<table class="t dor">
+  <thead><tr><th>Sprint</th><th>Interface ou fluxo</th><th>O que resolve</th></tr></thead>
+  <tbody>
+    <tr><td class="feat"><b>1</b><span class="src">Base</span></td><td class="desc"><b>Arquitetura de navegação do hub:</b> estrutura de menus e seções, e o que leva aos canais especialistas.</td><td class="who">Funcionalidades com o mesmo peso e caminhos paralelos</td></tr>
+    <tr><td class="feat"><b>1</b><span class="src">Módulo 1</span></td><td class="desc"><b>Home do hub:</b> contexto do dia (conexão e sincronização), card Minha carteira, pendências e prioridades, botão de iniciar execução e acessos rápidos.</td><td class="who">Home com pouca informação para a rotina</td></tr>
+    <tr><td class="feat"><b>1</b><span class="src">Módulo 1</span></td><td class="desc"><b>Minha carteira:</b> andamento do quadrimestre, visitados e pendentes, visitas por dia para fechar 100% e lista dos postos que faltam.</td><td class="who">Meta controlada no caderno e calculada à mão</td></tr>
+    <tr><td class="feat"><b>1</b><span class="src">Módulo 1</span></td><td class="desc"><b>Busca e seleção do posto:</b> busca direta por nome fantasia, razão social ou CNPJ, resultados com status e data da última visita, filtros simplificados.</td><td class="who">Busca com mais cliques e postos difíceis de identificar</td></tr>
+    <tr><td class="feat"><b>1</b><span class="src">Módulo 1</span></td><td class="desc"><b>Acessos rápidos:</b> Guia de Execução, visitas, dashboard do consultor, dashboards de negócio e treinamentos.</td><td class="who">Canais espalhados, cada um com seu caminho</td></tr>
+    <tr><td class="feat"><b>1</b><span class="src">Módulo 1</span></td><td class="desc"><b>Estados de campo:</b> sem conexão, sincronização pendente, vazio, erro e carregamento, aplicados às telas do módulo.</td><td class="who">Dúvida sobre o que ficou salvo no aparelho</td></tr>
+    <tr><td class="feat"><b>2</b><span class="src">Módulo 2</span></td><td class="desc"><b>Fluxo do checklist:</b> início a partir do posto, progresso, perguntas obrigatórias sinalizadas, navegação entre seções, salvar e retomar, e o Concluir só quando for possível concluir.</td><td class="who">Pouca noção de progresso durante o checklist</td></tr>
+    <tr><td class="feat"><b>2</b><span class="src">Módulo 2</span></td><td class="desc"><b>Conclusão e relatório:</b> confirmação de envio e "Visualizar relatório" com nota preliminar ou final, marcação de auditado e data da auditoria.</td><td class="who">Relatório difícil de encontrar e sem status</td></tr>
+    <tr><td class="feat"><b>2</b><span class="src">Módulo 2</span></td><td class="desc"><b>Auditoria e contestação:</b> o que a auditoria mudou e por quê, réplica única do consultor e status da contestação.</td><td class="who">Consultor sem saber o que mudou na nota</td></tr>
+    <tr><td class="feat"><b>2</b><span class="src">Módulo 2</span></td><td class="desc"><b>Central de notificações:</b> avisos de auditoria concluída, nota alterada e contestação respondida, com acesso direto à tarefa.</td><td class="who">Pouca visibilidade da auditoria para o consultor</td></tr>
+  </tbody>
+</table>
+
+<h3>Rituais</h3>
+<table class="t dor tight">
+  <thead><tr><th>Ritual</th><th>Quem</th><th>Para quê</th></tr></thead>
+  <tbody>
+    <tr><td class="feat"><b>Comitê de produto · mensal</b></td><td class="desc">Ipiranga, Fattoria e Stringhini</td><td class="who">Roadmap, prioridades, trocas de entrega e indicadores</td></tr>
+    <tr><td class="feat"><b>Alinhamento · quinzenal</b></td><td class="desc">Trade Marketing e Fattoria</td><td class="who">Andamento, aprovações e decisões de negócio</td></tr>
+    <tr><td class="feat"><b>Técnica · semanal</b></td><td class="desc">Fattoria e Stringhini</td><td class="who">Viabilidade, passagem de design e revisão em homologação</td></tr>
+  </tbody>
+</table>
+
+<!-- 04 -->
+<div class="sec" style="margin-top:22px"><span>04</span>Equipe e investimento</div>
+
+<p>A Fattoria dedica ao projeto um time com papéis fixos, liderado por quem já conhece os canais digitais da Coordenação. A Ipiranga contrata um projeto de valor fechado, dimensionado pelo esforço estimado de cada sprint.</p>
+
+<h3>Equipe</h3>
+<table class="t dor tight">
+  <thead><tr><th>Papel</th><th>Responsabilidade</th><th>Dedicação</th></tr></thead>
+  <tbody>
+    <tr><td class="feat"><b>Liderança de produto</b><span class="src">Bruno Branco · Lead Product Designer</span></td><td class="desc">Decisões de produto e experiência, priorização, comitês e alinhamento com a Ipiranga.</td><td class="who">Cerca de 15% nos dois sprints</td></tr>
+    <tr><td class="feat"><b>Product designer</b><span class="src">Dedicado ao projeto</span></td><td class="desc">Arquitetura, fluxos, interface, UI kit, especificação e revisão em homologação.</td><td class="who">76% no sprint 1 · 49% no sprint 2</td></tr>
+    <tr><td class="feat"><b>Ponte técnica</b><span class="src">Thiago Brito · Tech Lead</span></td><td class="desc">Viabilidade com a Stringhini, linha de base dos indicadores e acompanhamento técnico.</td><td class="who">13% no sprint 1 · 8% no sprint 2</td></tr>
+  </tbody>
+</table>
+
+<div class="page"></div>
+<h3 style="margin-top:0">Esforço estimado</h3>
+<p>O projeto tem valor fechado. O esforço abaixo é o norte usado para dimensioná-lo e acompanhá-lo, com a dedicação do time em cada sprint. Uma reserva de cerca de 10% da execução absorve o que surgir no caminho.</p>
+<table class="t dor tight">
+  <thead><tr><th>Sprint</th><th>Esforço estimado</th><th>Dedicação do time</th></tr></thead>
+  <tbody>
+    <tr><td class="feat"><b>Sprint 1</b><span class="src">4 semanas</span></td><td class="desc">Cerca de 180 horas, sendo 37 de direção e condução</td><td class="who">Product designer 76% · liderança de produto 16% · ponte técnica 13%</td></tr>
+    <tr><td class="feat"><b>Sprint 2</b><span class="src">5 semanas</span></td><td class="desc">Cerca de 150 horas, sendo 35 de direção e condução</td><td class="who">Product designer 49% · liderança de produto 14% · ponte técnica 8%</td></tr>
+    <tr><td class="feat"><b>Projeto</b><span class="src">9 semanas</span></td><td class="desc"><b>Cerca de 330 horas</b>, com média de cerca de 37 horas por semana ao longo das 9 semanas do projeto</td><td class="who">Acompanhado internamente por entrega, com alerta quando uma entrega passa de 110% do previsto</td></tr>
+  </tbody>
+</table>
+
+<h3>Investimento</h3>
+<table class="t dor tight">
+  <thead><tr><th>Item</th><th>Escopo</th><th class="r">Valor</th></tr></thead>
+  <tbody>
+    <tr><td class="feat"><b>Sprint 1</b><span class="src">19/10 a 13/11</span></td><td class="desc">Direção de produto, arquitetura do hub, conceito da home, módulo 1 e UI kit inicial</td><td class="val-r">R$ 38.000,00</td></tr>
+    <tr><td class="feat"><b>Sprint 2</b><span class="src">16/11 a 18/12</span></td><td class="desc">Direção de produto, módulo 2, acompanhamento da implementação e roadmap de 2027</td><td class="val-r">R$ 32.200,00</td></tr>
+    <tr class="tot"><td class="feat"><b>Projeto</b><span class="src">Valor fechado</span></td><td class="desc"><b>Dois sprints, de 19/10 a 18/12</b></td><td class="val-r"><b>R$ 70.200,00</b></td></tr>
+  </tbody>
+</table>
+
+<h3>Condições de pagamento</h3>
+<table class="t dor tight">
+  <thead><tr><th>Marco</th><th>Quando</th><th class="r">Valor</th></tr></thead>
+  <tbody>
+    <tr><td class="feat"><b>Assinatura da proposta</b><span class="src">30%</span></td><td class="desc">Na assinatura</td><td class="val-r">R$ 21.060,00</td></tr>
+    <tr><td class="feat"><b>Passagem do módulo 1</b><span class="src">30%</span></td><td class="desc">13/11, fim do sprint 1</td><td class="val-r">R$ 21.060,00</td></tr>
+    <tr><td class="feat"><b>Encerramento do projeto</b><span class="src">40%</span></td><td class="desc">18/12, fim do acompanhamento da implementação</td><td class="val-r">R$ 28.080,00</td></tr>
+  </tbody>
+</table>
+
+<p class="note">Os valores apresentados já contemplam impostos e tributos. A Fattoria e seu time operam em horário comercial, de segunda a sexta-feira, das 9h às 18h. Validade da proposta: 30 dias.</p>
+
+<!-- 05 -->
+<div class="page"></div>
+<div class="sec"><span>05</span>O que fica fora do projeto, para 2027</div>
+<p>Itens levantados no dossiê e na estratégia que não entram nos dois sprints. Eles formam a base do roadmap de 2027, priorizado no comitê de dezembro. Se a Ipiranga quiser algum deles ainda em 2026, ele entra no lugar de uma entrega do mesmo tamanho.</p>
+<table class="t dor tight">
+  <thead><tr><th>Item</th><th>O que é</th><th>Observação</th></tr></thead>
+  <tbody>
+    <tr><td class="feat"><b>Postos próximos</b></td><td class="desc">Postos da carteira mais perto da localização do consultor, com o botão de iniciar a visita.</td><td class="who">Depende de coordenadas na base</td></tr>
+    <tr><td class="feat"><b>Carteira em mapa e lista</b></td><td class="desc">Mapa com postos visitados e pendentes, marcas e filtros.</td><td class="who">Depende do serviço de mapa e do offline</td></tr>
+    <tr><td class="feat"><b>Resumo do posto</b></td><td class="desc">Dados do posto, última visita e pendências antes do checklist; depois, dados comerciais (Ipiranga Mais, KMV, Jet Oil).</td><td class="who">Depende das bases disponíveis</td></tr>
+    <tr><td class="feat"><b>Histórico da visita anterior</b></td><td class="desc">Ofensores e pontos de atenção da última visita ao iniciar a nova.</td><td class="who">Depende de dados guardados no aparelho</td></tr>
+    <tr><td class="feat"><b>Guia dentro da pergunta</b></td><td class="desc">Padrão correto aberto a partir de cada pergunta do checklist.</td><td class="who">Depende da ligação entre pergunta e conteúdo</td></tr>
+    <tr><td class="feat"><b>Central de conhecimento por tema</b></td><td class="desc">"Posso Ajudar?" reorganizado em categorias.</td><td class="who"></td></tr>
+    <tr><td class="feat"><b>Envio do relatório pelo app</b></td><td class="desc">Relatório enviado ao consultor de negócios e ao revendedor ao concluir a visita.</td><td class="who">Depende de serviço de e-mail</td></tr>
+    <tr><td class="feat"><b>Foto anexada depois</b></td><td class="desc">Concluir a pergunta e anexar a foto mais tarde.</td><td class="who">Depende do motor de formulários</td></tr>
+    <tr><td class="feat"><b>Checklist por setor do posto</b></td><td class="desc">Perguntas na ordem do deslocamento físico, com versões urbano e rodovia.</td><td class="who">Depende da revisão do conteúdo</td></tr>
+    <tr><td class="feat"><b>Ofensores e média por grupo</b></td><td class="desc">Problemas mais frequentes e nota média por grupo e por consultor de negócios.</td><td class="who"></td></tr>
+    <tr><td class="feat"><b>Pendências e planos de ação</b></td><td class="desc">Pendências com responsável e prazo, acompanhadas na visita seguinte.</td><td class="who"></td></tr>
+    <tr><td class="feat"><b>Registro de oportunidades</b></td><td class="desc">Novo tipo de tarefa para ações comerciais fora do ciclo de visitas.</td><td class="who">Formulário a definir</td></tr>
+    <tr><td class="feat"><b>Dashboard do coordenador no celular</b></td><td class="desc">Visão da equipe adaptada ao celular, com filtro por consultor de negócios.</td><td class="who"></td></tr>
+    <tr><td class="feat"><b>Sincronização contínua</b></td><td class="desc">Continuar a visita em outro aparelho.</td><td class="who">Muda a arquitetura offline</td></tr>
+    <tr><td class="feat"><b>Assistente do Guia com IA</b></td><td class="desc">Busca por pergunta em linguagem natural.</td><td class="who"></td></tr>
+    <tr><td class="feat"><b>Validação de fotos por IA</b></td><td class="desc">Análise automática das fotos para apoiar a auditoria.</td><td class="who"></td></tr>
+    <tr><td class="feat"><b>Notificações por WhatsApp e roteirização</b></td><td class="desc">Avisos no canal do campo e sugestão de ordem das visitas.</td><td class="who"></td></tr>
+  </tbody>
+</table>
+
+<!-- 06 -->
+<div class="page"></div>
+<div class="sec"><span>06</span>Sugestão · acompanhamento e evolução depois do lançamento</div>
+<p>Como próximo passo depois do lançamento, a Fattoria sugere um acompanhamento mensal a partir de janeiro de 2027: um time dedicado a analisar as jornadas do novo produto em uso e a fazer os ajustes pontuais que o campo pedir. É a forma de transformar a validação com o produto em uso em evolução contínua, sem abrir um novo projeto a cada ajuste.</p>
+<p>Esse acompanhamento incluiria a leitura mensal dos indicadores e do retorno dos consultores, a organização do backlog evolutivo no comitê junto com a Ipiranga e a Stringhini, os ajustes de design nas telas entregues e a revisão em homologação do que for implementado. O formato e o investimento podem ser definidos com a Ipiranga no comitê de dezembro, a partir da primeira leitura dos indicadores.</p>
+
+<!-- 07 -->
+<div class="sec" style="margin-top:22px"><span>07</span>Como vamos saber se deu certo</div>
+<p>Os indicadores partem dos sinais de sucesso da estratégia. A linha de base é medida no sprint 1, com a Stringhini, e a primeira leitura depois do lançamento vai ao comitê de dezembro. Eles orientam as decisões, sem vínculo com a remuneração.</p>
+<table class="t dor tight">
+  <thead><tr><th>Sinal da estratégia</th><th>Indicador</th><th>Como medir</th></tr></thead>
+  <tbody>
+    <tr><td class="feat"><b>Eficiência</b></td><td class="desc">Tempo entre abrir o app e iniciar uma execução</td><td class="who">Eventos no app</td></tr>
+    <tr><td class="feat"><b>Relevância</b></td><td class="desc">Consultores que usam a home e a Minha carteira toda semana</td><td class="who">Eventos no app</td></tr>
+    <tr><td class="feat"><b>Acesso</b></td><td class="desc">Uso dos acessos rápidos e da busca direta</td><td class="who">Eventos no app</td></tr>
+    <tr><td class="feat"><b>Qualidade</b></td><td class="desc">Satisfação do consultor com o novo produto</td><td class="who">Pesquisa curta depois do lançamento</td></tr>
+  </tbody>
+</table>
+<p>Durante o andamento do projeto, novos indicadores podem ser avaliados e incluídos para monitoramento depois da entrega.</p>
+
+<!-- 08 -->
+<div class="sec" style="margin-top:22px"><span>08</span>Próximos passos</div>
+<ol class="steps">
+  <li><b>Aprovação da proposta</b> e assinatura.</li>
+  <li><b>Kickoff em 19/10</b> entre Ipiranga, Fattoria e Stringhini.</li>
+  <li><b>Sessão técnica com a Stringhini</b> na mesma semana, para fechar o recorte de dezembro.</li>
+  <li><b>Primeiro comitê de produto</b> com o roadmap e as metas do projeto.</li>
+</ol>
+
+</body>
+</html>

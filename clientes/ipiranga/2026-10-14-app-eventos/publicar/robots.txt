@@ -1,0 +1,19 @@
+# Para dominio ou subdominio dedicado exclusivamente a propostas.
+# Google e Bing precisam ler o HTML para respeitar a meta noindex.
+User-agent: Googlebot
+User-agent: Bingbot
+Allow: /
+
+# Bloqueio de rastreadores de IA e demais robos que respeitam robots.txt.
+User-agent: *
+Disallow: /
+
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: Google-Extended
+User-agent: CCBot
+Disallow: /

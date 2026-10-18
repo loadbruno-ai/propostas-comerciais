@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow, nosnippet, noimageindex">
+<title>Ipiranga · App de Execução · Proposta de horas · Home e Checklist</title>
+<style>
+  :root { --ink:#13141d; --pink:#f72585; --grey:#6b6e7a; --line:#e3e4e8; --bg:#f3f3f5; }
+  @page { size: A4; margin: 22mm 20mm 20mm 20mm; }
+  * { box-sizing: border-box; }
+  body { font-family: 'Poppins', sans-serif; font-weight: 300; color: var(--ink); font-size: 9.6pt; line-height: 1.55; margin: 0; }
+  b, strong { font-weight: 700; }
+  .kicker { color: var(--pink); font-weight: 700; letter-spacing: .22em; font-size: 8pt; text-transform: uppercase; margin: 0 0 14px; }
+  h1 { font-weight: 300; font-size: 27pt; line-height: 1.12; margin: 0 0 16px; letter-spacing: -.01em; }
+  h1 b { font-weight: 700; }
+  .lead { font-size: 11pt; line-height: 1.6; margin: 0 0 26px; }
+  table.ficha { width: 100%; border-collapse: collapse; border-top: 2px solid var(--ink); margin-bottom: 26px; }
+  table.ficha td { padding: 8px 0; border-bottom: 1px solid var(--line); vertical-align: top; font-size: 9.4pt; }
+  table.ficha td:first-child { width: 25%; color: var(--pink); font-weight: 700; letter-spacing: .14em; font-size: 7.4pt; text-transform: uppercase; padding-top: 10px; }
+  .box { background: var(--bg); border-left: 4px solid var(--pink); padding: 14px 18px; margin: 16px 0; break-inside: avoid; }
+  .box h4 { margin: 0 0 6px; font-size: 9.8pt; font-weight: 700; }
+  .box p { margin: 0 0 8px; } .box p:last-child { margin-bottom: 0; }
+  .box.dark { background: var(--ink); color: #fff; }
+  .box ul { margin: 4px 0 0; padding-left: 18px; } .box li { margin-bottom: 3px; }
+  .sec { background: var(--ink); color: #fff; margin: 0 0 16px; padding: 14px 18px; font-size: 13pt; font-weight: 500; break-after: avoid; }
+  .sec span { color: var(--pink); font-weight: 700; margin-right: 10px; }
+  .page { break-before: page; }
+  h3 { font-size: 10.5pt; font-weight: 700; margin: 20px 0 6px; break-after: avoid; }
+  h3::before { content: ''; display: inline-block; width: 8px; height: 8px; background: var(--pink); margin-right: 8px; vertical-align: 1px; }
+  p { margin: 0 0 10px; }
+  table.t { width: 100%; border-collapse: collapse; margin-bottom: 8px; }
+  table.t thead { display: table-header-group; }
+  table.t th { text-align: left; font-size: 7pt; letter-spacing: .12em; text-transform: uppercase; color: var(--grey); font-weight: 700; padding: 6px 6px 7px; border-bottom: 1.5px solid var(--ink); }
+  table.t td { padding: 7px 6px; border-bottom: 1px solid var(--line); vertical-align: top; font-size: 8.6pt; line-height: 1.45; }
+  table.t tr { break-inside: avoid; }
+  table.dor td.feat { width: 24%; }
+  .tight td { padding: 5px 6px; }
+  body > ul { padding-left: 18px; } body > ul li { margin-bottom: 7px; } table.dor td.who { width: 22%; color: var(--grey); font-size: 7.8pt; }
+  td.feat b { display: block; font-size: 8.8pt; line-height: 1.35; }
+  td.feat .src { display: block; color: var(--grey); font-size: 7pt; letter-spacing: .06em; margin-top: 3px; }
+  table.ice td.n { width: 4%; color: var(--grey); font-weight: 500; }
+  table.ice td.feat { width: 22%; }
+  table.ice td.num { width: 4.5%; text-align: center; font-weight: 500; }
+  table.ice td.sc { font-weight: 700; color: var(--pink); width: 6%; }
+  table.ice td.pz { width: 12%; text-align: right; }
+  table.ice th.c { text-align: center; } table.ice th.r { text-align: right; }
+  .val { margin-top: 5px; font-size: 7.8pt; color: #4a4c57; }
+  .tag { display: inline-block; font-size: 6.4pt; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; padding: 2px 6px; border-radius: 2px; white-space: nowrap; line-height: 1.5; }
+  .tag.dark { background: var(--ink); color: #fff; }
+  .tag.pink { background: var(--pink); color: #fff; }
+  .tag.line { border: 1px solid var(--ink); color: var(--ink); }
+  .tag.warn { border: 1px solid var(--pink); color: var(--pink); }
+  .grid3 { display: flex; gap: 10px; margin: 14px 0; }
+  .grid3 div { flex: 1; border-top: 2px solid var(--ink); padding-top: 8px; }
+  .grid3 .big { font-size: 20pt; font-weight: 700; line-height: 1; display: block; margin-bottom: 4px; }
+  .grid3 div.p { border-color: var(--pink); } .grid3 div.p .big { color: var(--pink); }
+  ol.steps { padding-left: 18px; } ol.steps li { margin-bottom: 4px; }
+  .note { color: var(--grey); font-size: 7.8pt; }
+
+  .gantt { margin: 10px 0 14px; break-inside: avoid; }
+  .g-row { display: flex; align-items: center; min-height: 22px; border-bottom: 1px solid var(--line); }
+  .g-head { border-bottom: 1.5px solid var(--ink); min-height: 20px; }
+  .g-label { width: 34%; font-size: 7.8pt; line-height: 1.3; padding: 3px 8px 3px 0; }
+  .g-track { position: relative; width: 66%; height: 22px; }
+  .g-head .g-track { height: 18px; }
+  .g-wk { position: absolute; top: 2px; text-align: center; font-size: 6.6pt; font-weight: 700; letter-spacing: .06em; color: var(--grey); }
+  .g-grid { position: absolute; top: 0; bottom: 0; width: 0; border-left: 1px dashed #e8e9ee; }
+  .g-bar { position: absolute; top: 6px; height: 10px; border-radius: 5px; display: inline-block; }
+  .g-bar.exe { background: var(--pink); }
+  .g-bar.dir { background: var(--ink); }
+  .g-bar.str { background: repeating-linear-gradient(45deg, #b9bcc8 0 4px, #dcdee5 4px 8px); }
+  .g-mark { position: absolute; top: 5px; width: 11px; height: 11px; background: var(--ink); transform: rotate(45deg); display: inline-block; }
+  .g-sep { font-size: 7.4pt; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--pink); padding: 9px 0 4px; border-bottom: 1px solid var(--line); }
+  .g-legend { display: flex; gap: 18px; margin-top: 8px; font-size: 7.4pt; color: var(--grey); }
+  .g-legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .g-legend .g-bar, .g-legend .g-mark { position: static; width: 18px; }
+  .g-legend .g-mark { width: 9px; height: 9px; }
+  table.t th.r { text-align: right; }
+  td.val-r { text-align: right; white-space: nowrap; font-weight: 500; width: 18%; }
+  tr.tot td { border-top: 1.5px solid var(--ink); background: var(--bg); }
+</style>
+
+</head>
+
+<body>
+
+<p class="kicker">Fattoria Digital · Ipiranga Trade Marketing</p>
+<h1>Proposta de projeto,<br><b>redesign da home e do checklist do App de Execução</b></h1>
+
+<table class="ficha">
+  <tr><td>Cliente</td><td>Ipiranga · Trade Marketing</td></tr>
+  <tr><td>Interlocução</td><td>Julio Araujo</td></tr>
+  <tr><td>Plataforma</td><td>App de Execução, desenvolvido e mantido pela Stringhini</td></tr>
+  <tr><td>Base</td><td>Dossiê de entendimento de 24/09 · estratégia do hub (set/2026) · estudo de campo de agosto · reunião de alinhamento de 15/10</td></tr>
+  <tr><td>Natureza</td><td>Proposta Comercial de horas em 2 jornadas de entrega</td></tr>
+  <tr><td>Data</td><td>16 de outubro de 2026</td></tr>
+</table>
+
+
+<!-- 01 -->
+<div class="page"></div>
+<div class="sec"><span>01</span>Contexto e proposta de valor</div>
+
+<p>A Ipiranga deseja transformar o App de Execução desenvolvido pela Stringhini em um <b>hub de trabalho</b> para o consultor de trade da empresa.</p>
+
+<p>O app foi construído a partir das necessidades do negócio e precisa ter uma experiência em sua jornada à altura da sua importância. O hub precisa levar o consultor às suas tarefas, treinamentos e informações de forma ágil, e que apoie a sua operação.</p>
+
+<p>Para avançar com velocidade e mostrar resultado ainda em 2026, o trabalho começa por duas jornadas: a <b>home do app (dashboard)</b>, que é a porta de entrada do consultor, e o <b>checklist</b>, que é o coração da operação em campo. Com essas duas jornadas entregues, a Ipiranga passa a ter uma referência clara de ritmo e capacidade de implementação para planejar as próximas.</p>
+
+<div class="box">
+  <h4>A proposta de valor da Fattoria</h4>
+  <p>A Fattoria quer ir além da entrega de telas prontas para a Stringhini. O objetivo desta proposta é redesenhar as duas jornadas com a visão de produto do projeto como um todo, em conversa próxima com a Stringhini, para que o que for desenhado possa ser implementado dentro do prazo. A entrega final das telas de cada jornada é feita em Figma, com as especificações necessárias para a implementação pelo time da Stringhini.</p>
+</div>
+
+<!-- 02 -->
+<div class="page"></div>
+<div class="sec"><span>02</span>Como o trabalho acontece</div>
+
+<p>O projeto segue o modelo por jornadas, em formato de esteira: a Ipiranga define a jornada do ponto de vista do negócio, a Fattoria desenha a interface e a Stringhini implementa. Enquanto a Stringhini implementa a primeira jornada, a Fattoria já trabalha na segunda. Assim as três partes avançam ao mesmo tempo e cada entrega chega à Stringhini em um tamanho que cabe no ritmo de desenvolvimento.</p>
+
+<h3>Quem faz o quê</h3>
+<table class="t dor">
+  <thead><tr><th>Quem</th><th>Papel</th><th>Decide</th></tr></thead>
+  <tbody>
+    <tr><td class="feat"><b>Ipiranga · Trade Marketing</b></td><td class="desc">Dona do negócio e da estratégia. Define as regras e prioridades de cada jornada e aprova as entregas.</td><td class="who">Regras de negócio e aprovação</td></tr>
+    <tr><td class="feat"><b>Fattoria · produto e design</b></td><td class="desc">Desenha fluxos e interfaces, combina a viabilidade com a Stringhini e especifica as telas para implementação.</td><td class="who">Experiência e critérios de aceite das telas</td></tr>
+    <tr><td class="feat"><b>Stringhini · engenharia</b></td><td class="desc">Avalia a viabilidade, implementa e mantém o app, como prevê o contrato vigente.</td><td class="who">Solução técnica e estimativa de esforço</td></tr>
+  </tbody>
+</table>
+
+<div class="box">
+  <h4>Entregar rápido e ajustar cedo</h4>
+  <p>O objetivo de cada jornada é elevar o nível da ferramenta com uma boa entrega, levada cedo à Stringhini para que os ajustes técnicos aconteçam logo no início. As primeiras telas tendem a ter mais idas e vindas, enquanto as partes se alinham aos limites e padrões da plataforma. Por isso a estimativa de horas já reserva tempo para essas rodadas de ajuste, com base na experiência do app de Treinamento. A partir da segunda jornada, a tendência é de um ritmo mais estável.</p>
+</div>
+
+<h3>Rituais</h3>
+<table class="t dor tight">
+  <thead><tr><th>Ritual</th><th>Quem</th><th>Para quê</th></tr></thead>
+  <tbody>
+    <tr><td class="feat"><b>Definição da jornada · a partir dos wireframes</b></td><td class="desc">Ipiranga, Fattoria e Stringhini</td><td class="who">Regras de negócio, limites técnicos e o que entra na jornada</td></tr>
+    <tr><td class="feat"><b>Alinhamento · semanal</b></td><td class="desc">Trade Marketing e Fattoria</td><td class="who">Andamento das etapas e aprovações</td></tr>
+    <tr><td class="feat"><b>Técnica · semanal</b></td><td class="desc">Fattoria e Stringhini</td><td class="who">Viabilidade e passagem de design</td></tr>
+    <tr><td class="feat"><b>Fechamento da jornada</b></td><td class="desc">Ipiranga, Fattoria e Stringhini</td><td class="who">Aprovação final e aprendizados para a próxima jornada</td></tr>
+  </tbody>
+</table>
+
+<!-- 03 -->
+<div class="page"></div>
+<div class="sec"><span>03</span>As duas jornadas do projeto</div>
+
+<p>O projeto começa em 19/10 a partir do que a Ipiranga já entregou: a estratégia, o estudo de campo de agosto e o dossiê de 24/09. Cada jornada tem entregas definidas e um pacote de horas estimado.</p>
+
+<h3>Jornada 1 · Home do app (dashboard) · 19/10 a 13/11</h3>
+<table class="t dor tight">
+  <thead><tr><th>Entrega</th><th>O que é</th><th class="r">Horas</th></tr></thead>
+  <tbody>
+    <tr><td class="feat"><b>Fluxo e wireframe</b></td><td class="desc">Estrutura da home, hierarquia das informações e caminhos para as demais áreas do app.</td><td class="val-r">10h</td></tr>
+    <tr><td class="feat"><b>Definição da jornada e conversa técnica</b></td><td class="desc">Encontro com Ipiranga e Stringhini, usando os wireframes como base, para fechar as regras de negócio e as informações da home e alinhar os componentes e padrões que a Stringhini já usa.</td><td class="val-r">8h</td></tr>
+    <tr><td class="feat"><b>Interface</b></td><td class="desc">Telas finais no Figma, com os estados de campo.</td><td class="val-r">20h</td></tr>
+    <tr><td class="feat"><b>Base visual</b></td><td class="desc">Primeiros componentes, cores, tipografia e ícones, adaptados às bibliotecas da Stringhini.</td><td class="val-r">6h</td></tr>
+    <tr><td class="feat"><b>Rodadas de ajuste</b></td><td class="desc">Idas e vindas com a Stringhini e a Ipiranga até as telas estarem prontas para implementar.</td><td class="val-r">12h</td></tr>
+    <tr><td class="feat"><b>Especificação e passagem</b></td><td class="desc">Telas anotadas, regras de comportamento e sessão de passagem para a Stringhini.</td><td class="val-r">4h</td></tr>
+    <tr class="tot"><td class="feat"><b>Total da jornada 1</b></td><td class="desc"></td><td class="val-r"><b>60h</b></td></tr>
+  </tbody>
+</table>
+
+<h3>Jornada 2 · Checklist · 09/11 a 18/12</h3>
+<table class="t dor tight">
+  <thead><tr><th>Entrega</th><th>O que é</th><th class="r">Horas</th></tr></thead>
+  <tbody>
+    <tr><td class="feat"><b>Fluxo e wireframe</b></td><td class="desc">Início a partir do posto, progresso, perguntas obrigatórias, salvar e retomar, conclusão e relatório.</td><td class="val-r">12h</td></tr>
+    <tr><td class="feat"><b>Definição da jornada e conversa técnica</b></td><td class="desc">Encontro com Ipiranga e Stringhini, usando os wireframes como base, para fechar as regras do checklist, da conclusão e do relatório e alinhar os limites do motor de formulários e do funcionamento sem conexão.</td><td class="val-r">6h</td></tr>
+    <tr><td class="feat"><b>Interface</b></td><td class="desc">Telas finais no Figma, com os estados de campo e os componentes novos do checklist documentados.</td><td class="val-r">26h</td></tr>
+    <tr><td class="feat"><b>Rodadas de ajuste</b></td><td class="desc">Idas e vindas com a Stringhini e a Ipiranga até as telas estarem prontas para implementar.</td><td class="val-r">12h</td></tr>
+    <tr><td class="feat"><b>Especificação e passagem</b></td><td class="desc">Telas anotadas, regras de comportamento e sessão de passagem para a Stringhini.</td><td class="val-r">4h</td></tr>
+    <tr class="tot"><td class="feat"><b>Total da jornada 2</b></td><td class="desc"></td><td class="val-r"><b>60h</b></td></tr>
+  </tbody>
+</table>
+
+<div class="page"></div>
+<h3 style="margin-top:0">Cronograma</h3>
+<p>Distribuição das entregas nas nove semanas do projeto. A implementação aparece como referência e é conduzida pela Stringhini, a partir da passagem de cada jornada.</p>
+<div class="gantt">
+<div class="g-row g-head"><div class="g-label"></div><div class="g-track"><div class="g-wk" style="left:0.000%;width:11.111%">19/10</div><div class="g-wk" style="left:11.111%;width:11.111%">26/10</div><div class="g-wk" style="left:22.222%;width:11.111%">02/11</div><div class="g-wk" style="left:33.333%;width:11.111%">09/11</div><div class="g-wk" style="left:44.444%;width:11.111%">16/11</div><div class="g-wk" style="left:55.556%;width:11.111%">23/11</div><div class="g-wk" style="left:66.667%;width:11.111%">30/11</div><div class="g-wk" style="left:77.778%;width:11.111%">07/12</div><div class="g-wk" style="left:88.889%;width:11.111%">14/12</div></div></div>
+<div class="g-sep">Jornada 1 · Home do app · 19/10 a 13/11</div>
+<div class="g-row"><div class="g-label">Fluxo e wireframe</div><div class="g-track"><span class="g-grid" style="left:0.000%"></span><span class="g-grid" style="left:11.111%"></span><span class="g-grid" style="left:22.222%"></span><span class="g-grid" style="left:33.333%"></span><span class="g-grid" style="left:44.444%"></span><span class="g-grid" style="left:55.556%"></span><span class="g-grid" style="left:66.667%"></span><span class="g-grid" style="left:77.778%"></span><span class="g-grid" style="left:88.889%"></span><span class="g-bar exe" style="left:calc(0.000% + 2px);width:calc(11.111% - 4px)"></span></div></div>
+<div class="g-row"><div class="g-label">Definição da jornada e conversa técnica</div><div class="g-track"><span class="g-grid" style="left:0.000%"></span><span class="g-grid" style="left:11.111%"></span><span class="g-grid" style="left:22.222%"></span><span class="g-grid" style="left:33.333%"></span><span class="g-grid" style="left:44.444%"></span><span class="g-grid" style="left:55.556%"></span><span class="g-grid" style="left:66.667%"></span><span class="g-grid" style="left:77.778%"></span><span class="g-grid" style="left:88.889%"></span><span class="g-bar dir" style="left:calc(11.111% + 2px);width:calc(11.111% - 4px)"></span></div></div>
+<div class="g-row"><div class="g-label">Interface e base visual</div><div class="g-track"><span class="g-grid" style="left:0.000%"></span><span class="g-grid" style="left:11.111%"></span><span class="g-grid" style="left:22.222%"></span><span class="g-grid" style="left:33.333%"></span><span class="g-grid" style="left:44.444%"></span><span class="g-grid" style="left:55.556%"></span><span class="g-grid" style="left:66.667%"></span><span class="g-grid" style="left:77.778%"></span><span class="g-grid" style="left:88.889%"></span><span class="g-bar exe" style="left:calc(11.111% + 2px);width:calc(22.222% - 4px)"></span></div></div>
+<div class="g-row"><div class="g-label">Rodadas de ajuste</div><div class="g-track"><span class="g-grid" style="left:0.000%"></span><span class="g-grid" style="left:11.111%"></span><span class="g-grid" style="left:22.222%"></span><span class="g-grid" style="left:33.333%"></span><span class="g-grid" style="left:44.444%"></span><span class="g-grid" style="left:55.556%"></span><span class="g-grid" style="left:66.667%"></span><span class="g-grid" style="left:77.778%"></span><span class="g-grid" style="left:88.889%"></span><span class="g-bar exe" style="left:calc(22.222% + 2px);width:calc(22.222% - 4px)"></span></div></div>
+<div class="g-row"><div class="g-label">Especificação e passagem</div><div class="g-track"><span class="g-grid" style="left:0.000%"></span><span class="g-grid" style="left:11.111%"></span><span class="g-grid" style="left:22.222%"></span><span class="g-grid" style="left:33.333%"></span><span class="g-grid" style="left:44.444%"></span><span class="g-grid" style="left:55.556%"></span><span class="g-grid" style="left:66.667%"></span><span class="g-grid" style="left:77.778%"></span><span class="g-grid" style="left:88.889%"></span><span class="g-bar exe" style="left:calc(33.333% + 2px);width:calc(11.111% - 4px)"></span></div></div>
+<div class="g-row"><div class="g-label">Implementação da jornada 1 (Stringhini)</div><div class="g-track"><span class="g-grid" style="left:0.000%"></span><span class="g-grid" style="left:11.111%"></span><span class="g-grid" style="left:22.222%"></span><span class="g-grid" style="left:33.333%"></span><span class="g-grid" style="left:44.444%"></span><span class="g-grid" style="left:55.556%"></span><span class="g-grid" style="left:66.667%"></span><span class="g-grid" style="left:77.778%"></span><span class="g-grid" style="left:88.889%"></span><span class="g-bar str" style="left:calc(44.444% + 2px);width:calc(33.333% - 4px)"></span></div></div>
+<div class="g-sep">Jornada 2 · Checklist · 09/11 a 18/12</div>
+<div class="g-row"><div class="g-label">Fluxo e wireframe</div><div class="g-track"><span class="g-grid" style="left:0.000%"></span><span class="g-grid" style="left:11.111%"></span><span class="g-grid" style="left:22.222%"></span><span class="g-grid" style="left:33.333%"></span><span class="g-grid" style="left:44.444%"></span><span class="g-grid" style="left:55.556%"></span><span class="g-grid" style="left:66.667%"></span><span class="g-grid" style="left:77.778%"></span><span class="g-grid" style="left:88.889%"></span><span class="g-bar exe" style="left:calc(33.333% + 2px);width:calc(11.111% - 4px)"></span></div></div>
+<div class="g-row"><div class="g-label">Definição da jornada e conversa técnica</div><div class="g-track"><span class="g-grid" style="left:0.000%"></span><span class="g-grid" style="left:11.111%"></span><span class="g-grid" style="left:22.222%"></span><span class="g-grid" style="left:33.333%"></span><span class="g-grid" style="left:44.444%"></span><span class="g-grid" style="left:55.556%"></span><span class="g-grid" style="left:66.667%"></span><span class="g-grid" style="left:77.778%"></span><span class="g-grid" style="left:88.889%"></span><span class="g-bar dir" style="left:calc(44.444% + 2px);width:calc(11.111% - 4px)"></span></div></div>
+<div class="g-row"><div class="g-label">Interface</div><div class="g-track"><span class="g-grid" style="left:0.000%"></span><span class="g-grid" style="left:11.111%"></span><span class="g-grid" style="left:22.222%"></span><span class="g-grid" style="left:33.333%"></span><span class="g-grid" style="left:44.444%"></span><span class="g-grid" style="left:55.556%"></span><span class="g-grid" style="left:66.667%"></span><span class="g-grid" style="left:77.778%"></span><span class="g-grid" style="left:88.889%"></span><span class="g-bar exe" style="left:calc(44.444% + 2px);width:calc(22.222% - 4px)"></span></div></div>
+<div class="g-row"><div class="g-label">Rodadas de ajuste</div><div class="g-track"><span class="g-grid" style="left:0.000%"></span><span class="g-grid" style="left:11.111%"></span><span class="g-grid" style="left:22.222%"></span><span class="g-grid" style="left:33.333%"></span><span class="g-grid" style="left:44.444%"></span><span class="g-grid" style="left:55.556%"></span><span class="g-grid" style="left:66.667%"></span><span class="g-grid" style="left:77.778%"></span><span class="g-grid" style="left:88.889%"></span><span class="g-bar exe" style="left:calc(55.556% + 2px);width:calc(22.222% - 4px)"></span></div></div>
+<div class="g-row"><div class="g-label">Especificação e passagem</div><div class="g-track"><span class="g-grid" style="left:0.000%"></span><span class="g-grid" style="left:11.111%"></span><span class="g-grid" style="left:22.222%"></span><span class="g-grid" style="left:33.333%"></span><span class="g-grid" style="left:44.444%"></span><span class="g-grid" style="left:55.556%"></span><span class="g-grid" style="left:66.667%"></span><span class="g-grid" style="left:77.778%"></span><span class="g-grid" style="left:88.889%"></span><span class="g-bar exe" style="left:calc(66.667% + 2px);width:calc(11.111% - 4px)"></span></div></div>
+<div class="g-row"><div class="g-label">Implementação da jornada 2 (Stringhini)</div><div class="g-track"><span class="g-grid" style="left:0.000%"></span><span class="g-grid" style="left:11.111%"></span><span class="g-grid" style="left:22.222%"></span><span class="g-grid" style="left:33.333%"></span><span class="g-grid" style="left:44.444%"></span><span class="g-grid" style="left:55.556%"></span><span class="g-grid" style="left:66.667%"></span><span class="g-grid" style="left:77.778%"></span><span class="g-grid" style="left:88.889%"></span><span class="g-bar str" style="left:calc(77.778% + 2px);width:calc(22.222% - 4px)"></span></div></div>
+<div class="g-row"><div class="g-label">Fechamento da jornada 2</div><div class="g-track"><span class="g-grid" style="left:0.000%"></span><span class="g-grid" style="left:11.111%"></span><span class="g-grid" style="left:22.222%"></span><span class="g-grid" style="left:33.333%"></span><span class="g-grid" style="left:44.444%"></span><span class="g-grid" style="left:55.556%"></span><span class="g-grid" style="left:66.667%"></span><span class="g-grid" style="left:77.778%"></span><span class="g-grid" style="left:88.889%"></span><span class="g-bar dir" style="left:calc(88.889% + 2px);width:calc(11.111% - 4px)"></span></div></div>
+<div class="g-row"><div class="g-label">Encerramento do projeto (18/12)</div><div class="g-track"><span class="g-grid" style="left:0.000%"></span><span class="g-grid" style="left:11.111%"></span><span class="g-grid" style="left:22.222%"></span><span class="g-grid" style="left:33.333%"></span><span class="g-grid" style="left:44.444%"></span><span class="g-grid" style="left:55.556%"></span><span class="g-grid" style="left:66.667%"></span><span class="g-grid" style="left:77.778%"></span><span class="g-grid" style="left:88.889%"></span><span class="g-mark" style="left:calc(95.556% - 6px)"></span></div></div>
+<div class="g-legend"><span><i class="g-bar exe"></i>Execução Fattoria</span><span><i class="g-bar dir"></i>Encontros com Ipiranga e Stringhini</span><span><i class="g-bar str"></i>Implementação Stringhini</span><span><i class="g-mark"></i>Marco</span></div>
+</div>
+
+<h3>Interfaces e fluxos de cada jornada</h3>
+<table class="t dor">
+  <thead><tr><th>Jornada</th><th>Interface ou fluxo</th><th>O que resolve</th></tr></thead>
+  <tbody>
+    <tr><td class="feat"><b>1</b><span class="src">Home</span></td><td class="desc"><b>Contexto do dia:</b> conexão, sincronização e pendências do consultor logo na abertura do app.</td><td class="who">Home com pouca informação para a rotina</td></tr>
+    <tr><td class="feat"><b>1</b><span class="src">Home</span></td><td class="desc"><b>Resumo da carteira:</b> andamento do quadrimestre, visitados e pendentes, e quanto falta para fechar a meta.</td><td class="who">Meta controlada fora do app</td></tr>
+    <tr><td class="feat"><b>1</b><span class="src">Home</span></td><td class="desc"><b>Iniciar execução:</b> caminho direto da home para a próxima visita.</td><td class="who">Muitos passos até começar o trabalho</td></tr>
+    <tr><td class="feat"><b>1</b><span class="src">Home</span></td><td class="desc"><b>Acessos rápidos:</b> Guia de Execução, visitas, dashboards e treinamentos.</td><td class="who">Canais espalhados, cada um com seu caminho</td></tr>
+    <tr><td class="feat"><b>2</b><span class="src">Checklist</span></td><td class="desc"><b>Fluxo do checklist:</b> início a partir do posto, progresso, perguntas obrigatórias sinalizadas, navegação entre seções, salvar e retomar, e o Concluir só quando for possível concluir.</td><td class="who">Pouca noção de progresso durante o checklist</td></tr>
+    <tr><td class="feat"><b>2</b><span class="src">Checklist</span></td><td class="desc"><b>Conclusão e relatório:</b> confirmação de envio e acesso ao relatório com nota preliminar ou final e status da auditoria.</td><td class="who">Relatório difícil de encontrar e sem status</td></tr>
+    <tr><td class="feat"><b>1 e 2</b><span class="src">Estados de campo</span></td><td class="desc"><b>Sem conexão, sincronização pendente, vazio, erro e carregamento</b>, aplicados às telas das duas jornadas.</td><td class="who">Dúvida sobre o que ficou salvo no aparelho</td></tr>
+  </tbody>
+</table>
+
+<!-- 04 -->
+<div class="page"></div>
+<div class="sec"><span>04</span>Equipe e investimento</div>
+
+<p>A Fattoria dedica ao projeto um time com papéis fixos, liderado por quem já conhece os canais digitais da Coordenação. A Ipiranga contrata um pacote de horas por jornada, organizado conforme o cronograma das etapas.</p>
+
+<h3>Equipe</h3>
+<table class="t dor tight">
+  <thead><tr><th>Papel</th><th>Responsabilidade</th><th>Participação</th></tr></thead>
+  <tbody>
+    <tr><td class="feat"><b>Liderança de produto</b><span class="src">Bruno Branco · Lead Product Designer</span></td><td class="desc">Decisões de produto e experiência, definição das jornadas e alinhamento com a Ipiranga.</td><td class="who">Encontros de definição, alinhamentos e aprovações</td></tr>
+    <tr><td class="feat"><b>Product designer</b><span class="src">Dedicado ao projeto</span></td><td class="desc">Fluxos, interface, base visual e especificação.</td><td class="who">Produção das duas jornadas</td></tr>
+    <tr><td class="feat"><b>Ponte técnica</b><span class="src">Thiago Brito · Tech Lead</span></td><td class="desc">Viabilidade com a Stringhini, conversas técnicas e passagem das telas.</td><td class="who">Conversas técnicas e passagens</td></tr>
+  </tbody>
+</table>
+
+<h3>Investimento</h3>
+<table class="t dor tight">
+  <thead><tr><th>Item</th><th>Escopo</th><th class="r">Horas</th><th class="r">Valor</th></tr></thead>
+  <tbody>
+    <tr><td class="feat"><b>Jornada 1</b><span class="src">19/10 a 13/11</span></td><td class="desc">Home do app (dashboard) e base visual</td><td class="val-r" style="width:10%">60h</td><td class="val-r">R$ 12.000,00</td></tr>
+    <tr><td class="feat"><b>Jornada 2</b><span class="src">09/11 a 18/12</span></td><td class="desc">Checklist, conclusão e relatório</td><td class="val-r" style="width:10%">60h</td><td class="val-r">R$ 12.000,00</td></tr>
+    <tr class="tot"><td class="feat"><b>Projeto</b><span class="src">R$ 200,00 por hora</span></td><td class="desc"><b>Duas jornadas, de 19/10 a 18/12</b></td><td class="val-r" style="width:10%"><b>120h</b></td><td class="val-r"><b>R$ 24.000,00</b></td></tr>
+  </tbody>
+</table>
+
+
+<h3>Condições de pagamento</h3>
+<table class="t dor tight">
+  <thead><tr><th>Marco</th><th>Quando</th><th class="r">Valor</th></tr></thead>
+  <tbody>
+    <tr><td class="feat"><b>Jornada 1</b><span class="src">50%</span></td><td class="desc">Na assinatura da proposta</td><td class="val-r">R$ 12.000,00</td></tr>
+    <tr><td class="feat"><b>Jornada 2</b><span class="src">50%</span></td><td class="desc">13/11, passagem da jornada 1 e início da produção da jornada 2</td><td class="val-r">R$ 12.000,00</td></tr>
+  </tbody>
+</table>
+
+<p class="note">Os valores apresentados já contemplam impostos e tributos. O projeto pode utilizar os créditos do banco de horas da Ipiranga com a Fattoria, conforme combinado entre as partes. A Fattoria e seu time operam em horário comercial, de segunda a sexta-feira, das 9h às 18h. Validade da proposta: 30 dias.</p>
+
+<!-- 05 -->
+<div class="page"></div>
+<div class="sec"><span>05</span>Próximas jornadas</div>
+<p>Com a home e o checklist entregues, a Ipiranga terá uma visão clara do ritmo da esteira e da resposta da Stringhini às entregas. Esse é o momento de planejar as próximas jornadas, seguindo o mesmo modelo ou acelerando o ritmo. Os itens abaixo, levantados no dossiê e na estratégia, formam a base desse planejamento.</p>
+<table class="t dor tight">
+  <thead><tr><th>Item</th><th>O que é</th><th>Observação</th></tr></thead>
+  <tbody>
+    <tr><td class="feat"><b>Arquitetura do hub</b></td><td class="desc">Estrutura completa de menus e seções, e o que leva aos canais especialistas.</td><td class="who"></td></tr>
+    <tr><td class="feat"><b>Minha carteira completa</b></td><td class="desc">Visitas por dia para fechar 100% e lista dos postos que faltam.</td><td class="who"></td></tr>
+    <tr><td class="feat"><b>Busca e seleção do posto</b></td><td class="desc">Busca direta por nome fantasia, razão social ou CNPJ, com status e data da última visita.</td><td class="who"></td></tr>
+    <tr><td class="feat"><b>Auditoria e contestação</b></td><td class="desc">O que a auditoria mudou e por quê, réplica do consultor e status da contestação.</td><td class="who"></td></tr>
+    <tr><td class="feat"><b>Central de notificações</b></td><td class="desc">Avisos de auditoria concluída, nota alterada e contestação respondida.</td><td class="who"></td></tr>
+    <tr><td class="feat"><b>Postos próximos e carteira em mapa</b></td><td class="desc">Postos mais perto do consultor e mapa com visitados e pendentes.</td><td class="who">Depende de coordenadas e do serviço de mapa</td></tr>
+    <tr><td class="feat"><b>Resumo do posto e visita anterior</b></td><td class="desc">Dados do posto, pendências e pontos de atenção da última visita.</td><td class="who">Depende das bases disponíveis</td></tr>
+    <tr><td class="feat"><b>Guia dentro da pergunta</b></td><td class="desc">Padrão correto aberto a partir de cada pergunta do checklist.</td><td class="who">Depende da ligação entre pergunta e conteúdo</td></tr>
+    <tr><td class="feat"><b>Checklist por setor e foto anexada depois</b></td><td class="desc">Perguntas na ordem do deslocamento físico e foto anexada mais tarde.</td><td class="who">Depende do motor de formulários</td></tr>
+    <tr><td class="feat"><b>Pendências, planos de ação e oportunidades</b></td><td class="desc">Pendências com responsável e prazo e registro de ações comerciais.</td><td class="who"></td></tr>
+    <tr><td class="feat"><b>Dashboard do coordenador no celular</b></td><td class="desc">Visão da equipe adaptada ao celular.</td><td class="who"></td></tr>
+    <tr><td class="feat"><b>Recursos com IA e novos canais</b></td><td class="desc">Assistente do Guia, validação de fotos, avisos por WhatsApp e roteirização.</td><td class="who"></td></tr>
+  </tbody>
+</table>
+
+<!-- 06 -->
+<div class="page"></div>
+<div class="sec"><span>06</span>Como vamos saber se deu certo</div>
+<p>Hoje não existe uma medição estruturada a partir de analytics, apenas alguns logs customizados. A Fattoria indica abaixo alguns KPIs como sinais de sucesso das duas jornadas, para que a evolução possa ser comprovada depois do lançamento. Novos indicadores podem ser levantados e incluídos durante a execução do projeto.</p>
+<table class="t dor tight">
+  <thead><tr><th>Jornada</th><th>Indicador</th><th>Como medir</th></tr></thead>
+  <tbody>
+    <tr><td class="feat"><b>Home</b></td><td class="desc">Tempo entre abrir o app e iniciar uma execução</td><td class="who">Eventos no app</td></tr>
+    <tr><td class="feat"><b>Home</b></td><td class="desc">Uso dos acessos rápidos</td><td class="who">Eventos no app</td></tr>
+    <tr><td class="feat"><b>Checklist</b></td><td class="desc">Tempo médio para concluir um checklist</td><td class="who">Eventos no app</td></tr>
+    <tr><td class="feat"><b>Geral</b></td><td class="desc">Satisfação do consultor com as novas telas</td><td class="who">Pesquisa curta depois do lançamento</td></tr>
+  </tbody>
+</table>
+
+<!-- 07 -->
+<div class="sec" style="margin-top:22px"><span>07</span>Próximos passos</div>
+<ol class="steps">
+  <li><b>Aprovação da proposta</b> e assinatura.</li>
+  <li><b>Início em 19/10</b> com os fluxos e wireframes da home.</li>
+  <li><b>Definição da jornada e conversa técnica</b> com Ipiranga e Stringhini, usando os wireframes como base.</li>
+  <li><b>Primeira apresentação da home</b> na segunda semana do projeto.</li>
+</ol>
+
+</body>
+</html>

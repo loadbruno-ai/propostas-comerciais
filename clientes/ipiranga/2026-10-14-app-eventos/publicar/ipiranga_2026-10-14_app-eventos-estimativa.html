@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow, nosnippet, noimageindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ipiranga · App Eventos · Estimativa de investimento</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root { --ink:#13141d; --pink:#f72585; --grey:#6b6e7a; --line:#e3e4e8; --bg:#f3f3f5; }
+  @page { size: A4; margin: 22mm 20mm 20mm 20mm; }
+  * { box-sizing: border-box; }
+  body { font-family: 'Poppins', sans-serif; font-weight: 300; color: var(--ink); font-size: 9.6pt; line-height: 1.55; margin: 0; }
+  @media screen { body { max-width: 760px; margin: 40px auto; padding: 0 20px; } }
+  b, strong { font-weight: 700; }
+  .kicker { color: var(--pink); font-weight: 700; letter-spacing: .22em; font-size: 8pt; text-transform: uppercase; margin: 0 0 14px; }
+  h1 { font-weight: 300; font-size: 27pt; line-height: 1.12; margin: 0 0 16px; letter-spacing: -.01em; }
+  h1 b { font-weight: 700; }
+  .lead { font-size: 11pt; line-height: 1.6; margin: 0 0 26px; }
+  table.ficha { width: 100%; border-collapse: collapse; border-top: 2px solid var(--ink); margin-bottom: 26px; }
+  table.ficha td { padding: 8px 0; border-bottom: 1px solid var(--line); vertical-align: top; font-size: 9.4pt; }
+  table.ficha td:first-child { width: 25%; color: var(--pink); font-weight: 700; letter-spacing: .14em; font-size: 7.4pt; text-transform: uppercase; padding-top: 10px; }
+  .box { background: var(--bg); border-left: 4px solid var(--pink); padding: 14px 18px; margin: 16px 0; break-inside: avoid; }
+  .box h4 { margin: 0 0 6px; font-size: 9.8pt; font-weight: 700; }
+  .box p { margin: 0 0 8px; } .box p:last-child { margin-bottom: 0; }
+  .box.dark { background: var(--ink); color: #fff; }
+  .box ul { margin: 4px 0 0; padding-left: 18px; } .box li { margin-bottom: 3px; }
+  .sec { background: var(--ink); color: #fff; margin: 0 0 16px; padding: 14px 18px; font-size: 13pt; font-weight: 500; break-after: avoid; }
+  .sec span { color: var(--pink); font-weight: 700; margin-right: 10px; }
+  .page { break-before: page; }
+  h3 { font-size: 10.5pt; font-weight: 700; margin: 20px 0 6px; break-after: avoid; }
+  h3::before { content: ''; display: inline-block; width: 8px; height: 8px; background: var(--pink); margin-right: 8px; vertical-align: 1px; }
+  p { margin: 0 0 10px; }
+  ul { padding-left: 18px; } li { margin-bottom: 5px; }
+  table.t { width: 100%; border-collapse: collapse; margin-bottom: 8px; }
+  table.t thead { display: table-header-group; }
+  table.t th { text-align: left; font-size: 7pt; letter-spacing: .12em; text-transform: uppercase; color: var(--grey); font-weight: 700; padding: 6px 6px 7px; border-bottom: 1.5px solid var(--ink); }
+  table.t td { padding: 7px 6px; border-bottom: 1px solid var(--line); vertical-align: top; font-size: 8.6pt; line-height: 1.45; }
+  table.t tr { break-inside: avoid; }
+  td.feat { width: 26%; } td.feat b { display: block; font-size: 8.8pt; line-height: 1.35; }
+  table.t th.r, td.r { text-align: right; white-space: nowrap; }
+  td.num { width: 12%; text-align: right; white-space: nowrap; font-weight: 500; }
+  tr.tot td { border-top: 1.5px solid var(--ink); background: var(--bg); font-weight: 700; }
+  tr.sub td { color: var(--grey); }
+  td.ok { color: var(--ink); font-weight: 500; } td.no { color: var(--grey); }
+  .tag { display: inline-block; font-size: 6.4pt; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; padding: 2px 6px; border-radius: 2px; white-space: nowrap; line-height: 1.5; }
+  .tag.dark { background: var(--ink); color: #fff; } .tag.pink { background: var(--pink); color: #fff; } .tag.line { border: 1px solid var(--ink); color: var(--ink); } .tag.warn { border: 1px solid var(--pink); color: var(--pink); }
+  .grid3 { display: flex; gap: 10px; margin: 14px 0; }
+  .grid3 div { flex: 1; border-top: 2px solid var(--ink); padding-top: 8px; font-size: 8.4pt; color: var(--grey); }
+  .grid3 .big { font-size: 20pt; font-weight: 700; line-height: 1; display: block; margin-bottom: 4px; color: var(--ink); }
+  .grid3 div.p { border-color: var(--pink); } .grid3 div.p .big { color: var(--pink); }
+  .note { color: var(--grey); font-size: 7.8pt; }
+  ol.steps { padding-left: 18px; } ol.steps li { margin-bottom: 5px; }
+</style>
+</head>
+<body>
+
+<p class="kicker">Fattoria Digital · Ipiranga Eventos</p>
+<h1>Estimativa de investimento,<br><b>aplicativo do portal de eventos</b></h1>
+
+<table class="ficha">
+  <tr><td>Cliente</td><td>Ipiranga · Eventos e Convenção</td></tr>
+  <tr><td>Interlocução</td><td>Catarina Ramos e Estefane</td></tr>
+  <tr><td>Plataforma</td><td>Portal de eventos (eventosipiranga.com.br), desenvolvido e mantido pela Fattoria</td></tr>
+  <tr><td>Base</td><td>Reunião de 14/10/2026 · cinco anos de operação do portal · estrutura da Convenção 2025</td></tr>
+  <tr><td>Natureza</td><td>Estimativa preliminar de prazo e investimento, para apoiar a decisão. Não é uma proposta comercial</td></tr>
+  <tr><td>Data</td><td>14 de outubro de 2026</td></tr>
+</table>
+
+<p class="lead">A Ipiranga quer levar o portal de eventos para o celular dos revendedores e funcionários, com acesso rápido à agenda, ao mapa e às inscrições durante o evento. Na reunião de 14/10 combinamos dois movimentos em paralelo: a Fattoria testa uma versão PWA do portal com a estrutura da Convenção 2025, e este documento dá a noção de prazo e valor de um aplicativo, caso o teste mostre que ele é necessário.</p>
+
+<div class="box">
+  <h4>Como ler este documento</h4>
+  <p>As seções 01 a 03 explicam o que muda entre o portal no celular e um aplicativo, e como a Fattoria construiria o app. As seções 04 e 05 trazem duas opções de escopo, com frentes de trabalho, prazo e investimento. A seção 06 compara as duas e lista os custos que continuam depois da publicação. As seções 07 e 08 fecham com premissas, o que fica fora e os próximos passos.</p>
+</div>
+
+<!-- 01 -->
+<div class="page"></div>
+<div class="sec"><span>01</span>De onde partimos</div>
+
+<p>O portal de eventos foi criado há cerca de cinco anos para substituir a ferramenta de prateleira que a Ipiranga usava, e cumpriu o que prometia: as inscrições, agendas, formulários e jornadas específicas do negócio passaram a ser ajustadas com rapidez e a um custo de operação baixo. O que o portal ainda não resolve bem é o momento do evento em si, quando o participante está em pé, com o celular na mão, e quer achar a agenda ou o mapa sem procurar um link.</p>
+
+<p>A dor relatada é de praticidade. Um aplicativo resolve isso, mas traz de volta duas características que a Ipiranga conhece do período anterior ao portal: cada ajuste passa pela revisão das lojas da Apple e do Google antes de chegar ao usuário, e a manutenção de uma base de código a mais tem um custo permanente. Por isso a recomendação foi testar primeiro o PWA, que entrega parte da praticidade sem criar uma segunda plataforma, e só depois decidir pelo app.</p>
+
+<div class="box dark">
+  <h4>O critério de decisão</h4>
+  <p>O aplicativo vale o investimento quando a estratégia dos eventos passa a depender de algo que só ele faz, em especial a comunicação por notificação no dia do evento. Se a necessidade continuar sendo acesso rápido à agenda, ao mapa e às inscrições, o PWA atende com um custo muito menor.</p>
+</div>
+
+<!-- 02 -->
+<div class="page"></div>
+<div class="sec"><span>02</span>O que o PWA resolve e o que só um app faz</div>
+
+<table class="t">
+  <thead><tr><th>Necessidade</th><th>Portal em PWA</th><th>Aplicativo nativo</th></tr></thead>
+  <tbody>
+    <tr><td class="feat"><b>Ícone na tela do celular</b></td><td class="ok">Sim, instalado a partir do navegador, sem loja</td><td class="ok">Sim, pela App Store e Google Play</td></tr>
+    <tr><td class="feat"><b>Agenda e mapa sem conexão</b></td><td class="ok">Sim, com cache do evento</td><td class="ok">Sim</td></tr>
+    <tr><td class="feat"><b>Entrar direto no evento</b></td><td class="ok">Sim, login leva à página do evento</td><td class="ok">Sim</td></tr>
+    <tr><td class="feat"><b>Inscrição em arenas e atividades</b></td><td class="ok">Sim, é o portal</td><td class="ok">Sim, consumindo o portal</td></tr>
+    <tr><td class="feat"><b>Notificação push no dia do evento</b></td><td class="no">Não confiável, em especial no iPhone</td><td class="ok">Sim, com segmentação por público</td></tr>
+    <tr><td class="feat"><b>Fluidez de navegação</b></td><td class="no">Depende do navegador e da rede</td><td class="ok">Resposta imediata, interface nativa</td></tr>
+    <tr><td class="feat"><b>Lembrete ao chegar perto do local</b></td><td class="no">Não</td><td class="ok">Possível, com geolocalização em segundo plano (fora desta estimativa)</td></tr>
+    <tr><td class="feat"><b>Mapa de calor de presença</b></td><td class="no">Não</td><td class="ok">Possível, com validações de privacidade da Apple e do Google (fora desta estimativa)</td></tr>
+    <tr><td class="feat"><b>Ajuste urgente durante o evento</b></td><td class="ok">Publicado na hora, pelo portal</td><td class="no">Conteúdo vem do portal na hora; mudança no app passa pela revisão das lojas</td></tr>
+  </tbody>
+</table>
+<p class="note">Push em PWA: o Android aceita, o iPhone só aceita quando o usuário instala o PWA na tela inicial e autoriza, e o comportamento varia com a versão do sistema. Para uma estratégia de avisos no dia do evento, a Fattoria não recomenda depender disso.</p>
+
+<!-- 03 -->
+<div class="page"></div>
+<div class="sec"><span>03</span>Como a Fattoria construiria o aplicativo</div>
+
+<p>O portal continua sendo a única fonte de informação. Eventos, agendas, mapas, formulários e inscrições seguem cadastrados onde já são hoje, e o aplicativo lê tudo pela API do portal. Uma mudança feita no portal aparece no app sem nova publicação nas lojas. O que passa pela loja é só o aplicativo em si, quando ganha funções novas.</p>
+
+<h3>Decisões técnicas</h3>
+<ul>
+  <li><b>Um código para iOS e Android</b>, em tecnologia híbrida (React Native). Metade do esforço e da manutenção de dois apps nativos, com acesso completo a push, câmera, calendário e armazenamento offline.</li>
+  <li><b>API do portal</b> construída pela Fattoria sobre a base atual: login por token, eventos, agenda, mapa, inscrições e cadastro de dispositivos para push.</li>
+  <li><b>Painel de notificações dentro do admin do portal</b>, para a equipe da Ipiranga escrever, segmentar e agendar os avisos sem depender da Fattoria.</li>
+  <li><b>Formulários de inscrição mais complexos</b> podem abrir dentro do app como tela web do portal, quando não valer o custo de refazê-los em código nativo. É um recurso de controle de custo, não um atalho de qualidade.</li>
+  <li><b>Contas de desenvolvedor em nome da Ipiranga</b> na Apple e no Google, para o app ser publicado pela marca e a Ipiranga manter a titularidade.</li>
+</ul>
+
+<h3>Quem faz o quê</h3>
+<table class="t">
+  <thead><tr><th>Quem</th><th>Papel</th></tr></thead>
+  <tbody>
+    <tr><td class="feat"><b>Ipiranga · Eventos</b></td><td>Define as prioridades, aprova as telas e as rodadas de homologação, abre as contas de desenvolvedor e responde pela política de privacidade do app. Opera o conteúdo e os avisos pelo portal.</td></tr>
+    <tr><td class="feat"><b>Fattoria · produto, design e engenharia</b></td><td>Desenho das jornadas, API do portal, aplicativo iOS e Android, push, testes, publicação e sustentação. Direção de Bruno Branco (produto e experiência) e Thiago Nóbrega (arquitetura).</td></tr>
+  </tbody>
+</table>
+
+<!-- 04 -->
+<div class="page"></div>
+<div class="sec"><span>04</span>Opção A · App da Convenção</div>
+
+<p>Um aplicativo dedicado ao evento principal, com o escopo que a Catarina descreveu: agenda, mapa, inscrição em arenas e avisos no dia. O app é reaproveitado na próxima convenção com troca do conteúdo pelo portal. Eventos menores continuam no portal e no PWA.</p>
+
+<div class="grid3">
+  <div class="p"><span class="big">R$ 104 mil</span>investimento estimado</div>
+  <div><span class="big">10 a 12</span>semanas a partir do kick-off</div>
+  <div><span class="big">~520 h</span>execução, reserva e direção</div>
+</div>
+
+<h3>Frentes de trabalho</h3>
+<table class="t">
+  <thead><tr><th>Frente</th><th>Entregas</th><th class="r">Horas</th></tr></thead>
+  <tbody>
+    <tr><td class="feat"><b>Descoberta e arquitetura</b></td><td>Mapa da API que o portal precisa expor, definição da stack, fluxo de dados offline, plano de push</td><td class="num">24</td></tr>
+    <tr><td class="feat"><b>UX/UI mobile</b></td><td>Design system mobile a partir da identidade do portal e cerca de 12 telas: login, home do evento, agenda por dia com favoritos, detalhe de atividade, mapa com pontos de interesse, inscrição em arena, perfil e credencial, central de avisos. Protótipo navegável para aprovação</td><td class="num">60</td></tr>
+    <tr><td class="feat"><b>Backend e API no portal</b></td><td>Autenticação por token, endpoints de evento, agenda, mapa e inscrição em arena, cadastro de dispositivos, painel de envio de push no admin do portal</td><td class="num">60</td></tr>
+    <tr><td class="feat"><b>App iOS e Android</b></td><td>Login integrado, home, agenda com favoritos e lembretes, mapa com zoom, inscrição em arena, perfil, central de avisos, cache offline de agenda e mapa, recebimento de push, abertura por link do e-mail ou QR code</td><td class="num">150</td></tr>
+    <tr><td class="feat"><b>Push notification</b></td><td>Integração com Apple e Google, registro de dispositivos, segmentação por evento e perfil (revendedor, funcionário), histórico de envios</td><td class="num">20</td></tr>
+    <tr><td class="feat"><b>QA e homologação</b></td><td>Testes em aparelhos iOS e Android, cenários sem conexão, correções, rodada de homologação com a Ipiranga via TestFlight e APK</td><td class="num">36</td></tr>
+    <tr><td class="feat"><b>Publicação nas lojas</b></td><td>Apoio na abertura das contas, assets de loja, política de privacidade, formulários de dados, submissão e resposta às revisões</td><td class="num">20</td></tr>
+    <tr class="sub"><td colspan="2">Execução</td><td class="num">370</td></tr>
+    <tr class="sub"><td colspan="2">Reserva técnica (10%) e direção, gestão e reuniões (30%)</td><td class="num">148</td></tr>
+    <tr class="tot"><td colspan="2">Total · R$ 200/h</td><td class="num">518 h · R$ 103.600</td></tr>
+  </tbody>
+</table>
+<p class="note">Preço sugerido arredondado: R$ 104.000. Pagamento em três marcos: 30% na assinatura, 30% na homologação (app disponível para teste interno) e 40% na publicação nas lojas.</p>
+
+<!-- 05 -->
+<div class="page"></div>
+<div class="sec"><span>05</span>Opção B · App Ipiranga Eventos, para todos os eventos</div>
+
+<p>Um aplicativo permanente da Ipiranga Eventos, que acompanha qualquer evento criado no portal, com inscrição completa pelo celular, incluindo os formulários específicos de cada evento. Faz sentido se a Ipiranga quiser um canal próprio e contínuo com revendedores e funcionários, e não só um apoio no dia da convenção.</p>
+
+<div class="grid3">
+  <div class="p"><span class="big">R$ 170 mil</span>investimento estimado</div>
+  <div><span class="big">16 a 20</span>semanas a partir do kick-off</div>
+  <div><span class="big">~850 h</span>execução, reserva e direção</div>
+</div>
+
+<h3>Frentes de trabalho</h3>
+<table class="t">
+  <thead><tr><th>Frente</th><th>Entregas</th><th class="r">Horas</th></tr></thead>
+  <tbody>
+    <tr><td class="feat"><b>Descoberta e arquitetura</b></td><td>Tudo da opção A, mais a modelagem dos formulários dinâmicos de inscrição do portal (campos, regras, anexos, passagem e hotelaria quando houver), catálogo de eventos e perfis de acesso</td><td class="num">32</td></tr>
+    <tr><td class="feat"><b>UX/UI mobile</b></td><td>Cerca de 22 telas: além das telas da opção A, lista e filtro de eventos, detalhe de evento, inscrição completa com formulários dinâmicos, meus eventos e histórico, materiais e documentos, preferências de notificação</td><td class="num">100</td></tr>
+    <tr><td class="feat"><b>Backend e API no portal</b></td><td>API completa: catálogo de eventos, inscrições com formulários dinâmicos e validações, materiais, perfil e histórico, notificações por evento; painel de push por evento e por público</td><td class="num">110</td></tr>
+    <tr><td class="feat"><b>App iOS e Android</b></td><td>Tudo da opção A para qualquer evento, renderização dos formulários dinâmicos do portal, envio de documentos, meus eventos, materiais e preferências. Novos eventos entram sem retrabalho no app</td><td class="num">260</td></tr>
+    <tr><td class="feat"><b>Push notification</b></td><td>Segmentação por evento, público e etapa da jornada (inscrito, confirmado, presente), agendamento e histórico</td><td class="num">30</td></tr>
+    <tr><td class="feat"><b>QA e homologação</b></td><td>Matriz maior de cenários (vários eventos, formulários distintos, offline), testes em aparelhos, rodadas de homologação com a Ipiranga</td><td class="num">56</td></tr>
+    <tr><td class="feat"><b>Publicação nas lojas</b></td><td>Igual à opção A</td><td class="num">20</td></tr>
+    <tr class="sub"><td colspan="2">Execução</td><td class="num">608</td></tr>
+    <tr class="sub"><td colspan="2">Reserva técnica (10%) e direção, gestão e reuniões (30%)</td><td class="num">243</td></tr>
+    <tr class="tot"><td colspan="2">Total · R$ 200/h</td><td class="num">851 h · R$ 170.240</td></tr>
+  </tbody>
+</table>
+<p class="note">Preço sugerido arredondado: R$ 170.000. Mesmos marcos de pagamento da opção A. A opção B pode ser contratada em duas etapas, começando pelo escopo da opção A e evoluindo depois da primeira convenção.</p>
+
+<!-- 06 -->
+<div class="page"></div>
+<div class="sec"><span>06</span>Comparativo e custos que continuam</div>
+
+<table class="t">
+  <thead><tr><th>Caminho</th><th>O que resolve</th><th class="r">Prazo</th><th class="r">Investimento</th></tr></thead>
+  <tbody>
+    <tr><td class="feat"><b>PWA do portal</b><br><span class="tag line">em teste</span></td><td>Ícone na tela, agenda e mapa offline, login direto no evento, salvar no calendário. Sem notificação push. Evolução completa do portal até o limite do PWA</td><td class="num">3 semanas</td><td class="num">cerca de R$ 25 mil</td></tr>
+    <tr><td class="feat"><b>Opção A · App da Convenção</b></td><td>Tudo do PWA mais push, interface nativa e experiência de app para um evento por vez</td><td class="num">10 a 12 semanas</td><td class="num">R$ 104 mil</td></tr>
+    <tr><td class="feat"><b>Opção B · App Ipiranga Eventos</b></td><td>Canal permanente para todos os eventos, inscrição completa pelo celular, push por evento e público</td><td class="num">16 a 20 semanas</td><td class="num">R$ 170 mil</td></tr>
+  </tbody>
+</table>
+<p class="note">O valor do PWA é uma referência de esforço para evoluir o portal, apresentada aqui só para comparação. O piloto combinado na reunião entra como atividade de manutenção do portal.</p>
+
+<h3>Depois da publicação</h3>
+<table class="t">
+  <thead><tr><th>Item</th><th>Quem paga</th><th>Valor</th><th>Observação</th></tr></thead>
+  <tbody>
+    <tr><td class="feat"><b>Apple Developer Program</b></td><td>Ipiranga</td><td>US$ 99 por ano</td><td>Conta em nome da empresa, exige número D-U-N-S. Aprovação de 1 a 3 semanas, por isso deve ser aberta no início do projeto</td></tr>
+    <tr><td class="feat"><b>Google Play Console</b></td><td>Ipiranga</td><td>US$ 25, uma vez</td><td>Conta em nome da empresa, com verificação</td></tr>
+    <tr><td class="feat"><b>Serviço de push</b></td><td>Ipiranga</td><td>sem custo</td><td>O volume dos eventos cabe no plano gratuito do Firebase</td></tr>
+    <tr><td class="feat"><b>Sustentação do app</b></td><td>Fattoria</td><td>R$ 2.000 a R$ 3.200 por mês</td><td>10 a 16 horas mensais: atualizações de sistema operacional e bibliotecas, revisões das lojas, pequenos ajustes. Picos de evento à parte</td></tr>
+    <tr><td class="feat"><b>Hospedagem e API</b></td><td>Ipiranga</td><td>incluída</td><td>Coberta pela operação atual do portal</td></tr>
+  </tbody>
+</table>
+
+<div class="box">
+  <h4>Por que a sustentação existe</h4>
+  <p>Um app nativo precisa acompanhar as versões anuais do iOS e do Android e as regras das lojas, mesmo sem nenhuma função nova. Sem essa manutenção, o aplicativo deixa de abrir em aparelhos novos ou é removido da loja. É o custo fixo que não existe no portal e que pesa na decisão.</p>
+</div>
+
+<!-- 07 -->
+<div class="page"></div>
+<div class="sec"><span>07</span>Premissas e o que fica fora</div>
+
+<h3>Premissas desta estimativa</h3>
+<ul>
+  <li>Os valores são uma estimativa preliminar com margem de 20% para mais ou para menos, a ser fechada em proposta depois do piloto PWA e de uma rodada de detalhamento com a Ipiranga.</li>
+  <li>O conteúdo dos eventos (agenda, mapa, textos, imagens) continua sendo cadastrado pela Ipiranga no portal.</li>
+  <li>A identidade visual do app segue a do portal e as diretrizes de marca da Ipiranga, sem criação de nova identidade.</li>
+  <li>Os prazos contam a partir do kick-off, com a Ipiranga respondendo às aprovações em até 3 dias úteis, e não incluem a abertura das contas de desenvolvedor nem a revisão das lojas na primeira publicação (2 a 7 dias).</li>
+  <li>Os formulários de inscrição mais complexos podem ser exibidos no app como tela web do portal, conforme a seção 03.</li>
+</ul>
+
+<h3>Fora desta estimativa</h3>
+<ul>
+  <li>Lembrete por proximidade (geolocalização em segundo plano) e mapa de calor de presença. Tecnicamente viáveis, mas dependem de um objetivo de negócio definido e de validações de privacidade da Apple e do Google. Podem ser estimados à parte.</li>
+  <li>Check-in e credenciamento por QR code na entrada do evento, chat entre participantes, gamificação, enquetes ao vivo e transmissão de conteúdo.</li>
+  <li>Integração com WhatsApp para avisos, que é uma alternativa ao push sem app e pode ser estudada em separado.</li>
+  <li>Produção de conteúdo, textos e imagens dos eventos.</li>
+</ul>
+
+<!-- 08 -->
+<div class="page"></div>
+<div class="sec"><span>08</span>Próximos passos</div>
+
+<ol class="steps">
+  <li><b>Piloto PWA</b>: a Fattoria levanta em homologação um evento com a estrutura da Convenção 2025, com ícone na tela, agenda e mapa offline e login direto no evento, e envia o roteiro de teste para a Catarina e a Estefane.</li>
+  <li><b>Salvar no calendário</b> como função fixa dos eventos, no portal e na mensagem de sucesso, já em andamento para a próxima semana.</li>
+  <li><b>Rodada de uso</b> pela equipe da Ipiranga, com retorno sobre o que atendeu e o que faltou.</li>
+  <li><b>Decisão</b>: se a necessidade estiver coberta, a Fattoria incorpora as melhorias do piloto ao portal. Se a estratégia dos eventos exigir push ou experiência nativa, a Fattoria transforma a opção escolhida em proposta comercial, e a Ipiranga inicia a abertura das contas de desenvolvedor em paralelo.</li>
+</ol>
+
+<div class="box dark">
+  <h4>Fattoria Digital</h4>
+  <p>Bruno Branco, Lead Product Designer · Thiago Nóbrega, CTO<br>Estimativa emitida em 14 de outubro de 2026, válida como referência por 60 dias.</p>
+</div>
+
+</body>
+</html>
